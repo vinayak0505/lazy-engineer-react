@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./redux/reducer/auth.reducer";
-// import { toastMiddleware } from "./redux/middleware/toast.middleware";
+import { toastMiddleware } from "./redux/middleware/toast.middleware";
+import { helperReducer } from "./redux/reducer/helper.reducer";
 
 const store = configureStore({
-    reducer: { authReducer },
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(toastMiddleware, tokenMiddleware)
+    reducer: { authReducer, helperReducer },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(toastMiddleware)
 });
 
 export type AppDispatch = typeof store.dispatch;
