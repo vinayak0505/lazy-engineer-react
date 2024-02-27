@@ -8,7 +8,7 @@ type initialStateType = {
     error: string | null;
 };
 
-const initialState: initialStateType = { user: null, loading: true, error: null };
+const initialState: initialStateType = { user: null, loading: false, error: null };
 
 export const loginUser = createAsyncThunk("auth/loginUser", async (arg: any, thunkApi) => {
     thunkApi.dispatch(authAction.loading());

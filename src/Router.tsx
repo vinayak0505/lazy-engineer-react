@@ -1,25 +1,23 @@
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-// import { useUserValue } from "./Logic/auth";
+import { useSelector } from 'react-redux';
+import Auth from './pages/auth';
+import { authSelector } from './redux/reducer/auth.reducer';
 
 function Router() {
-	const [loged, setLoged] = useState(false);
-
-	// const dispatch = useDispatch();
-
+	const { user } = useSelector(authSelector);
+	
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
-		if (!loged) {
+		if (!user) {
 			return <Navigate to="/auth" replace />;
 		}
 		return children;
 	};
 
 	const LoggedIn = ({ children }: { children: JSX.Element }) => {
-		if (loged) {
+		if (user) {
 			return <Navigate to="/" replace />;
 		}
 		return children;
@@ -31,7 +29,7 @@ function Router() {
 			path: '/auth',
 			element: (
 				<LoggedIn>
-					<div>i on auth</div>
+					<Auth />
 				</LoggedIn>
 			),
 			children: []
@@ -44,10 +42,10 @@ function Router() {
 				</Protected>
 			),
 			children: [
-        {
-          index: true,
+				{
+					index: true,
 					element: <div>i am index</div>
-        },
+				},
 				{
 					path: '/home',
 					element: <div>i am home</div>
