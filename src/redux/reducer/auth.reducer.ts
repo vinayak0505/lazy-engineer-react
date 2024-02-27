@@ -1,19 +1,24 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import AuthService from "../service/auth.service";
 import { RootState } from "../../store";
 
-type initialStateType = {
-    user: any;
+export type UserType = {
+    email: string;
+    fullName: string;
+    timeCreated: string;
+    univercity: string | null;
+} | null;
+type InitialStateType = {
+    user: UserType;
     loading: boolean;
     error: string | null;
 };
 
-const initialState: initialStateType = { user: null, loading: false, error: null };
+const initialState: InitialStateType = { user: null, loading: true, error: null };
 
-export const loginUser = createAsyncThunk("auth/loginUser", async (arg: any, thunkApi) => {
+export const loginUser = createAsyncThunk("auth/loginUser", async (arg: { email: string; password: string }, thunkApi) => {
     thunkApi.dispatch(authAction.loading());
     const data = await AuthService.loginUser(arg.email, arg.password);
-    console.log("data", data);
     if (data.status !== "success") throw new Error(data.message);
     return data;
 });
@@ -33,10 +38,9 @@ export const logoutUser = createAsyncThunk("auth/logoutUser", async (_, thunkApi
     return { status: "success" };
 });
 
-export const signUpUser = createAsyncThunk("auth/signUpUser", async (arg: any, thunkApi) => {
+export const signUpUser = createAsyncThunk("auth/signUpUser", async (arg: { email: string; password: string; name: string }, thunkApi) => {
     thunkApi.dispatch(authAction.loading());
     const data = await AuthService.signUpUser(arg.email, arg.password, arg.name);
-    console.log("data", data);
     if (data.status !== "success") throw new Error(data.message);
     return data;
 });
@@ -46,7 +50,6 @@ export const verifyToken = createAsyncThunk("auth/verifyToken", async (_, thunkA
     const token = localStorage.getItem("token");
     if (token === undefined || token === null) throw new Error("Token not found in cookie");
     const data = await AuthService.verifyToken(token);
-    console.log("data", data);
     if (data.status !== "success") throw new Error(data.message);
     return data;
 })
@@ -72,9 +75,9 @@ const authSlice = createSlice({
      * @param {object} builder - The builder object.
      * @return {void}
      */
-    extraReducers: (builder) => {
+    extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
         builder
-            .addCase(loginUser.fulfilled, (state, action: any) => {
+            .addCase(loginUser.fulfilled, (state, action) => {
                 state.user = action?.payload?.data?.userDetail;
                 state.loading = false;
                 state.error = null;
@@ -84,7 +87,7 @@ const authSlice = createSlice({
                 state.user = null;
                 state.loading = false;
             })
-            .addCase(signUpUser.fulfilled, (state, action: any) => {
+            .addCase(signUpUser.fulfilled, (state, action) => {
                 state.user = action?.payload?.data?.userDetail;
                 state.loading = false;
                 state.error = null;
@@ -104,14 +107,13 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = action?.error?.message ?? null;
             })
-            .addCase(verifyToken.fulfilled, (state, action: any) => {
+            .addCase(verifyToken.fulfilled, (state, action) => {
                 state.user = action?.payload?.data?.userDetail;
                 state.loading = false;
                 state.error = null;
             })
             .addCase(verifyToken.rejected, (state, action) => {
                 console.log("rejected", action.error);
-
                 state.error = action?.error?.message ?? null;
                 state.user = null;
                 state.loading = false;

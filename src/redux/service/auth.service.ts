@@ -21,14 +21,14 @@ class AuthService {
 
     static async logoutUser(token: string) {
         const response = await axios.put(API.SIGNOUT, null, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { token }
         });
         return response.data;
     }
 
     static async verifyToken(token: string) {
         const response = await axios.post(API.VERIFY_TOKEN, null, {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { token }
         });
         return response.data;
     }

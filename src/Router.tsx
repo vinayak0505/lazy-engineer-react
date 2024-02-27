@@ -1,13 +1,9 @@
-import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
-import React from 'react';
+import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import { useSelector } from 'react-redux';
 import Auth from './pages/Auth';
-import { authSelector } from './redux/reducer/auth.reducer';
+import { UserType } from './redux/reducer/auth.reducer';
 
-function Router() {
-	const { user } = useSelector(authSelector);
-	
+function Router({ user }: { user: UserType }) {
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
 		if (!user) {
