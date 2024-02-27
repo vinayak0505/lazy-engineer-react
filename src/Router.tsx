@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-rou
 import React from 'react';
 import './App.css';
 import { useSelector } from 'react-redux';
-import Auth from './pages/auth';
+import Auth from './pages/Auth';
 import { authSelector } from './redux/reducer/auth.reducer';
 
 function Router() {
