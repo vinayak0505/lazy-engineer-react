@@ -1,7 +1,8 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
-import Auth from './pages/Auth';
+import Auth from './pages/auth/Auth';
 import { UserType } from './redux/reducer/auth.reducer';
+import Home from './pages/home/home';
 
 function Router({ user }: { user: UserType }) {
 	// protected to prevent route that should not be acceble without logout
@@ -40,7 +41,7 @@ function Router({ user }: { user: UserType }) {
 			children: [
 				{
 					index: true,
-					element: <div>i am index</div>
+					element: <Home/>
 				},
 				{
 					path: '/home',

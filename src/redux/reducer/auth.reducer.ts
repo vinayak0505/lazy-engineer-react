@@ -27,15 +27,13 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (arg: { email:
  * Logout the user by signing them out
  */
 export const logoutUser = createAsyncThunk("auth/logoutUser", async (_, thunkApi) => {
-    thunkApi.dispatch(authAction.loading());
     const token = localStorage.getItem("token");
     if (token) {
-        const data = await AuthService.logoutUser(token);
-        console.log("data", data);
-        if (data.status !== "success") throw new Error(data.message);
-        return data;
+        thunkApi.dispatch(authAction.loading());
+        return await AuthService.logoutUser(token);
+    }else{
+        throw new Error("Token not found in cookie");
     }
-    return { status: "success" };
 });
 
 export const signUpUser = createAsyncThunk("auth/signUpUser", async (arg: { email: string; password: string; name: string }, thunkApi) => {
