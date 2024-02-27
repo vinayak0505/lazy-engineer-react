@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { authSelector, loginUser } from '../../../redux/reducer/auth.reducer';
+import { authSelector, signUpUser } from '../../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../../store';
 import { useSelector } from 'react-redux';
 
 const SignUp = () => {
-    const [email, setEmail] = useState('');
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [rePassword, setRePassword] = useState('');
 
 	const dispatch = useAppDispatch();
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		dispatch(loginUser({ email, password }));
+		dispatch(signUpUser({ email, password, name }));
 	};
 
 	const { loading } = useSelector(authSelector);
@@ -20,6 +22,11 @@ const SignUp = () => {
 		<div>
 			<h1>Login</h1>
 			<form onSubmit={handleSubmit}>
+				<label>
+					Full Name{' '}
+					<input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+				</label>
+				<br />
 				<label>
 					Email <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 				</label>
@@ -30,6 +37,15 @@ const SignUp = () => {
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</label>
+				<br />
+				<label>
+					Re Enter Password{' '}
+					<input
+						type="password"
+						value={rePassword}
+						onChange={(e) => setRePassword(e.target.value)}
 					/>
 				</label>
 				<br />
