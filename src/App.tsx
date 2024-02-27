@@ -1,23 +1,17 @@
 import React from 'react';
 import './App.css';
-import { helperAction } from './redux/reducer/helper.reducer';
-import { useDispatch } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
-
 import { ToastContainer } from 'react-toastify';
+import { RouterProvider } from 'react-router-dom';
+import Router from './Router';
 
 function App() {
-  const dispatch = useDispatch();
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p onClick={() => dispatch(helperAction.customToast("hello"))}>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-      <ToastContainer />
-    </div>
-  );
+	return (
+		<div className="App">
+      <Router/>
+			<ToastContainer />
+		</div>
+	);
 }
 
 export default App;
