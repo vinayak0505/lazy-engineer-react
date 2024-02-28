@@ -2,7 +2,7 @@ import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-rou
 import './App.css';
 import Auth from './pages/auth/Auth';
 import { UserType } from './redux/reducer/auth.reducer';
-import Home from './pages/home/home';
+import Home from './pages/home/Home';
 
 function Router({ user }: { user: UserType }) {
 	// protected to prevent route that should not be acceble without logout

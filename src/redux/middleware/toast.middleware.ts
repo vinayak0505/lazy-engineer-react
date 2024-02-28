@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { toast } from "react-toastify";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 export const toastMiddleware = (api: any) => (next: any) => (action: any) => {
-  console.log("priting types");
-  console.log(typeof api, api);
-  console.log(typeof next, next);
-  console.log(typeof action, action);
   switch (action?.type) {
     case "auth/loginUser/fulfilled":
       toast.info("Logged in successfully");
@@ -22,7 +18,6 @@ export const toastMiddleware = (api: any) => (next: any) => (action: any) => {
       }
       break;
     default:
-      console.log("loggin", action);
       if (action.error?.message) {
         toast.error(action.error.message);
       }

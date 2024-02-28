@@ -1,5 +1,6 @@
 import { logoutUser } from '../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../store';
+import styles from './Home.module.scss';
 
 const Home = () => {
 	const dispatch = useAppDispatch();
@@ -9,7 +10,7 @@ const Home = () => {
 	};
 	return (
 		<>
-			<p>i am home</p>
+			<p className={styles.title}>i am home</p>
 			<button onClick={logout}>log out</button>
 		</>
 	);

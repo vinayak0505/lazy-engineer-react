@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
 export const tokenMiddleware = (api: any) => (next: any) => (action: any) => {
     switch (action.type) {
         case "auth/loginUser/fulfilled":
