@@ -6,6 +6,7 @@ export type UserType = {
     email: string;
     fullName: string;
     timeCreated: string;
+    profile: string | null;
     univercity: string | null;
 } | null;
 type InitialStateType = {

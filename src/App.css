@@ -12,6 +12,11 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .spacer {
@@ -22,7 +27,7 @@
 	text-align: center;
 }
 
-.spacer-right{
+.spacer-right {
 	flex: 1 1 0px;
 	text-align: end;
 }
@@ -48,3 +53,10 @@ a {
 		cursor: pointer;
 	}
 }
+
+.App {
+	background-color: #0E131F;
+	min-height: 100vh;
+	width: 100vw;
+}
+

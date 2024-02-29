@@ -4,11 +4,11 @@ import Auth from './pages/auth/Auth';
 import { UserType } from './redux/reducer/auth.reducer';
 import Home from './pages/home/Home';
 import Nav from './components/nav/Nav';
-import SideBar from './components/sidebar/SizeBar';
+import SideBar from './components/sidebar/SideBar';
 
 function Router({ user }: { user: UserType }) {
 	// todo temp setting user to work without auth
-	user = { email: '', fullName: 'vinayak agarwal', timeCreated: '', univercity: '' };
+	user = { email: '', fullName: 'vinayak agarwal', timeCreated: '', univercity: '', profile: null };
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
 		if (!user) {
@@ -41,7 +41,9 @@ function Router({ user }: { user: UserType }) {
 				<Protected>
 					<>
 						<Nav />
-						<Outlet/>
+						<SideBar user={user}>
+							<Outlet />
+						</SideBar>
 					</>
 				</Protected>
 			),
@@ -52,7 +54,11 @@ function Router({ user }: { user: UserType }) {
 				},
 				{
 					path: '/profile',
-					element: <div>i am home</div>
+					element: <div>i am profile</div>
+				},
+				{
+					path: '/notes',
+					element: <div>i am notes</div>
 				}
 			]
 		}
