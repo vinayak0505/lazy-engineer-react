@@ -27,7 +27,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 								{user?.fullName}
 							</h5>
 							<span className="text-sm text-gray-500 dark:text-gray-400">
-								Visual Designer
+								{user?.email}
 							</span>
 						</div>
 					</div>
@@ -81,7 +81,21 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 					</ul>
 				</div>
 			</aside>
-			<div className="p-4 sm:ml-64">
+			<aside
+				id="separator-sidebar"
+				className="fixed right-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+				aria-label="Sidebar"
+			>
+				<div className="h-full px-3 py-4 overflow-y-auto">
+					<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+						<div className="flex flex-col items-center pb-6 pt-6">
+							{/* to do add advertisement */}
+							advertisement
+						</div>
+					</div>
+				</div>
+			</aside>
+			<div className="p-4 sm:ml-64 sm:mr-64">
 				<div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
 					{children}
 				</div>

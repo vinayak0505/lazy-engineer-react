@@ -8,7 +8,7 @@ import SideBar from './components/sidebar/SideBar';
 
 function Router({ user }: { user: UserType }) {
 	// todo temp setting user to work without auth
-	user = { email: '', fullName: 'vinayak agarwal', timeCreated: '', univercity: '', profile: null };
+	user = { email: 'vinayakaggarwal05@gmail.com', fullName: 'Vinayak Agarwal', timeCreated: '', univercity: '', profile: null };
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
 		if (!user) {
