@@ -3,8 +3,12 @@ import './App.css';
 import Auth from './pages/auth/Auth';
 import { UserType } from './redux/reducer/auth.reducer';
 import Home from './pages/home/Home';
+import Nav from './components/nav/Nav';
+import SideBar from './components/sidebar/SizeBar';
 
 function Router({ user }: { user: UserType }) {
+	// todo temp setting user to work without auth
+	user = { email: '', fullName: 'vinayak agarwal', timeCreated: '', univercity: '' };
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
 		if (!user) {
@@ -35,16 +39,19 @@ function Router({ user }: { user: UserType }) {
 			path: '/',
 			element: (
 				<Protected>
-					<Outlet />
+					<>
+						<Nav />
+						<Outlet/>
+					</>
 				</Protected>
 			),
 			children: [
 				{
 					index: true,
-					element: <Home/>
+					element: <Home />
 				},
 				{
-					path: '/home',
+					path: '/profile',
 					element: <div>i am home</div>
 				}
 			]

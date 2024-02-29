@@ -46,7 +46,7 @@ export const signUpUser = createAsyncThunk("auth/signUpUser", async (arg: { emai
 export const verifyToken = createAsyncThunk("auth/verifyToken", async (_, thunkApi) => {
     thunkApi.dispatch(authAction.loading());
     const token = localStorage.getItem("token");
-    if (token === undefined || token === null) throw new Error("Token not found in cookie");
+    if (token === undefined || token === null) throw new Error();
     const data = await AuthService.verifyToken(token);
     if (data.status !== "success") throw new Error(data.message);
     return data;
