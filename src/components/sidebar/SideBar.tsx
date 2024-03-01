@@ -83,7 +83,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 			</aside>
 			<aside
 				id="separator-sidebar"
-				className="fixed right-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+				className="fixed right-0  w-64 h-screen transition-transform translate-x-full sm:-translate-x-0"
 				aria-label="Sidebar"
 			>
 				<div className="h-full px-3 py-4 overflow-y-auto">
