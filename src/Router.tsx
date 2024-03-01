@@ -36,6 +36,10 @@ function Router({ user }: { user: UserType }) {
 			children: []
 		},
 		{
+			path: '*',
+			element : <Navigate to="/" replace />
+		},
+		{
 			path: '/',
 			element: (
 				<Protected>
