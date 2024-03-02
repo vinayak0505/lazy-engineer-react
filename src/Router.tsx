@@ -5,10 +5,11 @@ import { UserType } from './redux/reducer/auth.reducer';
 import Home from './pages/home/Home';
 import Nav from './components/nav/Nav';
 import SideBar from './components/sidebar/SideBar';
+import NotesPage from './pages/notes/NotesPage';
 
 function Router({ user }: { user: UserType }) {
 	// todo temp setting user to work without auth
-	user = { email: 'vinayakaggarwal05@gmail.com', fullName: 'Vinayak Agarwal', timeCreated: '', univercity: '', profile: null };
+	// user = { email: 'vinayakaggarwal05@gmail.com', fullName: 'Vinayak Agarwal', timeCreated: '', univercity: '', profile: null };
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
 		if (!user) {
@@ -62,7 +63,7 @@ function Router({ user }: { user: UserType }) {
 				},
 				{
 					path: '/notes',
-					element: <div>i am notes</div>
+					element: <NotesPage/>
 				}
 			]
 		}
