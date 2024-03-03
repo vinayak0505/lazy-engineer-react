@@ -7,6 +7,7 @@ import Nav from './components/nav/Nav';
 import SideBar from './components/sidebar/SideBar';
 import NotesPage from './pages/notes/NotesPage';
 import PaperPage from './pages/paper/PaperPage';
+import BooksPage from './pages/books/BooksPage';
 
 function Router({ user }: { user: UserType }) {
 	// todo temp setting user to work without auth
@@ -39,7 +40,7 @@ function Router({ user }: { user: UserType }) {
 		},
 		{
 			path: '*',
-			element : <Navigate to="/" replace />
+			element: <Navigate to="/" replace />
 		},
 		{
 			path: '/',
@@ -60,15 +61,26 @@ function Router({ user }: { user: UserType }) {
 				},
 				{
 					path: '/profile',
-					element: <div>i am profile</div>
+					element: (
+						<div className="h-56 w-32 relative">
+							<img src="https://placekitten.com/600" className='object-cover h-56 w-32 rounded-s-lg' alt="" />
+							<div className="absolute bottom-0 right-0">
+							<span className="bg-blue-100 text-blue-800 text-xs font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">200 pages</span>
+							</div>
+						</div>
+					)
 				},
 				{
 					path: '/paper',
-					element: <PaperPage/>
+					element: <PaperPage />
 				},
 				{
 					path: '/notes',
-					element: <NotesPage/>
+					element: <NotesPage />
+				},
+				{
+					path: '/books',
+					element: <BooksPage />
 				}
 			]
 		}

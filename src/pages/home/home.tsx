@@ -47,7 +47,7 @@ const data = [
 		button: "View Books"
 	},
 	{
-		title: 'Practical',
+		title: 'Practical File',
 		body: 'See other students practical file',
 		link: '/practical',
 		image: 'https://static.vecteezy.com/system/resources/previews/017/337/613/non_2x/quality-folder-icon-flat-document-file-vector.jpg',
