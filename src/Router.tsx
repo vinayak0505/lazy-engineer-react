@@ -2,7 +2,7 @@ import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-rou
 import './App.css';
 import Auth from './pages/auth/Auth';
 import { UserType } from './redux/reducer/auth.reducer';
-import Home from './pages/home/Home';
+import Home from './pages/home/_home';
 import Nav from './components/nav/Nav';
 import SideBar from './components/sidebar/SideBar';
 import NotesPage from './pages/notes/NotesPage';
