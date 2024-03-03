@@ -1,5 +1,6 @@
 import Carousel from '../../components/carousel/Carousel';
 import Card from '../../components/cards/Card';
+import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
 
 const images = [
 	{
@@ -26,51 +27,64 @@ const images = [
 
 const data = [
 	{
-		title: 'Notes',
-		body: 'You can find handwritten notes from all students',
-		link: '/notes',
-		image: './images/notesImage.png',
-		button: "View Notes"
-	},
-	{
-		title: 'Question Paper',
-		body: 'Previous years Question paper from different universities',
-		link: '/paper',
-		image: 'https://cdn-icons-png.flaticon.com/512/4542/4542505.png',
-		button: "View Paper"
+		title: 'Jobs',
+		body: 'Get all latest jobs post here',
+		link: '/jobs',
+		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0ZWE-Ya5wIZxIJcfbB0_2TsqnnKGGwlrVcPnw1xkcbw&s',
+		button: 'View Jobs'
 	},
 	{
 		title: 'Books',
 		body: 'Download books for free',
 		link: '/books',
 		image: './images/bookImage.png',
-		button: "View Books"
+		button: 'View Books'
 	},
+	{
+		title: 'Notes',
+		body: 'You can find handwritten notes from all students',
+		link: '/notes',
+		image: './images/notesImage.png',
+		button: 'View Notes'
+	},
+	{
+		title: 'Question Paper',
+		body: 'Previous years Question paper from different universities',
+		link: '/paper',
+		image: 'https://cdn-icons-png.flaticon.com/512/4542/4542505.png',
+		button: 'View Paper'
+	},
+
 	{
 		title: 'Practical File',
 		body: 'See other students practical file',
 		link: '/practical',
 		image: 'https://static.vecteezy.com/system/resources/previews/017/337/613/non_2x/quality-folder-icon-flat-document-file-vector.jpg',
-		button: "View Practical"
-	},
-	{
-		title: 'Jobs',
-		body: 'Get all latest jobs post here',
-		link: '/jobs',
-		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0ZWE-Ya5wIZxIJcfbB0_2TsqnnKGGwlrVcPnw1xkcbw&s',
-		button: "View Jobs"
-	},
+		button: 'View Practical'
+	}
 ];
 
 const Home = () => {
 	return (
 		<>
 			<Carousel images={images} />
-			<div className="grid md:grid-cols-2 gap-4 mt-4 xl:grid-cols-3 2xl:grid-cols-4">
+			<div className="mt-4"></div>
+			<ResponsiveGrid maxChildrenWidth={220}>
 				{data.map((item, index) => (
-					<Card {...item} key={index} />
+					<div key={index}>
+						<Card
+							title={item.title}
+							body={item.body}
+							link={item.link}
+							image={item.image}
+							maxWidth={80}
+							maxTitleLines={2}
+							maxBodyLines={4}
+						/>
+					</div>
 				))}
-			</div>
+			</ResponsiveGrid>
+			;
 		</>
 	);
 };

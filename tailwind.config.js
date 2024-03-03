@@ -9,6 +9,9 @@ module.exports = {
 	safelist: [
 		{
 			pattern: /^line-clamp-(\d+)$/
+		},
+		{
+			pattern: /^max-w-(\d+)$/
 		}
 	]
 };

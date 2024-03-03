@@ -25,7 +25,7 @@ const Card = ({
 				maxWidth ? `max-w-${maxWidth}` : ''
 			}`}
 		>
-			{image && <img className="rounded-t-lg h-60 w-full" src={image} alt={title} />}
+			{image && <img className="rounded-t-lg w-full" src={image} alt={title} />}
 			<div className="p-5">
 				{title && (
 					<h5
