@@ -9,10 +9,11 @@ const HorizontalCard = ({
 	maxBodyLines = 'none',
 	maxTitleLines = 'none',
 	maxWidth = 'none',
-	imageText
+	imageText,
+	children
 }: {
 	title: string;
-	body?: string | null;
+	body?: string;
 	link: string;
 	image?: string | null;
 	button?: string | null;
@@ -20,6 +21,7 @@ const HorizontalCard = ({
 	maxTitleLines?: number | string;
 	maxWidth?: number | string;
 	imageText?: string;
+	children?: JSX.Element | null;
 }) => {
 	return (
 		<NavLink
@@ -44,11 +46,12 @@ const HorizontalCard = ({
 				>
 					{title}
 				</h5>
-				<p
+				{children}
+				{body && <p
 					className={`mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-${maxBodyLines}`}
 				>
 					{body}
-				</p>
+				</p>}
 			</div>
 		</NavLink>
 	);

@@ -4,5 +4,11 @@ module.exports = {
 	theme: {
 		extend: {}
 	},
-	plugins: []
+	plugins: [],
+	// needed to add this to load all type of lineclamp so that we can use it dynamically
+	safelist: [
+		{
+			pattern: /^line-clamp-(\d+)$/
+		}
+	]
 };

@@ -9,6 +9,7 @@ import NotesPage from './pages/notes/NotesPage';
 import PaperPage from './pages/paper/PaperPage';
 import BooksPage from './pages/books/BooksPage';
 import ProfilePage from './pages/profile/ProfilePage';
+import PracticalPage from './pages/practical/PracticalPage';
 
 function Router({ user }: { user: UserType }) {
 	// todo temp setting user to work without auth
@@ -62,7 +63,7 @@ function Router({ user }: { user: UserType }) {
 				},
 				{
 					path: '/profile',
-					element: <ProfilePage/>
+					element: <ProfilePage />
 				},
 				{
 					path: '/paper',
@@ -75,6 +76,10 @@ function Router({ user }: { user: UserType }) {
 				{
 					path: '/books',
 					element: <BooksPage />
+				},
+				{
+					path: '/practical',
+					element: <PracticalPage />
 				}
 			]
 		}
