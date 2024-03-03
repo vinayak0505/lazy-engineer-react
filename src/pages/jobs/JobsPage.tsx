@@ -1,10 +1,10 @@
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { PracticalData } from '../../redux/reducer/content.reducer';
-const PracticalPage = () => {
+import { JobsData } from '../../redux/reducer/content.reducer';
+const JobsPage = () => {
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
-			{PracticalData.result.map((item, index) => (
+			{JobsData.result.map((item, index) => (
 				<div key={index}>
 					<HorizontalCard
 						title={item.title}
@@ -12,13 +12,14 @@ const PracticalPage = () => {
 						image={item.imageLink}
 						maxWidth={'sm'}
 						maxTitleLines={2}
+						maxBodyLines={4}
+						imageText={item.datePosted}
 					>
-						<PracticalBody
+						<JobsBody
 							items={[
-								'Semester : ' + item.semester,
-								'Subject : ' + item.subject,
-								'College : ' + item.college,
-								'About : ' + item.about
+								'Company : ' + item.company,
+								'Location : ' + item.location,
+								'College : ' + item.jobType
 							]}
 						/>
 					</HorizontalCard>
@@ -28,15 +29,16 @@ const PracticalPage = () => {
 	);
 };
 
-const PracticalBody = ({ items }: { items: string[] }) => {
+const JobsBody = ({ items }: { items: string[] }) => {
 	return (
 		<>
 			{items.map((item, key) => (
-				<p className="line-clamp-1" key={key}>
+				<p  key={key}>
 					{item}
 				</p>
 			))}
 		</>
 	);
 };
-export default PracticalPage;
+
+export default JobsPage;

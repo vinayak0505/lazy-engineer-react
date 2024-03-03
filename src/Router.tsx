@@ -10,6 +10,7 @@ import PaperPage from './pages/paper/PaperPage';
 import BooksPage from './pages/books/BooksPage';
 import ProfilePage from './pages/profile/ProfilePage';
 import PracticalPage from './pages/practical/PracticalPage';
+import JobsPage from './pages/jobs/JobsPage';
 
 function Router({ user }: { user: UserType }) {
 	// todo temp setting user to work without auth
@@ -80,6 +81,10 @@ function Router({ user }: { user: UserType }) {
 				{
 					path: '/practical',
 					element: <PracticalPage />
+				},
+				{
+					path: '/jobs',
+					element: <JobsPage/>
 				}
 			]
 		}
