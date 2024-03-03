@@ -33,7 +33,7 @@ const data = [
 		button: "View Notes"
 	},
 	{
-		title: 'Paper',
+		title: 'Question Paper',
 		body: 'Previous years Question paper from different universities',
 		link: '/paper',
 		image: 'https://cdn-icons-png.flaticon.com/512/4542/4542505.png',

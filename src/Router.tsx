@@ -6,6 +6,7 @@ import Home from './pages/home/Home';
 import Nav from './components/nav/Nav';
 import SideBar from './components/sidebar/SideBar';
 import NotesPage from './pages/notes/NotesPage';
+import PaperPage from './pages/paper/PaperPage';
 
 function Router({ user }: { user: UserType }) {
 	// todo temp setting user to work without auth
@@ -60,6 +61,10 @@ function Router({ user }: { user: UserType }) {
 				{
 					path: '/profile',
 					element: <div>i am profile</div>
+				},
+				{
+					path: '/paper',
+					element: <PaperPage/>
 				},
 				{
 					path: '/notes',

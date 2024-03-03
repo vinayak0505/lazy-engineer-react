@@ -1,5 +1,5 @@
 // const notesData = ;
-const res = {
+const notes = {
     "status": "success",
     "data": {
         "result": [
@@ -80,5 +80,121 @@ const res = {
         "limit": 10
     }
 }
+const paper = {
+    "status": "success",
+    "data": {
+        "result": [
+            {
+                "_id": "63cc9e2ef399ca6752697a01",
+                "userId": "63cc8c771d7dbcaf86d2dfbe",
+                "title": "Wireless Communication End Term Examination",
+                "about": "This file contains the questions that came in 7th Semester End Term Examination of Wireless Communication in December 2019 which comprises topics of all four units.",
+                "semester": "7",
+                "subject": "Wireless Communication",
+                "unit": "3",
+                "chapter": "2G, 2.5G and 3G Networks and Mobile Services",
+                "topic": "PCS, GSM, CDMA, IMT 2000, WLL, and IRIDIUM System",
+                "tags": [
+                    "Unsolved",
+                    "End-Term"
+                ],
+                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674354220097End%20Term%202019%20WC.pdf?generation=1674354221883483&alt=media",
+                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674354222015End%20Term%202019%20WC.pdf_image.png?generation=1674354222860356&alt=media",
+                "__v": 0
+            },
+            {
+                "_id": "63cca058f399ca6752697a13",
+                "userId": "63cc8c771d7dbcaf86d2dfbe",
+                "title": "Wireless Communication Mid Term Examination",
+                "about": "This file contains the questions which came in Wireless Communication Mid Term Examination happened in March 2020 which comprises of first two units.",
+                "semester": "7",
+                "subject": "Wireless Communication",
+                "unit": "2",
+                "chapter": "2G Networks and Introduction to Wireless Communication, PCS & Wireless Channels",
+                "topic": "PCS, FDMA, TDMA, CDMA, Fading, GSM and PN Sequence",
+                "tags": [
+                    "Unsolved",
+                    "Mid-Term"
+                ],
+                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674354772321Mid%20Term%202020%20WC.pdf?generation=1674354774414110&alt=media",
+                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674354774541Mid%20Term%202020%20WC.pdf_image.png?generation=1674354775981253&alt=media",
+                "__v": 0
+            },
+            {
+                "_id": "63cca1d3f399ca6752697a1c",
+                "userId": "63cc8c771d7dbcaf86d2dfbe",
+                "title": "Database Management System Mid Term Examination",
+                "about": "This file contains the questions of Mid Term Examination happened in March 2020 comprises of first two units.",
+                "semester": "4",
+                "subject": "Database Management System",
+                "unit": "1",
+                "chapter": "Introductory Concepts of DBMS and Relational Model",
+                "topic": "DCL, DML, PL/SQL, E-R Diagram, Relational Algebra Operations",
+                "tags": [
+                    "Unsolved",
+                    "Mid-Term"
+                ],
+                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355152050DBMS%2020%20MId%20Term.pdf?generation=1674355154180892&alt=media",
+                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355154314DBMS%2020%20MId%20Term.pdf_image.png?generation=1674355155138779&alt=media",
+                "__v": 0
+            }
+        ],
+        "totalCount": 3,
+        "skip": 0,
+        "limit": 10
+    }
+}
 
-export default res.data;
+const books = {
+    "status": "success",
+    "data": {
+        "result": [
+            {
+                "_id": "63cca3f1f399ca6752697a25",
+                "userId": "63cc8c771d7dbcaf86d2dfbe",
+                "title": "Lecture Notes for Foundations of Computer Science",
+                "about": "This book covers the syllabus of subject Foundation of Computer Science. This book are currently revised each year by John Bullinaria. They re based on an older version originally written by Martin Escardo and revised by Manfred Kerber. All are members of the School of Computer Science, University of Birmingham, UK.",
+                "semester": "3",
+                "tags": [
+                    "Recommended by Teachers",
+                    "Reference Book",
+                    "Foreign Authors"
+                ],
+                "writer": [],
+                "pages": 116,
+                "bookEdition": 2018,
+                "price": 700,
+                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355694910foundations.pdf?generation=1674355696408767&alt=media",
+                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355696534foundations.pdf_image.png?generation=1674355697450226&alt=media",
+                "__v": 0
+            },
+            {
+                "_id": "63cca4f1f399ca6752697a28",
+                "userId": "63cc8c771d7dbcaf86d2dfbe",
+                "title": "Lecture Notes for Data Structures and Algorithms",
+                "about": "This book covers the entire syllabus of subject Data Structures and includes the topics like Stacks, Queues, Lists, Arrays, Trees, Binary Search Trees, Sorting, Graphs, Hash Tables and much more ...",
+                "semester": "3",
+                "tags": [
+                    "Recommended by Teachers",
+                    "Easy to understand",
+                    "Reference Book",
+                    "Foreign Authors"
+                ],
+                "writer": [],
+                "pages": 126,
+                "bookEdition": 2019,
+                "price": 1500,
+                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355950395dsa.pdf?generation=1674355951366018&alt=media",
+                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355951495dsa.pdf_image.png?generation=1674355952928221&alt=media",
+                "__v": 0
+            }
+        ],
+        "totalCount": 2,
+        "skip": 0,
+        "limit": 10
+    }
+}
+
+export const NotesData = notes.data;
+export const PaperData = paper.data;
+export const BooksData = books.data;

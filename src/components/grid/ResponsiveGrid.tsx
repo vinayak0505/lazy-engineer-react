@@ -1,7 +1,13 @@
 import { Masonry } from '@mui/lab';
 import { createRef, useEffect, useState } from 'react';
 
-const ResponsiveGrid = ({ children }: { children: JSX.Element[] }) => {
+const ResponsiveGrid = ({
+	children,
+	maxChildrenWidth = 200
+}: {
+	children: JSX.Element[];
+	maxChildrenWidth?: number;
+}) => {
 	const elementRef = createRef<HTMLDivElement>();
 	const [width, setWidth] = useState(0);
 
@@ -23,7 +29,11 @@ const ResponsiveGrid = ({ children }: { children: JSX.Element[] }) => {
 
 	return (
 		<div ref={elementRef} style={{ display: 'flex', justifyContent: 'center' }}>
-			<Masonry columns={Math.floor(width / 200)} spacing={2} style={{ width: 'fit-content' }}>
+			<Masonry
+				columns={Math.floor(width / maxChildrenWidth)}
+				spacing={2}
+				style={{ width: 'fit-content' }}
+			>
 				{children.map((item, index) => (
 					<div key={index}>{item}</div>
 				))}
