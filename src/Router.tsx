@@ -18,7 +18,7 @@ function Router({ user }: { user: UserType }) {
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
 		if (!user) {
-			return <Navigate to="/auth" replace />;
+			return <Navigate to="/login" replace />;
 		}
 		return children;
 	};
@@ -33,13 +33,20 @@ function Router({ user }: { user: UserType }) {
 	// routes
 	const browserRouter = createBrowserRouter([
 		{
-			path: '/auth',
+			path: '/login',
 			element: (
 				<LoggedIn>
-					<Auth />
+					<Auth showLogin={true} />
 				</LoggedIn>
 			),
-			children: []
+		},
+		{
+			path: '/register',
+			element: (
+				<LoggedIn>
+					<Auth showLogin={false} />
+				</LoggedIn>
+			),
 		},
 		{
 			path: '*',
