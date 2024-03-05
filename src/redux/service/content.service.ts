@@ -3,6 +3,7 @@ import API from '../constants/api';
 import { ResponseType as NotesType } from '../reducer/notes.reducer';
 import { ResponseType as BooksType } from '../reducer/books.reducer';
 import { ResponseType as JobsType } from '../reducer/jobs.reducer';
+import { ResponseType as FilesType } from '../reducer/files.reducer';
 
 export type BaseResponse<T> = {
     status: string;
@@ -22,6 +23,16 @@ class ContentService {
     }
 
     static async getBooks(skip: number, limit: number): Promise<BaseResponse<BooksType>> {
+        const response = await axios.get(API.BOOKS, {
+            params: {
+                skip,
+                limit
+            }
+        });
+        return response.data;
+    }
+
+    static async getFiles(skip: number, limit: number): Promise<BaseResponse<FilesType>> {
         const response = await axios.get(API.BOOKS, {
             params: {
                 skip,

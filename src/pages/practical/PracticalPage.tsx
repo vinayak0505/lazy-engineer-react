@@ -1,10 +1,21 @@
+import { useEffect } from 'react';
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { PracticalData } from '../../redux/reducer/notes.reducer';
+import { useAppDispatch } from '../../store';
+import { useSelector } from 'react-redux';
+import { filesSelector, getFiles } from '../../redux/reducer/files.reducer';
 const PracticalPage = () => {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getFiles());
+	}, []);
+
+	const PracticalData = useSelector(filesSelector).data;
+
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
-			{PracticalData.result.map((item, index) => (
+			{PracticalData.map((item, index) => (
 				<div key={index}>
 					<HorizontalCard
 						title={item.title}
@@ -40,3 +51,6 @@ const PracticalBody = ({ items }: { items: string[] }) => {
 	);
 };
 export default PracticalPage;
+function practicalSelector(state: unknown): unknown {
+	throw new Error('Function not implemented.');
+}
