@@ -6,9 +6,10 @@ import { useDispatch } from "react-redux";
 import { tokenMiddleware } from "./redux/middleware/token.middleware";
 import { notesReducer } from "./redux/reducer/notes.reducer";
 import { booksReducer } from "./redux/reducer/books.reducer";
+import { jobsReducer } from "./redux/reducer/jobs.reducer";
 
 const store = configureStore({
-    reducer: { authReducer, helperReducer, notesReducer, booksReducer },
+    reducer: { authReducer, helperReducer, notesReducer, booksReducer, jobsReducer },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tokenMiddleware, toastMiddleware)
 });
 

@@ -1,10 +1,21 @@
+import { useSelector } from 'react-redux';
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { JobsData } from '../../redux/reducer/notes.reducer';
+import { jobsSelector } from '../../redux/reducer/jobs.reducer';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../store';
 const JobsPage = () => {
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getJobs());
+	})
+	const JobsData = useSelector(jobsSelector).data;
+
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
-			{JobsData.result.map((item, index) => (
+			{JobsData.map((item, index) => (
 				<div key={index}>
 					<HorizontalCard
 						title={item.title}
@@ -42,3 +53,7 @@ const JobsBody = ({ items }: { items: string[] }) => {
 };
 
 export default JobsPage;
+function getJobs(): any {
+	throw new Error('Function not implemented.');
+}
+

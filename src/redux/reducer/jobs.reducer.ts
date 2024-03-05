@@ -2,25 +2,26 @@ import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs
 import { RootState } from "../../store"
 import ContentService, { BaseResponse } from "../service/content.service"
 
-type BookDataType = {
-    _id: string,
-    userId: string,
-    title: string,
-    about: string,
-    semester: string,
-    tags: string[],
-    writer: string[],
-    pages: number,
-    bookEdition: number,
-    price: number,
-    image: string,
-    link: string,
-    mediaLink: string,
+type JobDataType = {
+    _id: string
+    userId: string
+    title: string
+    profile: string
+    company: string
+    aboutCompany: string
+    location: string
+    jobType: string
+    experienceLevel: string
+    datePosted: string
+    skillsNeeded: string[]
+    expectedSalary: number
+    mediaLink: string
     imageLink: string
+    __v: number
 }
 type InitialStateType = {
     loading: boolean,
-    data: BookDataType[],
+    data: JobDataType[],
     error: string | null,
     pagination: {
         canGetMore: boolean
@@ -42,27 +43,28 @@ const initialState: InitialStateType = {
 }
 
 export type ResponseType = {
-    result: BookDataType[],
+    result: JobDataType[],
     totalCount: number,
     skip: number,
     limit: number
 }
 
-export const getBooks = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getBooks", async (_, thunkApi) => {
-    const { skip, limit } = thunkApi.getState().booksReducer.pagination;
-    const data = await ContentService.getBooks(skip, limit);
-    if (data.status !== "success") throw new Error(data.message ?? "Notes went wrong");
+export const getBooks = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getJobs", async (_, thunkApi) => {
+    const { skip, limit } = thunkApi.getState().jobsReducer.pagination;
+    const data = await ContentService.getJobs(skip, limit);
+    if (data.status !== "success") throw new Error(data.message ?? "Jobs went wrong");
     return data;
 })
 
-const booksSlice = createSlice({
-    name: "books",
+const jobsSlice = createSlice({
+    name: "jobs",
     initialState: initialState,
     reducers: {},
     extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
-        builder.addCase(getBooks.pending, (state) => {
-            state.loading = true
-        })
+        builder
+            .addCase(getBooks.pending, (state) => {
+                state.loading = true
+            })
             .addCase(getBooks.rejected, (state, action) => {
                 state.loading = false
                 state.error = action?.error?.message ?? null;
@@ -81,6 +83,6 @@ const booksSlice = createSlice({
     }
 })
 
-export const booksAction = booksSlice.actions
-export const booksReducer = booksSlice.reducer
-export const booksSelector = (root: RootState) => root.booksReducer;
+export const jobsAction = jobsSlice.actions
+export const jobsReducer = jobsSlice.reducer
+export const jobsSelector = (root: RootState) => root.jobsReducer;

@@ -65,7 +65,7 @@ const notesSlice = createSlice({
             })
             .addCase(getNotes.fulfilled, (state, action) => {
                 state.loading = false
-                state.data = action?.payload?.data?.result ?? []
+                state.data.concat(action?.payload?.data?.result ?? [])
                 state.error = null
                 state.pagination = {
                     canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),
@@ -208,79 +208,27 @@ const file = {
     }
 }
 
-const jobs = {
-    "status": "success",
+type JOBS = {
+    "status": string,
     "data": {
-        "result": [
-            {
-                "_id": "63cbf00bee4cc5105bab587d",
-                "userId": "63c975cd68de67efc5ccf977",
-                "title": "Software Test Engineer Silicon Software",
-                "profile": "In this role, you will focus on testing of system software. You will partner with cross functional teams to deliver high quality, power and performance optimized software to enable the best user experience on Pixel and other hardware products. The Silicon Software team builds firmware, drivers, runtime, and compilers to bring our custom hardware to life. We work cross-functionally with many teams, including Research, Machine Learning, Android, Chrome, and Hardware. You will bring enthusiasm for software testing and expertise in embedded to implement testing strategies, promote good software engineering practices, and build out our testing infrastructure and test content. Our testing needs range from traditional software tests to complex on-device testing of full Android applications.\n\nGoogle's mission is to organize the world's information and make it universally accessible and useful. Our team combines the best of Google AI, Software, and Hardware to create radically helpful experiences. We research, design, and develop new technologies and hardware to make computing faster, seamless, and more powerful. We aim to make people's lives better through technology.",
-                "company": "Google",
-                "aboutCompany": "A problem isn't truly solved until it's solved for all. Googlers build products that help create opportunities for everyone, whether down the street or across the globe. Bring your insight, imagination and a healthy disregard for the impossible. Bring everything that makes you unique. Together, we can build for everyone.",
-                "location": "Gurgoan",
-                "jobType": "Full Time",
-                "experienceLevel": "Mid-Senior Level",
-                "datePosted": "1/21/2023",
-                "skillsNeeded": [
-                    "C/C++",
-                    "HTML",
-                    "Java",
-                    "JS"
-                ],
-                "expectedSalary": 1000000,
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/IMG-20230121-WA0001.jpg?generation=1674309642522134&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/image_picker8073532514848290512.jpg?generation=1674309643396562&alt=media",
-                "__v": 0
-            },
-            {
-                "_id": "63d0b515a266bbde230c5129",
-                "userId": "63d0b2c2a266bbde230c5123",
-                "title": "Virtual Customer Service",
-                "profile": "An Amazon Customer Service Associate is a critical part of our mission to deliver timely, accurate and professional customer service to all Amazon customers. This vital position requires an action-oriented, flexible problem-solver who will assist customers in expediting orders and correcting post-sales problems. Associates communicate with customers primarily through mail, chat and phone and utilize a variety of software tools to navigate customer accounts, research and review policies and communicate effective solutions in a fun and fast-paced environment.",
-                "company": "Amazon",
-                "aboutCompany": "Amazon is guided by four principles: customer obsession rather than competitor focus, passion for invention, commitment to operational excellence, and long-term thinking. We are driven by the excitement of building technologies, inventing products, and providing services that change lives. We embrace new ways of doing things, make decisions quickly, and are not afraid to fail. We have the scope and capabilities of a large company, and the spirit and heart of a small one.",
-                "location": "Pune",
-                "jobType": "Full Time",
-                "experienceLevel": "Associate",
-                "datePosted": "1/25/2023",
-                "skillsNeeded": [
-                    "Java",
-                    "C/C++"
-                ],
-                "expectedSalary": 5000,
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674622226566IMG-20230125-WA0003.jpg?generation=1674622227472171&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674622227605IMG-20230125-WA0004.jpg?generation=1674622229085188&alt=media",
-                "__v": 0
-            },
-            {
-                "_id": "63d0b552a266bbde230c5135",
-                "userId": "63d0b210a266bbde230c511a",
-                "title": "Senior Data Engineer",
-                "profile": "Our CST Engineering team is growing.  We are looking for a Senior Data Engineer to join our team and help deliver on our vision of creating a safer digital experience for every person and organization on the planet, which in turn, promotes trust in Microsoft.",
-                "company": "Microsoft",
-                "aboutCompany": "Microsoft runs on trust.  Earning and keeping that trust has never been more important.\n\n \n\nIn Customer Security and Trust (CST), program managers, engineers, analysts, investigators, data scientists, attorneys, and business professionals are responsible for some of the most exciting projects at Microsoft focused on protecting our customers. \n\nWe actively partner with law enforcement and security organizations around the globe to disrupt bad actors who are using malware, phishing scams, IP abuse, tech support fraud, and other means to target our customers.\nWe ensure that governments who are requesting data from Microsoft in support of their criminal investigations through legal orders follow due process, striking a balance between fighting cybercrime and protecting customer data. \nWe provide solutions to demonstrate that Microsoft is in compliance with cybersecurity practices in support of government and industry customers.",
-                "location": "Hyderabad",
-                "jobType": "Full Time",
-                "experienceLevel": "Mid-Senior Level",
-                "datePosted": "1/25/2023",
-                "skillsNeeded": [
-                    "C/C++",
-                    "Java"
-                ],
-                "expectedSalary": 2500000,
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674622288220images.jpeg?generation=1674622289020171&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674622289144images%20(1).jpeg?generation=1674622289925268&alt=media",
-                "__v": 0
-            }
-        ],
-        "totalCount": 3,
-        "skip": 0,
-        "limit": 10
+        "result": {
+            "_id": string,
+            "userId": string,
+            "title": string,
+            "profile": string,
+            "company": string,
+            "aboutCompany": string,
+            "location": string,
+            "mediaLink": string,
+            "imageLink": string,
+            "tags": string[],
+            "__v": number,
+        }[],
+        "totalCount": number,
+        "skip": number,
+        "limit": number
     }
 }
 
 export const PaperData = paper.data;
 export const PracticalData = file.data;
-export const JobsData = jobs.data;
