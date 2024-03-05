@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser, signUpUser } from '../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../store';
-import styles from './Auth.module.scss';
 const Auth = ({ showLogin }: { showLogin: boolean }) => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');

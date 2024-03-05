@@ -1,6 +1,6 @@
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { JobsData } from '../../redux/reducer/content.reducer';
+import { JobsData } from '../../redux/reducer/notes.reducer';
 const JobsPage = () => {
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>

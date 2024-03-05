@@ -1,85 +1,87 @@
-// const notesData = ;
-const notes = {
-    "status": "success",
-    "data": {
-        "result": [
-            {
-                "_id": "63cc3c03e2f865007f90714f",
-                "userId": "63cc3952e2f865007f907149",
-                "title": "Parallel Adder",
-                "about": "Notes covers the topic Parallel Adder with subtopics Introduction to Parallel Adder, How does Parallel Adder Work, Types of Parallel Adder, Ripple Carry Adder, Carry Skip Adder, Carry Look Ahead Adder, Carry Save Adder, Carry Increment Adder, Carry Save Adder, Advantages of Parallel Adder and Disadvantages of Parallel Adder.",
-                "semester": "3",
-                "subject": "Switching Theory and Logic Design",
-                "unit": "1",
-                "chapter": "Combinational Logic Circuits",
-                "topic": "Adder - Parallel Adder",
-                "tags": [
-                    "Printed",
-                    "By Teachers"
-                ],
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/parallel%20adder.pdf?generation=1674329089677042&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/image.png?generation=1674329091407400&alt=media",
-                "__v": 0
-            },
-            {
-                "_id": "63cc4a9bed29c4d6697491f6",
-                "userId": "63cc47aced29c4d6697491d8",
-                "title": "Asymptotic Notations - Time Complexity",
-                "about": "Asymptotic Notations are the mathematical notations used to describe the running time of an algorithm when the input tends towards a particular value. They are used to describe the running time of an algorithm - how much time an algorithm takes with a given input, n.                  Topics covered are :- 1. Performance Analysis       2. Time Complexity    3. Space Complexity",
-                "semester": "3",
-                "subject": "Data Structures",
-                "unit": "1",
-                "chapter": "Introduction to Data Structures",
-                "topic": "Design of Algorithms",
-                "tags": [
-                    "Handwritten",
-                    "By Teachers"
-                ],
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674332822083Asymptotic%20notations.pdf?generation=1674332824951206&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674332825090Asymptotic%20notations.pdf_image.png?generation=1674332827233892&alt=media",
-                "__v": 0
-            },
-            {
-                "_id": "63cc5e74205d473a7e732b71",
-                "userId": "63cc47aced29c4d6697491d8",
-                "title": "Normal Forms",
-                "about": "Note covers subtopics like Disjunctive Normal Form (DNF) and Conjunctive Normal Form (CNF)",
-                "semester": "3",
-                "subject": "Foundation of Computer Science",
-                "unit": "1",
-                "chapter": "Propositional Logic",
-                "topic": "CNF and DNF",
-                "tags": [
-                    "Printed",
-                    "By Teachers"
-                ],
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674337904018cnf%20and%20DNF.pdf?generation=1674337906478791&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674337906627cnf%20and%20DNF.pdf_image.png?generation=1674337908135332&alt=media",
-                "__v": 0
-            },
-            {
-                "_id": "63d40104741b4cf484089f8f",
-                "userId": "63d400c3741b4cf484089f86",
-                "title": "8y8yv",
-                "about": "8h 8g 8y",
-                "semester": "2",
-                "subject": "9ub99b",
-                "unit": "3",
-                "chapter": "9u 8y",
-                "topic": "9h9y",
-                "tags": [
-                    "Printed"
-                ],
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674838274793Minor%20CSE3.pdf?generation=1674838275652674&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674838275779Minor%20CSE3.pdf_image.png?generation=1674838276565344&alt=media",
-                "__v": 0
-            }
-        ],
-        "totalCount": 4,
-        "skip": 0,
-        "limit": 10
-    }
+import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { RootState } from "../../store"
+import ContentService, { BaseResponse } from "../service/content.service"
+
+type NotesDataType = {
+    _id: string,
+    userId: string,
+    title: string,
+    about: string,
+    semester: string,
+    subject: string,
+    unit: string,
+    chapter: string,
+    mediaLink: string,
+    imageLink: string,
 }
+type InitialStateType = {
+    loading: boolean,
+    data: NotesDataType[],
+    error: string | null,
+    pagination: {
+        canGetMore: boolean
+        limit: number
+        totalCount: number
+        skip: number
+    },
+}
+const initialState: InitialStateType = {
+    loading: true,
+    data: [],
+    error: null,
+    pagination: {
+        canGetMore: false,
+        limit: 10,
+        totalCount: 0,
+        skip: 0
+    },
+}
+
+export type ResponseType = {
+    result: NotesDataType[],
+    totalCount: number,
+    skip: number,
+    limit: number
+}
+
+export const getNotes = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getNotes", async (_, thunkApi) => {
+    const { skip, limit } = thunkApi.getState().notesReducer.pagination;
+    const data = await ContentService.getNotes(skip, limit);
+    if (data.status !== "success") throw new Error(data.message ?? "Notes went wrong");
+    return data;
+})
+
+const notesSlice = createSlice({
+    name: "notes",
+    initialState: initialState,
+    reducers: {},
+    extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
+        builder.addCase(getNotes.pending, (state) => {
+            state.loading = true
+        })
+            .addCase(getNotes.rejected, (state, action) => {
+                state.loading = false
+                state.error = action?.error?.message ?? null;
+            })
+            .addCase(getNotes.fulfilled, (state, action) => {
+                state.loading = false
+                state.data = action?.payload?.data?.result ?? []
+                state.error = null
+                state.pagination = {
+                    canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),
+                    limit: action?.payload?.data?.limit ?? 10,
+                    totalCount: action?.payload?.data?.totalCount ?? 0,
+                    skip: action?.payload?.data?.totalCount ?? 0,
+                }
+            })
+    }
+})
+
+export const notesAction = notesSlice.actions
+export const notesReducer = notesSlice.reducer
+export const notesSelector = (root: RootState) => root.notesReducer;
+// get type from notes
+
 const paper = {
     "status": "success",
     "data": {
@@ -327,7 +329,7 @@ const jobs = {
         "limit": 10
     }
 }
-export const NotesData = notes.data;
+
 export const PaperData = paper.data;
 export const BooksData = books.data;
 export const PracticalData = file.data;

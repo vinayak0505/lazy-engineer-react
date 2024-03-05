@@ -1,11 +1,23 @@
+import { useEffect } from 'react';
 import Card from '../../components/cards/Card';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { NotesData } from '../../redux/reducer/content.reducer';
+import { getNotes, notesSelector } from '../../redux/reducer/notes.reducer';
+import { useAppDispatch } from '../../store';
+import { useSelector } from 'react-redux';
 
 const NotesPage = () => {
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getNotes());
+	},[])
+
+	const NotesData = useSelector(notesSelector).data;
+
 	return (
 		<ResponsiveGrid>
-			{NotesData.result.map((item, index) => (
+			{NotesData.map((item, index) => (
 				<div key={index}>
 					<Card
 						title={item.title}

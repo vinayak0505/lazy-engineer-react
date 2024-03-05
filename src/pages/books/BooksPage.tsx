@@ -1,6 +1,6 @@
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { BooksData } from "../../redux/reducer/content.reducer";
+import { BooksData } from "../../redux/reducer/notes.reducer";
 const BooksPage = () => {
     return (
 		<ResponsiveGrid maxChildrenWidth={340}>
