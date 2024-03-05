@@ -51,6 +51,3 @@ const PracticalBody = ({ items }: { items: string[] }) => {
 	);
 };
 export default PracticalPage;
-function practicalSelector(state: unknown): unknown {
-	throw new Error('Function not implemented.');
-}

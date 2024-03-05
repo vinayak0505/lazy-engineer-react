@@ -2,21 +2,24 @@ import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs
 import { RootState } from "../../store"
 import ContentService, { BaseResponse } from "../service/content.service"
 
-type NotesDataType = {
-    _id: string,
-    userId: string,
-    title: string,
-    about: string,
-    semester: string,
-    subject: string,
-    unit: string,
-    chapter: string,
-    mediaLink: string,
-    imageLink: string,
+type PapersDataType = {
+    _id: string
+    userId: string
+    title: string
+    about: string
+    semester: string
+    subject: string
+    unit: string
+    chapter: string
+    topic: string
+    tags: string[]
+    mediaLink: string
+    imageLink: string
+    __v: number
 }
 type InitialStateType = {
     loading: boolean,
-    data: NotesDataType[],
+    data: PapersDataType[],
     error: string | null,
     pagination: {
         canGetMore: boolean
@@ -38,32 +41,32 @@ const initialState: InitialStateType = {
 }
 
 export type ResponseType = {
-    result: NotesDataType[],
+    result: PapersDataType[],
     totalCount: number,
     skip: number,
     limit: number
 }
 
-export const getNotes = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getNotes", async (_, thunkApi) => {
+export const getPaper = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("papers/getPaper", async (_, thunkApi) => {
     const { skip, limit } = thunkApi.getState().notesReducer.pagination;
-    const data = await ContentService.getNotes(skip, limit);
+    const data = await ContentService.getPapers(skip, limit);
     if (data.status !== "success") throw new Error(data.message ?? "Notes went wrong");
     return data;
 })
 
-const notesSlice = createSlice({
-    name: "notes",
+const papersSlice = createSlice({
+    name: "papers",
     initialState: initialState,
     reducers: {},
     extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
-        builder.addCase(getNotes.pending, (state) => {
+        builder.addCase(getPaper.pending, (state) => {
             state.loading = true
         })
-            .addCase(getNotes.rejected, (state, action) => {
+            .addCase(getPaper.rejected, (state, action) => {
                 state.loading = false
                 state.error = action?.error?.message ?? null;
             })
-            .addCase(getNotes.fulfilled, (state, action) => {
+            .addCase(getPaper.fulfilled, (state, action) => {
                 state.loading = false
                 state.data = state.data.concat(action?.payload?.data?.result ?? [])
                 state.error = null
@@ -77,6 +80,6 @@ const notesSlice = createSlice({
     }
 })
 
-export const notesAction = notesSlice.actions
-export const notesReducer = notesSlice.reducer
-export const notesSelector = (root: RootState) => root.notesReducer;
+export const papersAction = papersSlice.actions
+export const papersReducer = papersSlice.reducer
+export const papersSelector = (root: RootState) => root.notesReducer;

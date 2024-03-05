@@ -1,10 +1,21 @@
+import { useSelector } from 'react-redux';
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { PaperData } from "../../redux/reducer/notes.reducer";
+import { getPaper, papersSelector } from '../../redux/reducer/papers.reducer';
+import { useAppDispatch } from '../../store';
+import { useEffect } from 'react';
 const PaperPage = () => {
-    return (
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getPaper());
+	}, []);
+
+	const PaperData = useSelector(papersSelector).data;
+
+	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
-			{PaperData.result.map((item, index) => (
+			{PaperData.map((item, index) => (
 				<div key={index}>
 					<HorizontalCard
 						title={item.title}

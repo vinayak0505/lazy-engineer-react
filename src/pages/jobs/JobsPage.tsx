@@ -14,9 +14,6 @@ const JobsPage = () => {
 
 	const JobsData = useSelector(jobsSelector).data;
 
-	console.log("jobs", JobsData);
-	
-
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
 			{JobsData.map((item, index) => (

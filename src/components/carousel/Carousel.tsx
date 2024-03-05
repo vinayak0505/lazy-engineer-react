@@ -35,10 +35,6 @@ const Carousel = ({ images }: { images: { src: string; link: string }[] }) => {
 		document.getElementById(`data-carousel-home-button-0`)?.classList.remove('dark:bg-gray-500');
 	}, []);
 
-	useEffect(() => {
-		console.log(slider);
-	}, [slider]);
-
 	return (
 		<>
 			<div id="default-carousel" className="relative w-full" data-carousel="slide">

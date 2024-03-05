@@ -47,7 +47,6 @@ export const signUpUser = createAsyncThunk("auth/signUpUser", async (arg: { emai
 export const verifyToken = createAsyncThunk("auth/verifyToken", async (_, thunkApi) => {
     thunkApi.dispatch(authAction.loading());
     const token = localStorage.getItem("token");
-    console.log("token", token);
     if (token === undefined || token === null) throw new Error();
     const data = await AuthService.verifyToken(token);
     if (data.status !== "success") throw new Error(data.message);
@@ -113,7 +112,6 @@ const authSlice = createSlice({
                 state.error = null;
             })
             .addCase(verifyToken.rejected, (state, action) => {
-                console.log("rejected", action.error);
                 state.error = action?.error?.message ?? null;
                 state.user = null;
                 state.loading = false;
