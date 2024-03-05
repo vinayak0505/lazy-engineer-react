@@ -65,7 +65,7 @@ const notesSlice = createSlice({
             })
             .addCase(getNotes.fulfilled, (state, action) => {
                 state.loading = false
-                state.data.concat(action?.payload?.data?.result ?? [])
+                state.data = state.data.concat(action?.payload?.data?.result ?? [])
                 state.error = null
                 state.pagination = {
                     canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),

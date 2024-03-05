@@ -48,7 +48,7 @@ export type ResponseType = {
     limit: number
 }
 
-export const getBooks = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getBooks", async (_, thunkApi) => {
+export const getBooks = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("books/getBooks", async (_, thunkApi) => {
     const { skip, limit } = thunkApi.getState().booksReducer.pagination;
     const data = await ContentService.getBooks(skip, limit);
     if (data.status !== "success") throw new Error(data.message ?? "Notes went wrong");
@@ -69,7 +69,7 @@ const booksSlice = createSlice({
             })
             .addCase(getBooks.fulfilled, (state, action) => {
                 state.loading = false
-                state.data.concat(action?.payload?.data?.result ?? [])
+                state.data = state.data.concat(action?.payload?.data?.result ?? [])
                 state.error = null
                 state.pagination = {
                     canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),

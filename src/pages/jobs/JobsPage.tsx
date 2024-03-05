@@ -10,8 +10,12 @@ const JobsPage = () => {
 
 	useEffect(() => {
 		dispatch(getJobs());
-	})
+	},[])
+
 	const JobsData = useSelector(jobsSelector).data;
+
+	console.log("jobs", JobsData);
+	
 
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
