@@ -49,7 +49,7 @@ export type ResponseType = {
     limit: number
 }
 
-export const getBooks = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getJobs", async (_, thunkApi) => {
+export const getJobs = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getJobs", async (_, thunkApi) => {
     const { skip, limit } = thunkApi.getState().jobsReducer.pagination;
     const data = await ContentService.getJobs(skip, limit);
     if (data.status !== "success") throw new Error(data.message ?? "Jobs went wrong");
@@ -62,14 +62,14 @@ const jobsSlice = createSlice({
     reducers: {},
     extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
         builder
-            .addCase(getBooks.pending, (state) => {
+            .addCase(getJobs.pending, (state) => {
                 state.loading = true
             })
-            .addCase(getBooks.rejected, (state, action) => {
+            .addCase(getJobs.rejected, (state, action) => {
                 state.loading = false
                 state.error = action?.error?.message ?? null;
             })
-            .addCase(getBooks.fulfilled, (state, action) => {
+            .addCase(getJobs.fulfilled, (state, action) => {
                 state.loading = false
                 state.data.concat(action?.payload?.data?.result ?? [])
                 state.error = null

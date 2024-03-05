@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { jobsSelector } from '../../redux/reducer/jobs.reducer';
+import { getJobs, jobsSelector } from '../../redux/reducer/jobs.reducer';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../store';
 const JobsPage = () => {
@@ -53,7 +53,3 @@ const JobsBody = ({ items }: { items: string[] }) => {
 };
 
 export default JobsPage;
-function getJobs(): any {
-	throw new Error('Function not implemented.');
-}
-

@@ -208,27 +208,5 @@ const file = {
     }
 }
 
-type JOBS = {
-    "status": string,
-    "data": {
-        "result": {
-            "_id": string,
-            "userId": string,
-            "title": string,
-            "profile": string,
-            "company": string,
-            "aboutCompany": string,
-            "location": string,
-            "mediaLink": string,
-            "imageLink": string,
-            "tags": string[],
-            "__v": number,
-        }[],
-        "totalCount": number,
-        "skip": number,
-        "limit": number
-    }
-}
-
 export const PaperData = paper.data;
 export const PracticalData = file.data;
