@@ -4,21 +4,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Router from './Router';
 import { useAppDispatch } from './store';
-import { authSelector, verifyToken } from './redux/reducer/auth.reducer';
-import { useSelector } from 'react-redux';
+import { verifyToken } from './redux/reducer/auth.reducer';
 
 function App() {
 	const dispatch = useAppDispatch();
-	
+
 	useEffect(() => {
 		dispatch(verifyToken());
 	}, []);
-	
-	const { user } = useSelector(authSelector);
 
 	return (
 		<div className="App">
-			<Router user={user}/>
+			<Router />
 			<ToastContainer />
 		</div>
 	);

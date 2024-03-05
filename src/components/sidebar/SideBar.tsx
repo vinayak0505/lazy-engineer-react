@@ -16,21 +16,23 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 				aria-label="Sidebar"
 			>
 				<div className="h-full px-3 py-4 overflow-y-auto">
-					<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-						<div className="flex flex-col items-center pb-6 pt-6">
-							<img
-								className="w-24 h-24 mb-3 rounded-full shadow-lg"
-								src={user?.profile ?? './images/user.jpeg'}
-								alt={user?.fullName}
-							/>
-							<h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-								{user?.fullName}
-							</h5>
-							<span className="text-sm text-gray-500 dark:text-gray-400">
-								{user?.email}
-							</span>
+					{user && (
+						<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+							<div className="flex flex-col items-center pb-6 pt-6">
+								<img
+									className="w-24 h-24 mb-3 rounded-full shadow-lg"
+									src={user?.profile ?? './images/user.jpeg'}
+									alt={user?.fullName}
+								/>
+								<h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+									{user?.fullName}
+								</h5>
+								<span className="text-sm text-gray-500 dark:text-gray-400">
+									{user?.email}
+								</span>
+							</div>
 						</div>
-					</div>
+					)}
 
 					<ul className="mt-4 space-y-2 font-medium bg-gray-50 dark:bg-gray-800 rounded-lg  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
 						<li>

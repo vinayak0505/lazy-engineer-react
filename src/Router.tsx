@@ -1,7 +1,7 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import Auth from './pages/auth/Auth';
-import { UserType } from './redux/reducer/auth.reducer';
+import { authSelector } from './redux/reducer/auth.reducer';
 import Home from './pages/home/Home';
 import Nav from './components/nav/Nav';
 import SideBar from './components/sidebar/SideBar';
@@ -11,13 +11,17 @@ import BooksPage from './pages/books/BooksPage';
 import ProfilePage from './pages/profile/ProfilePage';
 import PracticalPage from './pages/practical/PracticalPage';
 import JobsPage from './pages/jobs/JobsPage';
+import { useSelector } from 'react-redux';
 
-function Router({ user }: { user: UserType }) {
+function Router() {
 	// todo temp setting user to work without auth
 	// user = { email: 'vinayakaggarwal05@gmail.com', fullName: 'Vinayak Agarwal', timeCreated: '', univercity: '', profile: null };
+	const user = useSelector(authSelector).user;
+
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
 		if (!user) {
+			localStorage.setItem('path_history', window.location.pathname);
 			return <Navigate to="/login" replace />;
 		}
 		return children;
@@ -25,7 +29,9 @@ function Router({ user }: { user: UserType }) {
 
 	const LoggedIn = ({ children }: { children: JSX.Element }) => {
 		if (user) {
-			return <Navigate to="/" replace />;
+			const path = localStorage.getItem('path_history') ?? '/';
+			localStorage.removeItem('path_history');
+			return <Navigate to={path} replace />;
 		}
 		return children;
 	};
@@ -38,7 +44,7 @@ function Router({ user }: { user: UserType }) {
 				<LoggedIn>
 					<Auth showLogin={true} />
 				</LoggedIn>
-			),
+			)
 		},
 		{
 			path: '/register',
@@ -46,7 +52,7 @@ function Router({ user }: { user: UserType }) {
 				<LoggedIn>
 					<Auth showLogin={false} />
 				</LoggedIn>
-			),
+			)
 		},
 		{
 			path: '*',
@@ -55,14 +61,12 @@ function Router({ user }: { user: UserType }) {
 		{
 			path: '/',
 			element: (
-				<Protected>
-					<>
-						<Nav />
-						<SideBar user={user}>
-							<Outlet />
-						</SideBar>
-					</>
-				</Protected>
+				<>
+					<Nav user={user}/>
+					<SideBar user={user}>
+						<Outlet />
+					</SideBar>
+				</>
 			),
 			children: [
 				{
@@ -71,7 +75,11 @@ function Router({ user }: { user: UserType }) {
 				},
 				{
 					path: '/profile',
-					element: <ProfilePage />
+					element: (
+						<Protected>
+							<ProfilePage />
+						</Protected>
+					)
 				},
 				{
 					path: '/paper',
@@ -91,7 +99,7 @@ function Router({ user }: { user: UserType }) {
 				},
 				{
 					path: '/jobs',
-					element: <JobsPage/>
+					element: <JobsPage />
 				}
 			]
 		}
