@@ -5,10 +5,11 @@ import { helperReducer } from "./redux/reducer/helper.reducer";
 import { useDispatch } from "react-redux";
 import { tokenMiddleware } from "./redux/middleware/token.middleware";
 import { notesReducer } from "./redux/reducer/notes.reducer";
+import { booksReducer } from "./redux/reducer/books.reducer";
 
 const store = configureStore({
-    reducer: { authReducer, helperReducer, notesReducer },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tokenMiddleware,toastMiddleware)
+    reducer: { authReducer, helperReducer, notesReducer, booksReducer },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tokenMiddleware, toastMiddleware)
 });
 
 export type AppDispatch = typeof store.dispatch;

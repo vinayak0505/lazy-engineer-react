@@ -1,10 +1,21 @@
+import { useSelector } from 'react-redux';
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { BooksData } from "../../redux/reducer/notes.reducer";
+import { booksSelector, getBooks } from '../../redux/reducer/books.reducer';
+import { useAppDispatch } from '../../store';
+import { useEffect } from 'react';
 const BooksPage = () => {
-    return (
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getBooks());
+	},[])
+
+	const BooksData = useSelector(booksSelector).data;
+	
+	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
-			{BooksData.result.map((item, index) => (
+			{BooksData.map((item, index) => (
 				<div key={index}>
 					<HorizontalCard
 						title={item.title}
@@ -14,7 +25,7 @@ const BooksPage = () => {
 						maxWidth={'sm'}
 						maxTitleLines={2}
 						maxBodyLines={4}
-						imageText={item.pages + " pages"}
+						imageText={item.pages + ' pages'}
 					/>
 				</div>
 			))}

@@ -147,55 +147,6 @@ const paper = {
     }
 }
 
-const books = {
-    "status": "success",
-    "data": {
-        "result": [
-            {
-                "_id": "63cca3f1f399ca6752697a25",
-                "userId": "63cc8c771d7dbcaf86d2dfbe",
-                "title": "Lecture Notes for Foundations of Computer Science",
-                "about": "This book covers the syllabus of subject Foundation of Computer Science. This book are currently revised each year by John Bullinaria. They re based on an older version originally written by Martin Escardo and revised by Manfred Kerber. All are members of the School of Computer Science, University of Birmingham, UK.",
-                "semester": "3",
-                "tags": [
-                    "Recommended by Teachers",
-                    "Reference Book",
-                    "Foreign Authors"
-                ],
-                "writer": [],
-                "pages": 116,
-                "bookEdition": 2018,
-                "price": 700,
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355694910foundations.pdf?generation=1674355696408767&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355696534foundations.pdf_image.png?generation=1674355697450226&alt=media",
-                "__v": 0
-            },
-            {
-                "_id": "63cca4f1f399ca6752697a28",
-                "userId": "63cc8c771d7dbcaf86d2dfbe",
-                "title": "Lecture Notes for Data Structures and Algorithms",
-                "about": "This book covers the entire syllabus of subject Data Structures and includes the topics like Stacks, Queues, Lists, Arrays, Trees, Binary Search Trees, Sorting, Graphs, Hash Tables and much more ...",
-                "semester": "3",
-                "tags": [
-                    "Recommended by Teachers",
-                    "Easy to understand",
-                    "Reference Book",
-                    "Foreign Authors"
-                ],
-                "writer": [],
-                "pages": 126,
-                "bookEdition": 2019,
-                "price": 1500,
-                "mediaLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355950395dsa.pdf?generation=1674355951366018&alt=media",
-                "imageLink": "https://storage.googleapis.com/download/storage/v1/b/lazy-eng1neer.appspot.com/o/1674355951495dsa.pdf_image.png?generation=1674355952928221&alt=media",
-                "__v": 0
-            }
-        ],
-        "totalCount": 2,
-        "skip": 0,
-        "limit": 10
-    }
-}
 
 const file = {
     "status": "success",
@@ -331,6 +282,5 @@ const jobs = {
 }
 
 export const PaperData = paper.data;
-export const BooksData = books.data;
 export const PracticalData = file.data;
 export const JobsData = jobs.data;
