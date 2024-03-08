@@ -3,11 +3,22 @@ import AuthService from "../service/auth.service";
 import { RootState } from "../../store";
 
 export type UserType = {
-    email: string;
     fullName: string;
-    timeCreated: string;
-    profile: string | null;
-    univercity: string | null;
+    email: string;
+    designation: string | undefined;
+    company: string | undefined;
+    university: string | undefined;
+    bio: string | undefined;
+    imageLink: string | undefined;
+    linkedin: string | undefined;
+    github: string | undefined;
+    twitter: string | undefined;
+    instagram: string | undefined;
+    notesCount: number;
+    jobsCount: number;
+    booksCount: number;
+    papersCount: number;
+    filesCount: number;
 } | null;
 type InitialStateType = {
     user: UserType;
@@ -24,6 +35,13 @@ export const loginUser = createAsyncThunk("auth/loginUser", async (arg: { email:
     return data;
 });
 
+export const updateUser = createAsyncThunk("auth/updateUser", async ({ arg, image = null }: { arg: UserType, image: File | null }, thunkApi) => {
+    thunkApi.dispatch(authAction.loading());
+    const data = await AuthService.updateUser(arg, image);
+    if (data.status !== "success") throw new Error(data.message);
+    return data;
+});
+
 /**
  * Logout the user by signing them out
  */
@@ -32,7 +50,7 @@ export const logoutUser = createAsyncThunk("auth/logoutUser", async (_, thunkApi
     if (token) {
         thunkApi.dispatch(authAction.loading());
         return await AuthService.logoutUser(token);
-    }else{
+    } else {
         throw new Error("Token not found in cookie");
     }
 });
@@ -63,7 +81,6 @@ const authSlice = createSlice({
             state.error = action.payload;
         },
         loading: (state) => {
-            state.user = null;
             state.loading = true;
             state.error = null;
         }
@@ -114,6 +131,15 @@ const authSlice = createSlice({
             .addCase(verifyToken.rejected, (state, action) => {
                 state.error = action?.error?.message ?? null;
                 state.user = null;
+                state.loading = false;
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.user = action?.payload?.data?.userDetail;
+                state.loading = false;
+                state.error = null;
+            })
+            .addCase(updateUser.rejected, (state, action) => {
+                state.error = action?.error?.message ?? null;
                 state.loading = false;
             });
     },
