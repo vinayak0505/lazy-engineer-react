@@ -3,7 +3,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { UserType, logoutUser } from '../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../store';
 import styles from './Nav.module.scss';
+import { DropDown } from '../drop_down/DropDown';
 
+import "../../images/logo.png"
 const Nav = ({ user }: { user: UserType }) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -12,7 +14,7 @@ const Nav = ({ user }: { user: UserType }) => {
 		<nav className="bg-white fixed dark:bg-gray-900 w-full z-40 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
 			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 				<NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-					<img src="./images/logo.png" alt="logo" className={styles.logo} />
+					<img src="../../images/logo.png" alt="logo" className={styles.logo} />
 				</NavLink>
 				<div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 					<button
@@ -44,6 +46,44 @@ const Nav = ({ user }: { user: UserType }) => {
 							>
 								Favorite
 							</NavLink>
+						</li>
+						<li>
+							<DropDown
+								title="Upload"
+								dropDownOption={[
+									{
+										name: 'Notes',
+										onSelected: () => {
+											navigate('/upload/notes');
+										}
+									},
+									{
+										name: 'Question Papers',
+										onSelected: () => {
+											navigate('/upload/papers');
+										}
+									},
+									{
+										name: 'Practicle Files',
+										onSelected: () => {
+											navigate('/upload/practicle');
+										}
+									},
+									{
+										name: 'Books',
+										onSelected: () => {
+											navigate('/upload/books');
+										}
+									},
+									{
+										name: 'Jobs',
+										onSelected: () => {
+											navigate('/upload/jobs');
+										}
+									}
+								]}
+								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 inline-flex items-center"
+							/>
 						</li>
 						<li>
 							<NavLink

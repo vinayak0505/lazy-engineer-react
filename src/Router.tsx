@@ -12,6 +12,7 @@ import ProfilePage from './pages/profile/ProfilePage';
 import PracticalPage from './pages/practical/PracticalPage';
 import JobsPage from './pages/jobs/JobsPage';
 import { useSelector } from 'react-redux';
+import UploadPage from './pages/upload/UploadPage';
 
 function Router() {
 	// todo temp setting user to work without auth
@@ -62,7 +63,7 @@ function Router() {
 			path: '/',
 			element: (
 				<>
-					<Nav user={user}/>
+					<Nav user={user} />
 					<SideBar user={user}>
 						<Outlet />
 					</SideBar>
@@ -78,6 +79,14 @@ function Router() {
 					element: (
 						<Protected>
 							<ProfilePage />
+						</Protected>
+					)
+				},
+				{
+					path: '/upload/:uploadType',
+					element: (
+						<Protected>
+							<UploadPage />
 						</Protected>
 					)
 				},

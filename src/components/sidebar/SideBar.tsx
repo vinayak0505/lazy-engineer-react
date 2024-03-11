@@ -50,7 +50,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 								className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
 							>
 								<Paper />
-								<span className="ms-3">Paper</span>
+								<span className="ms-3">Question Papers</span>
 							</NavLink>
 						</li>
 						<li>
