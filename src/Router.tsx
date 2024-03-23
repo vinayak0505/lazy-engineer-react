@@ -1,5 +1,4 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
-import './App.css';
 import Auth from './pages/auth/Auth';
 import { authSelector } from './redux/reducer/auth.reducer';
 import Home from './pages/home/Home';

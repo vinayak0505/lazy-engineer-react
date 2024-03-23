@@ -5,7 +5,6 @@ const HorizontalCard = ({
 	body,
 	link,
 	image,
-	button,
 	maxBodyLines = 'none',
 	maxTitleLines = 'none',
 	maxWidth = 'none',
