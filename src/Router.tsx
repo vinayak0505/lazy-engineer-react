@@ -21,10 +21,10 @@ function Router() {
 
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
-		if (!user) {
-			localStorage.setItem('path_history', window.location.pathname);
-			return <Navigate to="/login" replace />;
-		}
+		// if (!user) {
+		// 	localStorage.setItem('path_history', window.location.pathname);
+		// 	return <Navigate to="/login" replace />;
+		// }
 		return children;
 	};
 
