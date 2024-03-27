@@ -1,5 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { NotesUploadComponent } from './NotesUploadComponent';
+import { PaperUploadComponent } from './PaperUploadComponent';
 
 const UploadPage = () => {
 	const { uploadType } = useParams();
@@ -8,7 +9,7 @@ const UploadPage = () => {
 		case 'notes':
 			return <NotesUploadComponent />;
 		case 'papers':
-			return <NotesUploadComponent />;
+			return <PaperUploadComponent />;
 		case 'practicle':
 			return <NotesUploadComponent />;
 		case 'books':

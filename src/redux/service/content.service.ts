@@ -63,8 +63,16 @@ class ContentService {
     }
 
     static async addNotes(formData: FormData): Promise<BaseResponse<string>> {
-
         const response = await axios.post(API.NOTES, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
+    }
+
+    static async addPaper(formData: FormData): Promise<BaseResponse<string>> {
+        const response = await axios.post(API.QUESTIONPAPER, formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }

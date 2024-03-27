@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import UploadUI from '../../components/UploadUI';
 import { InputDropDown } from '../../components/drop_down/DropDown';
-import { NotesTags, semesters, units } from '../../utility/constants';
+import { PaperTags, semesters, units } from '../../utility/constants';
 import InputChip from '../../components/chips/InputChip';
 import Button from '../../components/buttons/Button';
 import ContentService from '../../redux/service/content.service';
 import { useAppDispatch } from '../../store';
 import { helperAction } from '../../redux/reducer/helper.reducer';
 
-const DefaultNoteValue = {
+const DefaultPaperValue = {
 	title: '',
 	about: '',
 	subject: '',
@@ -19,20 +19,20 @@ const DefaultNoteValue = {
 	topic: ''
 };
 
-export const NotesUploadComponent = () => {
+export const PaperUploadComponent = () => {
 	const [file, setFile] = useState<File | null>(null);
 	const [image, setImage] = useState<File | null>(null);
 	const [tags, setTags] = useState<string[]>([]);
 
 	const dispatch = useAppDispatch();
 
-	const [notes, setNotes] = useState(DefaultNoteValue);
+	const [paper, setPaper] = useState(DefaultPaperValue);
 	const [loading, setLoading] = useState(false);
 
-	const updateNotes = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+	const updatePaper = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
 		const { name, value } = event.target;
-		setNotes({
-			...notes,
+		setPaper({
+			...paper,
 			[name]: value
 		});
 	};
@@ -43,13 +43,13 @@ export const NotesUploadComponent = () => {
 		try {
 			const formData = new FormData(e.currentTarget as HTMLFormElement);
             tags.forEach((tag) => formData.append('tags[]', tag));
-			const data = await ContentService.addNotes(formData);
+			const data = await ContentService.addPaper(formData);
 			if(data.status != "success") throw new Error(data.message ?? "Something went wrong");
 			setFile(null);
 			setImage(null);
 			setTags([]);
-			setNotes(DefaultNoteValue);
-			dispatch(helperAction.customToast('Notes uploaded successfully'));
+			setPaper(DefaultPaperValue);
+			dispatch(helperAction.customToast('Paper uploaded successfully'));
 		} catch (error: any) {
 			dispatch(helperAction.customToast(error?.message ?? 'Something went wrong'));
 			console.log(error);
@@ -107,8 +107,8 @@ export const NotesUploadComponent = () => {
 					type="text"
 					id="title"
 					name="title"
-					value={notes?.title}
-					onChange={updateNotes}
+					value={paper?.title}
+					onChange={updatePaper}
 					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
 					placeholder="File Title"
 					required
@@ -123,8 +123,8 @@ export const NotesUploadComponent = () => {
 				</label>
 				<textarea
 					name="about"
-					value={notes?.about}
-					onChange={updateNotes}
+					value={paper?.about}
+					onChange={updatePaper}
 					id="about"
 					rows={4}
 					className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -140,8 +140,8 @@ export const NotesUploadComponent = () => {
 				</label>
 				<input
 					name="subject"
-					value={notes?.subject}
-					onChange={updateNotes}
+					value={paper?.subject}
+					onChange={updatePaper}
 					type="text"
 					id="subject"
 					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
@@ -159,8 +159,8 @@ export const NotesUploadComponent = () => {
 					</label>
 					<InputDropDown
 						name="semester"
-						value={notes?.semester}
-						onChange={updateNotes}
+						value={paper?.semester}
+						onChange={updatePaper}
 						title="Select Semester"
 						options={semesters}
 						required
@@ -176,8 +176,8 @@ export const NotesUploadComponent = () => {
 					</label>
 					<InputDropDown
 						name="unit"
-						value={notes?.unit}
-						onChange={updateNotes}
+						value={paper?.unit}
+						onChange={updatePaper}
 						title="Select Unit"
 						options={units}
 						required
@@ -196,8 +196,8 @@ export const NotesUploadComponent = () => {
 					type="text"
 					id="college"
 					name="college"
-					value={notes?.college}
-					onChange={updateNotes}
+					value={paper?.college}
+					onChange={updatePaper}
 					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
 					placeholder="College"
 					required
@@ -216,8 +216,8 @@ export const NotesUploadComponent = () => {
 					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
 					placeholder="Chapter"
 					name="chapter"
-					value={notes?.chapter}
-					onChange={updateNotes}
+					value={paper?.chapter}
+					onChange={updatePaper}
 					required
 				/>
 			</div>
@@ -232,8 +232,8 @@ export const NotesUploadComponent = () => {
 					type="text"
 					id="topic"
 					name="topic"
-					value={notes?.topic}
-					onChange={updateNotes}
+					value={paper?.topic}
+					onChange={updatePaper}
 					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
 					placeholder="Topic"
 					required
@@ -246,7 +246,7 @@ export const NotesUploadComponent = () => {
 				>
 					Tags
 				</label>
-				<InputChip options={NotesTags} selected={tags} setSelected={setTags} />
+				<InputChip options={PaperTags} selected={tags} setSelected={setTags} />
 			</div>
 			<div className="mt-4 flex justify-center">
 				<Button wide type="submit" disabled={loading}>

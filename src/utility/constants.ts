@@ -21,4 +21,12 @@ export const NotesTags = [
     'Printed',
     'Self Made',
     'By Teacher'
-]
+];
+
+
+export const PaperTags = [
+    'Solved',
+    'Unsolved',
+    'Mid-Term',
+    'End-Term'
+];
