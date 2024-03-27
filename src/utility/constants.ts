@@ -30,3 +30,13 @@ export const PaperTags = [
     'Mid-Term',
     'End-Term'
 ];
+
+export const PracticleFileTags = [
+    'HandWritten',
+    'Printed',
+    'Computer Science',
+    'Electrical',
+    'Information Technology',
+    'Mechanical',
+    'Civil',
+]

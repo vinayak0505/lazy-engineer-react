@@ -79,6 +79,15 @@ class ContentService {
         });
         return response.data;
     }
+
+    static async addPracticleFile(formData: FormData): Promise<BaseResponse<string>> {
+        const response = await axios.post(API.PRACTICLEFILE, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
+    }
 }
 
 export default ContentService;
