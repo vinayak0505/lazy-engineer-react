@@ -61,6 +61,16 @@ class ContentService {
         });
         return response.data;
     }
+
+    static async addNotes(formData: FormData): Promise<BaseResponse<string>> {
+
+        const response = await axios.post(API.NOTES, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
+    }
 }
 
 export default ContentService;

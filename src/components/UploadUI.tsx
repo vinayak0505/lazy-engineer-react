@@ -3,20 +3,24 @@ const UploadUI = ({
 	setFile,
 	accept = '*/*',
 	className = '',
-	required = false
+	required = false,
+	id,
+	name,
 }: {
 	children: JSX.Element;
 	setFile: React.Dispatch<React.SetStateAction<File | null>>;
 	accept?: string;
 	className?: string;
 	required?: boolean;
+	id?: string;
+	name?: string;
 }) => (
 	<div className="relative">
 		<input
 			className={className + ' absolute z-10 opacity-0 cursor-pointer w-full h-full'}
 			type="file"
-			id="avatar"
-			name="avatar"
+			id={id}
+			name={name}
 			required={required}
 			accept={accept}
 			onChange={(e) => {

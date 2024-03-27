@@ -4,6 +4,9 @@ import { InputDropDown } from '../../components/drop_down/DropDown';
 import { NotesTags, semesters, units } from '../../utility/constants';
 import InputChip from '../../components/chips/InputChip';
 import Button from '../../components/buttons/Button';
+import ContentService from '../../redux/service/content.service';
+import { useAppDispatch } from '../../store';
+import { helperAction } from '../../redux/reducer/helper.reducer';
 
 const DefaultNoteValue = {
 	title: '',
@@ -21,20 +24,37 @@ export const NotesUploadComponent = () => {
 	const [image, setImage] = useState<File | null>(null);
 	const [tags, setTags] = useState<string[]>([]);
 
+	const dispatch = useAppDispatch();
+
 	const [notes, setNotes] = useState(DefaultNoteValue);
+	const [loading, setLoading] = useState(false);
 
 	const updateNotes = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
 		const { name, value } = event.target;
-		console.log(name, value);
-
 		setNotes({
 			...notes,
 			[name]: value
 		});
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setLoading(true);
+		try {
+			const formData = new FormData(e.currentTarget as HTMLFormElement);
+			const data = await ContentService.addNotes(formData);
+			if(data.status != "success") throw new Error(data.message ?? "Something went wrong");
+			setFile(null);
+			setImage(null);
+			setTags([]);
+			setNotes(DefaultNoteValue);
+			dispatch(helperAction.customToast('Notes uploaded successfully'));
+		} catch (error: any) {
+			dispatch(helperAction.customToast(error?.message ?? 'Something went wrong'));
+			console.log(error);
+		} finally{
+			setLoading(false);
+		}
 	};
 
 	return (
@@ -46,9 +66,8 @@ export const NotesUploadComponent = () => {
 				>
 					Upload File
 				</label>
-				<UploadUI setFile={setFile} required>
+				<UploadUI setFile={setFile} required name='file' id="file">
 					<span
-						id="file"
 						className={
 							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 ' +
 							(file ? 'dark:text-white dark' : 'dark:text-gray-400')
@@ -65,9 +84,8 @@ export const NotesUploadComponent = () => {
 				>
 					Upload Image
 				</label>
-				<UploadUI setFile={setImage}>
+				<UploadUI setFile={setImage} name='image' id='image'>
 					<span
-						id="image"
 						className={
 							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500  ' +
 							(image ? 'dark:text-white dark' : 'dark:text-gray-400')
@@ -230,8 +248,8 @@ export const NotesUploadComponent = () => {
 				<InputChip options={NotesTags} selected={tags} setSelected={setTags} />
 			</div>
 			<div className="mt-4 flex justify-center">
-				<Button wide type="submit">
-					Submit
+				<Button wide type="submit" disabled={loading}>
+					{loading ? 'Submitting' : 'Submit'}
 				</Button>
 			</div>
 		</form>
