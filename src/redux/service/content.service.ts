@@ -88,6 +88,24 @@ class ContentService {
         });
         return response.data;
     }
+
+    static async addBooks(formData: FormData): Promise<BaseResponse<string>> {
+        const response = await axios.post(API.BOOKS, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
+    }
+
+    static async addJob(formData: FormData): Promise<BaseResponse<string>> {
+        const response = await axios.post(API.JOBS, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
+    }
 }
 
 export default ContentService;

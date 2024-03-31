@@ -39,4 +39,39 @@ export const PracticleFileTags = [
     'Information Technology',
     'Mechanical',
     'Civil',
+];
+
+export const BooksTags = [
+    'Recommended by Teachers',
+    'Easy to understand',
+    'Reference Book',
+    'Indian Author',
+    'Foreign Author'
+];
+
+export const ExperienceLevels = [
+    'Intership',
+    'Entry Level',
+    'Associate',
+    'Mid-Senior Level',
+    'Senior Level',
+    'Director',
+    'Executive'
 ]
+
+export const JobTypes = [
+    'Full Time',
+    'Part Time',
+    'Contract',
+    'Freelance',
+    'Internship',
+    'Other'
+]
+
+export const JobsTags = [
+    'C/C++',
+    'JTML',
+    'Java',
+    'Javascript',
+    'Flutter',
+];

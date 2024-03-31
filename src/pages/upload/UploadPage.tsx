@@ -2,6 +2,8 @@ import { Navigate, useParams } from 'react-router-dom';
 import { NotesUploadComponent } from './NotesUploadComponent';
 import { PaperUploadComponent } from './PaperUploadComponent';
 import { FileUploadComponent } from './FileUploadComponent';
+import { JobsUploadComponent } from './JobsUploadComponent';
+import { BooksUploadComponent } from './BooksUploadComponent';
 
 const UploadPage = () => {
 	const { uploadType } = useParams();
@@ -14,9 +16,9 @@ const UploadPage = () => {
 		case 'practicle':
 			return <FileUploadComponent />;
 		case 'books':
-			return <NotesUploadComponent />;
+			return <BooksUploadComponent />;
 		case 'jobs':
-			return <NotesUploadComponent />;
+			return <JobsUploadComponent />;
 		default:
 			return <Navigate to="/login" replace />;
 	}

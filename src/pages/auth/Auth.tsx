@@ -111,7 +111,7 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 									Already have an account?{' '}
 									<span
 										className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-										onClick={() => nav('/sign')}
+										onClick={() => nav('/login')}
 									>
 										Sign in
 									</span>
