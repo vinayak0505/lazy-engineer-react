@@ -48,7 +48,7 @@ export type ResponseType = {
 export const getFiles = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("files/getFiles", async (_, thunkApi) => {
     const { skip, limit } = thunkApi.getState().filesReducer.pagination;
     const data = await ContentService.getFiles(skip, limit);
-    if (data.status !== "success") throw new Error(data.message ?? "Files went wrong");
+    if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
 })
 
@@ -57,9 +57,10 @@ const filesSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
-        builder.addCase(getFiles.pending, (state) => {
-            state.loading = true
-        })
+        builder
+            .addCase(getFiles.pending, (state) => {
+                state.loading = true
+            })
             .addCase(getFiles.rejected, (state, action) => {
                 state.loading = false
                 state.error = action?.error?.message ?? null;

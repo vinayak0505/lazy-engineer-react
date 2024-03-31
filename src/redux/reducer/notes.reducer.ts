@@ -47,7 +47,7 @@ export type ResponseType = {
 export const getNotes = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getNotes", async (_, thunkApi) => {
     const { skip, limit } = thunkApi.getState().notesReducer.pagination;
     const data = await ContentService.getNotes(skip, limit);
-    if (data.status !== "success") throw new Error(data.message ?? "Notes went wrong");
+    if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
 })
 
@@ -56,9 +56,10 @@ const notesSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
-        builder.addCase(getNotes.pending, (state) => {
-            state.loading = true
-        })
+        builder
+            .addCase(getNotes.pending, (state) => {
+                state.loading = true
+            })
             .addCase(getNotes.rejected, (state, action) => {
                 state.loading = false
                 state.error = action?.error?.message ?? null;

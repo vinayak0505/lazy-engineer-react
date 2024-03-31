@@ -48,9 +48,9 @@ export type ResponseType = {
 }
 
 export const getPaper = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("papers/getPaper", async (_, thunkApi) => {
-    const { skip, limit } = thunkApi.getState().notesReducer.pagination;
+    const { skip, limit } = thunkApi.getState().papersReducer.pagination;
     const data = await ContentService.getPapers(skip, limit);
-    if (data.status !== "success") throw new Error(data.message ?? "Notes went wrong");
+    if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
 })
 
@@ -59,16 +59,17 @@ const papersSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: (builder: ActionReducerMapBuilder<InitialStateType>): void => {
-        builder.addCase(getPaper.pending, (state) => {
-            state.loading = true
-        })
+        builder
+            .addCase(getPaper.pending, (state) => {
+                state.loading = true
+            })
             .addCase(getPaper.rejected, (state, action) => {
                 state.loading = false
                 state.error = action?.error?.message ?? null;
             })
             .addCase(getPaper.fulfilled, (state, action) => {
                 state.loading = false
-                state.data = state.data.concat(action?.payload?.data?.result ?? [])
+                state.data = state.data.concat(action?.payload?.data?.result ?? []);
                 state.error = null
                 state.pagination = {
                     canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),
@@ -82,4 +83,4 @@ const papersSlice = createSlice({
 
 export const papersAction = papersSlice.actions
 export const papersReducer = papersSlice.reducer
-export const papersSelector = (root: RootState) => root.notesReducer;
+export const papersSelector = (root: RootState) => root.papersReducer;
