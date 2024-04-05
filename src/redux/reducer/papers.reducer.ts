@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
-import ContentService, { BaseResponse } from "../service/content.service"
+import ContentService, { BaseResponse, FAVOURITETYPE } from "../service/content.service"
 
 type PapersDataType = {
     _id: string
@@ -15,7 +15,7 @@ type PapersDataType = {
     tags: string[]
     mediaLink: string
     imageLink: string
-    __v: number
+    isFavorited?: boolean
 }
 type InitialStateType = {
     loading: boolean,
@@ -54,6 +54,14 @@ export const getPaper = createAsyncThunk<BaseResponse<ResponseType>, void, { sta
     return data;
 })
 
+export const setPaperFav = createAsyncThunk<BaseResponse<string>, { id: string, isFavorited: boolean }, { state: RootState }>("papers/setFavorite", async ({ id, isFavorited }, thunkApi) => {
+    const {user, error} = thunkApi.getState().authReducer;
+    if(user == null) throw new Error(error ?? "User not Logined");
+    const data = await ContentService.setFavorite(id, isFavorited, FAVOURITETYPE.PAPER);
+    if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
+    return data;
+})
+
 const papersSlice = createSlice({
     name: "papers",
     initialState: initialState,
@@ -77,6 +85,15 @@ const papersSlice = createSlice({
                     totalCount: action?.payload?.data?.totalCount ?? 0,
                     skip: action?.payload?.data?.totalCount ?? 0,
                 }
+            })
+            .addCase(setPaperFav.fulfilled, (state, action) => {
+                state.data = state.data.map((paper) => {
+                    if(paper._id === action?.meta.arg.id) paper.isFavorited = action?.meta.arg.isFavorited
+                    return paper
+                })
+            })
+            .addCase(setPaperFav.rejected, (state, action) => {
+                state.error = action?.error?.message ?? null
             })
     }
 })

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-import { getJobs, jobsSelector } from '../../redux/reducer/jobs.reducer';
+import { getJobs, jobsSelector, setJobFav } from '../../redux/reducer/jobs.reducer';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../store';
 const JobsPage = () => {
@@ -14,11 +14,16 @@ const JobsPage = () => {
 
 	const JobsData = useSelector(jobsSelector).data;
 
+	const onFavoriteClick = (id: string, checked: boolean) => {
+		dispatch(setJobFav({ id, isFavorited: checked }));
+	}
+
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
 			{JobsData.map((item, index) => (
 				<div key={index}>
 					<HorizontalCard
+						id={item._id}
 						title={item.title}
 						link={item.mediaLink}
 						image={item.imageLink}
@@ -26,6 +31,8 @@ const JobsPage = () => {
 						maxTitleLines={2}
 						maxBodyLines={4}
 						imageText={item.datePosted}
+						favorite={item.isFavorited}
+						onFavoriteClick={onFavoriteClick}
 					>
 						<JobsBody
 							items={[

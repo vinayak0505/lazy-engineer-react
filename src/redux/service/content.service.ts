@@ -115,9 +115,9 @@ class ContentService {
 
 export enum FAVOURITETYPE {
     NOTE = "note",
-    PAPER = "paper",
-    BOOK = "book",
-    FILE = "file",
+    PAPER = "question_paper",
+    BOOK = "books",
+    FILE = "practicleFile",
     JOB = "job"
 }
 

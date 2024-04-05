@@ -3,7 +3,7 @@ import HorizontalCard from '../../components/cards/HorizontalCard';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
 import { useAppDispatch } from '../../store';
 import { useSelector } from 'react-redux';
-import { filesSelector, getFiles } from '../../redux/reducer/files.reducer';
+import { filesSelector, getFiles, setFileFav } from '../../redux/reducer/files.reducer';
 const PracticalPage = () => {
 	const dispatch = useAppDispatch();
 
@@ -13,16 +13,23 @@ const PracticalPage = () => {
 
 	const PracticalData = useSelector(filesSelector).data;
 
+	const onFavoriteClick = (id: string, checked: boolean) => {
+		dispatch(setFileFav({ id, isFavorited: checked }));
+	}
+
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
 			{PracticalData.map((item, index) => (
 				<div key={index}>
 					<HorizontalCard
+						id={item._id}
 						title={item.title}
 						link={item.mediaLink}
 						image={item.imageLink}
 						maxWidth={'sm'}
 						maxTitleLines={2}
+						favorite={item.isFavorited}
+						onFavoriteClick={onFavoriteClick}
 					>
 						<PracticalBody
 							items={[

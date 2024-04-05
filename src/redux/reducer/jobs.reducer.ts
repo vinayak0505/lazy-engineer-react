@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
-import ContentService, { BaseResponse } from "../service/content.service"
+import ContentService, { BaseResponse, FAVOURITETYPE } from "../service/content.service"
 
 type JobDataType = {
     _id: string
@@ -17,6 +17,7 @@ type JobDataType = {
     expectedSalary: number
     mediaLink: string
     imageLink: string
+    isFavorited?: boolean
 }
 type InitialStateType = {
     loading: boolean,
@@ -55,6 +56,14 @@ export const getJobs = createAsyncThunk<BaseResponse<ResponseType>, void, { stat
     return data;
 })
 
+export const setJobFav = createAsyncThunk<BaseResponse<string>, { id: string, isFavorited: boolean }, { state: RootState }>("jobs/setFavorite", async ({ id, isFavorited }, thunkApi) => {
+    const { user, error } = thunkApi.getState().authReducer;
+    if (user == null) throw new Error(error ?? "User not Logined");
+    const data = await ContentService.setFavorite(id, isFavorited, FAVOURITETYPE.JOB);
+    if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
+    return data;
+})
+
 const jobsSlice = createSlice({
     name: "jobs",
     initialState: initialState,
@@ -78,6 +87,17 @@ const jobsSlice = createSlice({
                     totalCount: action?.payload?.data?.totalCount ?? 0,
                     skip: action?.payload?.data?.totalCount ?? 0,
                 }
+            })
+            .addCase(setJobFav.fulfilled, (state, action) => {
+                state.data = state.data.map((job) => {
+                    if (job._id === action?.meta.arg.id) {
+                        job.isFavorited = action?.meta.arg.isFavorited
+                    }
+                    return job
+                })
+            })
+            .addCase(setJobFav.rejected, (state, action) => {
+                state.error = action?.error?.message ?? null
             })
     }
 })
