@@ -16,7 +16,7 @@ import UploadPage from './pages/upload/UploadPage';
 function Router() {
 	// todo temp setting user to work without auth
 	// user = { email: 'vinayakaggarwal05@gmail.com', fullName: 'Vinayak Agarwal', timeCreated: '', univercity: '', profile: null };
-	const user = useSelector(authSelector).user;
+	const {user, loading} = useSelector(authSelector);
 
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
@@ -113,7 +113,7 @@ function Router() {
 		}
 	]);
 
-	// if (loading) return <img className="loading" src="/loading.gif" alt="loading" />;
+	if (loading) return <img className="loading" src="/loading.gif" alt="loading" />;
 
 	return (
 		<>

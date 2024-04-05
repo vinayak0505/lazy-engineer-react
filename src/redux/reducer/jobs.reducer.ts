@@ -17,7 +17,6 @@ type JobDataType = {
     expectedSalary: number
     mediaLink: string
     imageLink: string
-    __v: number
 }
 type InitialStateType = {
     loading: boolean,

@@ -106,6 +106,19 @@ class ContentService {
         });
         return response.data;
     }
+
+    static async setFavorite(id: string, update: boolean, type: FAVOURITETYPE): Promise<BaseResponse<string>> {
+        const response = await axios.post(API.FAVOURITE, {id, update, type}, {});
+        return response.data;
+    }
+}
+
+export enum FAVOURITETYPE {
+    NOTE = "note",
+    PAPER = "paper",
+    BOOK = "book",
+    FILE = "file",
+    JOB = "job"
 }
 
 export default ContentService;
