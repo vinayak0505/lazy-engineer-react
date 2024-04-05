@@ -12,18 +12,20 @@ import PracticalPage from './pages/practical/PracticalPage';
 import JobsPage from './pages/jobs/JobsPage';
 import { useSelector } from 'react-redux';
 import UploadPage from './pages/upload/UploadPage';
+import FavoritePage from './pages/favorite/FavoritePage';
 
 function Router() {
 	// todo temp setting user to work without auth
-	// user = { email: 'vinayakaggarwal05@gmail.com', fullName: 'Vinayak Agarwal', timeCreated: '', univercity: '', profile: null };
-	const {user, loading} = useSelector(authSelector);
+	// const user = { email: 'vinayakaggarwal05@gmail.com', fullName: 'Vinayak Agarwal', timeCreated: '', univercity: '', profile: null };
+	// const user = useSelector(authSelector).user;
+	const { user, loading } = useSelector(authSelector);
 
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({ children }: { children: JSX.Element | null }) => {
-		// if (!user) {
-		// 	localStorage.setItem('path_history', window.location.pathname);
-		// 	return <Navigate to="/login" replace />;
-		// }
+		if (!user) {
+			localStorage.setItem('path_history', window.location.pathname);
+			return <Navigate to="/login" replace />;
+		}
 		return children;
 	};
 
@@ -78,6 +80,14 @@ function Router() {
 					element: (
 						<Protected>
 							<ProfilePage />
+						</Protected>
+					)
+				},
+				{
+					path: 'favorite',
+					element: (
+						<Protected>
+							<FavoritePage />
 						</Protected>
 					)
 				},

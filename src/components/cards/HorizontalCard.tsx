@@ -14,7 +14,8 @@ const HorizontalCard = ({
 	imageText,
 	children,
 	favorite,
-	onFavoriteClick
+	onFavoriteClick,
+	style
 }: {
 	id?: string;
 	title: string;
@@ -29,9 +30,10 @@ const HorizontalCard = ({
 	children?: JSX.Element | null;
 	favorite?: boolean;
 	onFavoriteClick?: (id: string, checked: boolean) => void;
+	style?: React.CSSProperties;
 }) => {
 	return (
-		<div className="relative">
+		<div className="relative" style={style}>
 			{favorite === true && (
 				<FavoriteOutlinedIcon
 					onClick={(e) => {

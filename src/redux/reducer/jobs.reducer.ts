@@ -1,8 +1,8 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
-import ContentService, { BaseResponse, FAVOURITETYPE } from "../service/content.service"
+import ContentService, { BaseResponse, FAVORITEENUM } from "../service/content.service"
 
-type JobDataType = {
+export type JobDataType = {
     _id: string
     userId: string
     title: string
@@ -59,7 +59,7 @@ export const getJobs = createAsyncThunk<BaseResponse<ResponseType>, void, { stat
 export const setJobFav = createAsyncThunk<BaseResponse<string>, { id: string, isFavorited: boolean }, { state: RootState }>("jobs/setFavorite", async ({ id, isFavorited }, thunkApi) => {
     const { user, error } = thunkApi.getState().authReducer;
     if (user == null) throw new Error(error ?? "User not Logined");
-    const data = await ContentService.setFavorite(id, isFavorited, FAVOURITETYPE.JOB);
+    const data = await ContentService.setFavorite(id, isFavorited, FAVORITEENUM.JOB);
     if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
 })

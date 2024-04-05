@@ -9,9 +9,19 @@ import { booksReducer } from "./redux/reducer/books.reducer";
 import { jobsReducer } from "./redux/reducer/jobs.reducer";
 import { filesReducer } from "./redux/reducer/files.reducer";
 import { papersReducer } from "./redux/reducer/papers.reducer";
+import { favoriteReducer } from "./redux/reducer/favorite.reducer";
 
 const store = configureStore({
-    reducer: { authReducer, helperReducer, notesReducer, booksReducer, jobsReducer, filesReducer, papersReducer },
+    reducer: {
+        authReducer,
+        helperReducer,
+        notesReducer,
+        booksReducer,
+        jobsReducer,
+        filesReducer,
+        papersReducer,
+        favoriteReducer,
+    },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tokenMiddleware, toastMiddleware)
 });
 

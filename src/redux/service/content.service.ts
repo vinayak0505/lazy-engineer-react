@@ -5,6 +5,7 @@ import { ResponseType as BooksType } from '../reducer/books.reducer';
 import { ResponseType as JobsType } from '../reducer/jobs.reducer';
 import { ResponseType as FilesType } from '../reducer/files.reducer';
 import { ResponseType as PapersType } from '../reducer/papers.reducer';
+import { FavoriteDataType } from '../reducer/favorite.reducer';
 
 export type BaseResponse<T> = {
     status: string;
@@ -107,13 +108,18 @@ class ContentService {
         return response.data;
     }
 
-    static async setFavorite(id: string, update: boolean, type: FAVOURITETYPE): Promise<BaseResponse<string>> {
+    static async setFavorite(id: string, update: boolean, type: FAVORITEENUM): Promise<BaseResponse<string>> {
         const response = await axios.post(API.FAVOURITE, {id, update, type}, {});
+        return response.data;
+    }
+
+    static async getFavorite(): Promise<BaseResponse<FavoriteDataType>> {
+        const response = await axios.get(API.FAVOURITE);
         return response.data;
     }
 }
 
-export enum FAVOURITETYPE {
+export enum FAVORITEENUM {
     NOTE = "note",
     PAPER = "question_paper",
     BOOK = "books",
