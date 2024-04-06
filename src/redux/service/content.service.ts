@@ -6,6 +6,7 @@ import { ResponseType as JobsType } from '../reducer/jobs.reducer';
 import { ResponseType as FilesType } from '../reducer/files.reducer';
 import { ResponseType as PapersType } from '../reducer/papers.reducer';
 import { FavoriteDataType } from '../reducer/favorite.reducer';
+import { AlertType } from '../reducer/alert.reducer';
 
 export type BaseResponse<T> = {
     status: string;
@@ -115,6 +116,20 @@ class ContentService {
 
     static async getFavorite(): Promise<BaseResponse<FavoriteDataType>> {
         const response = await axios.get(API.FAVOURITE);
+        return response.data;
+    }
+
+    static async addAlerts(formData: FormData): Promise<BaseResponse<string>> {
+        const response = await axios.post(API.ALERTS, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
+        return response.data;
+    }
+
+    static async getAlerts(): Promise<BaseResponse<AlertType[]>> {
+        const response = await axios.get(API.ALERTS);
         return response.data;
     }
 }

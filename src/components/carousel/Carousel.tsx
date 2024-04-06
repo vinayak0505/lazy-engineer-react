@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
+import Styles from './Carousel.module.scss';
 
-const Carousel = ({ images }: { images: { src: string; link: string }[] }) => {
+const Carousel = ({
+	images,
+	visible = true
+}: {
+	images: { src: string; link: string, alt: string }[];
+	visible?: boolean;
+}) => {
 	const [slider, setSlider] = useState(0);
 
 	const nextSlider = () => {
@@ -14,14 +21,14 @@ const Carousel = ({ images }: { images: { src: string; link: string }[] }) => {
 
 	const setSliderNumber = (index: number) => {
 		if (index == slider) return;
-		document.getElementById(`data-carousel-home-item-${slider}`)?.classList.add('opacity-0');
+		document.getElementById(`data-carousel-home-item-${slider}`)?.classList.add('hidden');
 		document
 			.getElementById(`data-carousel-home-button-${slider}`)
 			?.classList.remove('dark:bg-gray-800');
 		document
 			.getElementById(`data-carousel-home-button-${slider}`)
 			?.classList.add('dark:bg-gray-500');
-		document.getElementById(`data-carousel-home-item-${index}`)?.classList.remove('opacity-0');
+		document.getElementById(`data-carousel-home-item-${index}`)?.classList.remove('hidden');
 		document
 			.getElementById(`data-carousel-home-button-${index}`)
 			?.classList.remove('dark:bg-gray-500');
@@ -30,28 +37,33 @@ const Carousel = ({ images }: { images: { src: string; link: string }[] }) => {
 	};
 
 	useEffect(() => {
-		document.getElementById(`data-carousel-home-item-0`)?.classList.remove('opacity-0');
+		if (visible == false) return;
+		document.getElementById(`data-carousel-home-item-0`)?.classList.remove('hidden');
 		document.getElementById(`data-carousel-home-button-0`)?.classList.add('dark:bg-gray-800');
 		document.getElementById(`data-carousel-home-button-0`)?.classList.remove('dark:bg-gray-500');
-	}, []);
-
+	}, [visible]);
+	if (visible == false) return <></>;
 	return (
 		<>
-			<div id="default-carousel" className="relative w-full" data-carousel="slide">
+			<div
+				id="default-carousel"
+				className={'relative w-full mb-4 ' + Styles.ele}
+				data-carousel="slide"
+			>
 				{/* <!-- Carousel wrapper --> */}
 				<div className="relative h-40 md:h-56 overflow-hidden rounded-lg xl:h-96">
 					{/* <!-- Item 1 --> */}
 					{images.map((image, index) => (
 						<div
 							key={index}
-							className="opacity-0 duration-700 ease-in-out"
+							className="hidden duration-700 ease-in-out"
 							id={`data-carousel-home-item-${index}`}
 						>
-							<a href={image.link} target='_blank' rel='noreferrer'>
+							<a href={image.link} target="_blank" rel="noreferrer">
 								<img
 									src={image.src}
 									className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-									alt="..."
+									alt={image.alt}
 								/>
 							</a>
 						</div>

@@ -10,6 +10,7 @@ const API = {
     BOOKS: process.env.REACT_APP_BASE_URL + '/books',
     QUESTIONPAPER: process.env.REACT_APP_BASE_URL + '/question_paper',
     FAVOURITE: process.env.REACT_APP_BASE_URL + '/favourite',
+    ALERTS: process.env.REACT_APP_BASE_URL + '/alert',
 };
 
 export default API;

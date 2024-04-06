@@ -10,6 +10,7 @@ import { jobsReducer } from "./redux/reducer/jobs.reducer";
 import { filesReducer } from "./redux/reducer/files.reducer";
 import { papersReducer } from "./redux/reducer/papers.reducer";
 import { favoriteReducer } from "./redux/reducer/favorite.reducer";
+import { alertsReducer } from "./redux/reducer/alert.reducer";
 
 const store = configureStore({
     reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
         filesReducer,
         papersReducer,
         favoriteReducer,
+        alertsReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tokenMiddleware, toastMiddleware)
 });

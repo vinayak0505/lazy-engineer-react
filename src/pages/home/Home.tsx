@@ -1,29 +1,8 @@
 import Carousel from '../../components/carousel/Carousel';
 import Card from '../../components/cards/Card';
 import ResponsiveGrid from '../../components/grid/ResponsiveGrid';
-
-const images = [
-	{
-		src: 'https://fastly.picsum.photos/id/393/400/200.jpg?hmac=vJt6cRtWra084m3XmqBmS4ZIZiKpfZs6aySbdZpWxmw',
-		link: 'https:testing'
-	},
-	{
-		src: 'https://fastly.picsum.photos/id/789/200/300.jpg?hmac=nu1PpKsVA8Td2PEYonJWrmrriU-Km5XoKoEZQ-Tq-6E',
-		link: 'https:testing'
-	},
-	{
-		src: 'https://fastly.picsum.photos/id/446/400/200.jpg?hmac=IBuPAYfCz339SW6ylEF0vc9VfTrQ0aJcd842LggDcWc',
-		link: 'https:testing'
-	},
-	{
-		src: 'https://fastly.picsum.photos/id/386/400/200.jpg?hmac=OtCJvt6rJcBoCk-IHBp8oRqIsZTmt_vhJSUBtrj7Wn8',
-		link: 'https:testing'
-	},
-	{
-		src: 'https://fastly.picsum.photos/id/1020/400/200.jpg?hmac=4dCpPhZLFDBZuJxnkCRrUJyszEIqDf-vZPMTNJuKrao',
-		link: 'https:testing'
-	}
-];
+import { useSelector } from 'react-redux';
+import { alertSelector } from '../../redux/reducer/alert.reducer';
 
 const data = [
 	{
@@ -65,10 +44,13 @@ const data = [
 ];
 
 const Home = () => {
+	const Alerts = useSelector(alertSelector).data;
 	return (
 		<>
-			<Carousel images={images} />
-			<div className="mt-4"></div>
+			<Carousel
+				visible={(Alerts?.length ?? 0) > 0}
+				images={Alerts?.map((item) => ({ src: item.imageLink, link: item.link, alt: item.heading })) ?? []}
+			/>
 			<ResponsiveGrid maxChildrenWidth={220}>
 				{data.map((item, index) => (
 					<div key={index}>

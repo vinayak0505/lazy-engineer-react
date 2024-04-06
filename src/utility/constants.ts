@@ -75,3 +75,9 @@ export const JobsTags = [
     'Javascript',
     'Flutter',
 ];
+
+export const AlertsTags = [
+    'Jobs',
+    'Internship',
+    'Learning',
+]

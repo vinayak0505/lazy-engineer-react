@@ -13,6 +13,8 @@ import JobsPage from './pages/jobs/JobsPage';
 import { useSelector } from 'react-redux';
 import UploadPage from './pages/upload/UploadPage';
 import FavoritePage from './pages/favorite/FavoritePage';
+import { AlertsUploadPage } from './pages/admin/add_alert/AddAlertPage';
+import Notifications from './pages/notifications/Notifications';
 
 function Router() {
 	// todo temp setting user to work without auth
@@ -21,10 +23,20 @@ function Router() {
 	const { user, loading } = useSelector(authSelector);
 
 	// protected to prevent route that should not be acceble without logout
-	const Protected = ({ children }: { children: JSX.Element | null }) => {
+	const Protected = ({
+		adminOnly = false,
+		children
+	}: {
+		adminOnly?: boolean;
+		children: JSX.Element | null;
+	}) => {
 		if (!user) {
 			localStorage.setItem('path_history', window.location.pathname);
 			return <Navigate to="/login" replace />;
+		}
+
+		if (adminOnly && !user.isAdmin) {
+			return <Navigate to="/" replace />;
 		}
 		return children;
 	};
@@ -98,6 +110,18 @@ function Router() {
 							<UploadPage />
 						</Protected>
 					)
+				},
+				{
+					path: '/add_alert',
+					element: (
+						<Protected adminOnly>
+							<AlertsUploadPage />
+						</Protected>
+					)
+				},
+				{
+					path: '/notifications',
+					element: <Notifications />
 				},
 				{
 					path: '/paper',

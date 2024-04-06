@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import UploadUI from '../../components/UploadUI';
-import { InputDropDown } from '../../components/drop_down/DropDown';
+import { InputDropDown } from '../../components/custom_input/DropDown';
 import { PracticleFileTags, semesters } from '../../utility/constants';
 import InputChip from '../../components/chips/InputChip';
 import Button from '../../components/buttons/Button';

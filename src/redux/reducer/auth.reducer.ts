@@ -14,6 +14,7 @@ export type UserType = {
     github: string | undefined;
     twitter: string | undefined;
     instagram: string | undefined;
+    isAdmin: boolean;
     notesCount: number;
     jobsCount: number;
     booksCount: number;

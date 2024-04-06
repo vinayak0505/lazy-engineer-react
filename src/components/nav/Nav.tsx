@@ -3,12 +3,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import { UserType, logoutUser } from '../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../store';
 import styles from './Nav.module.scss';
-import { DropDown } from '../drop_down/DropDown';
+import { DropDown } from '../custom_input/DropDown';
 
-import "../../images/logo.png"
+import '../../images/logo.png';
+import { useSelector } from 'react-redux';
+import { alertSelector } from '../../redux/reducer/alert.reducer';
 const Nav = ({ user }: { user: UserType }) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+
+	const alertCount = useSelector(alertSelector).data?.length ?? 0;
 
 	return (
 		<nav className="bg-white fixed dark:bg-gray-900 w-full z-40 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
@@ -95,10 +99,13 @@ const Nav = ({ user }: { user: UserType }) => {
 						</li>
 						<li>
 							<NavLink
-								to="/notification"
-								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+								to="/notifications"
+								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 relative"
 							>
-								Notification
+								Notifications
+								{alertCount > 0 && (
+									<div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-4 dark:border-gray-900">{alertCount}</div>
+								)}
 							</NavLink>
 						</li>
 					</ul>
