@@ -8,7 +8,7 @@ const PracticalPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getFiles());
+		dispatch(getFiles({refresh: true}));
 	}, []);
 
 	const PracticalData = useSelector(filesSelector).data;

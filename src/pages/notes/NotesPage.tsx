@@ -9,7 +9,7 @@ const NotesPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getNotes());
+		dispatch(getNotes({refresh: true}));
 	}, []);
 
 	const onFavoriteClick = (id: string, checked: boolean) => {

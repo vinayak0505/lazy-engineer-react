@@ -8,7 +8,7 @@ const BooksPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getBooks());
+		dispatch(getBooks({refresh: true}));
 	},[])
 
 	const BooksData = useSelector(booksSelector).data;

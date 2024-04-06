@@ -9,7 +9,7 @@ const JobsPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getJobs());
+		dispatch(getJobs({refresh: true}));
 	},[])
 
 	const JobsData = useSelector(jobsSelector).data;

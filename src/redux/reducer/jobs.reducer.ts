@@ -49,9 +49,9 @@ export type ResponseType = {
     limit: number
 }
 
-export const getJobs = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("jobs/getJobs", async (_, thunkApi) => {
+export const getJobs = createAsyncThunk<BaseResponse<ResponseType>, { refresh?: boolean }, { state: RootState }>("jobs/getJobs", async ({ refresh = false }, thunkApi) => {
     const { skip, limit } = thunkApi.getState().jobsReducer.pagination;
-    const data = await ContentService.getJobs(skip, limit);
+    const data = await ContentService.getJobs(refresh ? 0 : skip, limit);
     if (data.status !== "success") throw new Error(data.message ?? "Jobs went wrong");
     return data;
 })
@@ -78,8 +78,9 @@ const jobsSlice = createSlice({
                 state.error = action?.error?.message ?? null;
             })
             .addCase(getJobs.fulfilled, (state, action) => {
+                const data = action?.payload?.data?.result ?? [];
                 state.loading = false
-                state.data = state.data.concat(action?.payload?.data?.result ?? [])
+                state.data = (action.meta.arg.refresh) ? data : state.data.concat(data)
                 state.error = null
                 state.pagination = {
                     canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),

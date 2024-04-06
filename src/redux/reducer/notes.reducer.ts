@@ -45,16 +45,16 @@ export type ResponseType = {
     limit: number
 }
 
-export const getNotes = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("notes/getNotes", async (_, thunkApi) => {
+export const getNotes = createAsyncThunk<BaseResponse<ResponseType>, { refresh?: boolean }, { state: RootState }>("notes/getNotes", async ({ refresh = false }, thunkApi) => {
     const { skip, limit } = thunkApi.getState().notesReducer.pagination;
-    const data = await ContentService.getNotes(skip, limit);
+    const data = await ContentService.getNotes(refresh ? 0 : skip, limit);
     if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
 })
 
 export const setNotesFav = createAsyncThunk<BaseResponse<string>, { id: string, isFavorited: boolean }, { state: RootState }>("notes/setFavorite", async ({ id, isFavorited }, thunkApi) => {
-    const {user, error} = thunkApi.getState().authReducer;
-    if(user == null) throw new Error(error ?? "User not Logined");
+    const { user, error } = thunkApi.getState().authReducer;
+    if (user == null) throw new Error(error ?? "User not Logined");
     const data = await ContentService.setFavorite(id, isFavorited, FAVORITEENUM.NOTE);
     if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
@@ -74,8 +74,9 @@ const notesSlice = createSlice({
                 state.error = action?.error?.message ?? null;
             })
             .addCase(getNotes.fulfilled, (state, action) => {
+                const data = action?.payload?.data?.result ?? [];
                 state.loading = false
-                state.data = state.data.concat(action?.payload?.data?.result ?? [])
+                state.data = action.meta.arg.refresh ? data : state.data.concat(data)
                 state.error = null
                 state.pagination = {
                     canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),

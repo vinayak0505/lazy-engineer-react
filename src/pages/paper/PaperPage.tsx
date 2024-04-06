@@ -8,7 +8,7 @@ const PaperPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getPaper());
+		dispatch(getPaper({refresh: true}));
 	}, []);
 
 	const PaperData = useSelector(papersSelector).data;

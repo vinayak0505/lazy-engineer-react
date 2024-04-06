@@ -45,9 +45,9 @@ export type ResponseType = {
     limit: number
 }
 
-export const getFiles = createAsyncThunk<BaseResponse<ResponseType>, void, { state: RootState }>("files/getFiles", async (_, thunkApi) => {
+export const getFiles = createAsyncThunk<BaseResponse<ResponseType>, { refresh?: boolean }, { state: RootState }>("files/getFiles", async ({ refresh = false }, thunkApi) => {
     const { skip, limit } = thunkApi.getState().filesReducer.pagination;
-    const data = await ContentService.getFiles(skip, limit);
+    const data = await ContentService.getFiles(refresh ? 0 : skip, limit);
     if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
 })
@@ -74,8 +74,9 @@ const filesSlice = createSlice({
                 state.error = action?.error?.message ?? null;
             })
             .addCase(getFiles.fulfilled, (state, action) => {
+                const data = action?.payload?.data?.result ?? [];
                 state.loading = false
-                state.data = state.data.concat(action?.payload?.data?.result ?? [])
+                state.data = (action.meta.arg.refresh) ? data : state.data.concat(data)
                 state.error = null
                 state.pagination = {
                     canGetMore: (action?.payload?.data?.totalCount ?? 0) > (action?.payload?.data?.skip ?? 0),
