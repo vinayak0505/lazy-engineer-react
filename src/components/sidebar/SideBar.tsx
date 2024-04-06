@@ -6,8 +6,9 @@ import Books from '../../assets/books';
 import Notes from '../../assets/notes';
 import Paper from '../../assets/paper';
 import Practical from '../../assets/practical';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | undefined }) => {
+	const location = useLocation();
 	return (
 		<div className={Styles.main}>
 			<aside
@@ -16,8 +17,8 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 				aria-label="Sidebar"
 			>
 				<div className="h-full px-3 py-4 overflow-y-auto">
-					{user && (
-						<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+					{user && location.pathname !='/profile' && (
+						<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-4">
 							<div className="flex flex-col items-center pb-6 pt-6">
 								<img
 									className="w-24 h-24 mb-3 rounded-full shadow-lg"
@@ -34,7 +35,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 						</div>
 					)}
 
-					<ul className="mt-4 space-y-2 font-medium bg-gray-50 dark:bg-gray-800 rounded-lg  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
+					<ul className="space-y-2 font-medium bg-gray-50 dark:bg-gray-800 rounded-lg  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
 						<li>
 							<NavLink
 								to="/notes"
