@@ -36,7 +36,7 @@ const ProfilePage = () => {
 	};
 
 	return (
-		<div className={Styles.container + ' bg-gray-800'}>
+		<div className={Styles.container + ' bg-gray-800 mb-4'}>
 			{isEdit ? (
 				<div className="h-fit w-fit relative">
 					<input

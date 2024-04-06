@@ -59,7 +59,7 @@ export const PaperUploadComponent = () => {
 	};
 
 	return (
-		<form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
+		<form className="max-w-sm mx-auto mb-4" onSubmit={handleSubmit}>
 			<div>
 				<label
 					htmlFor="file"

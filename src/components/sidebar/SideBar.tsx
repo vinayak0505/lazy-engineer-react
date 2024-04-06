@@ -98,7 +98,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 				</div>
 			</aside>
 			<div className="p-4 sm:ml-64 lg:mr-64">
-				<div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+				<div className="p-4 pb-0 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
 					{children}
 				</div>
 			</div>
