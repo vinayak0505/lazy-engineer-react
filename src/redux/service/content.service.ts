@@ -1,6 +1,6 @@
 import axios from 'axios';
 import API from '../constants/api';
-import { ResponseType as NotesType } from '../reducer/notes.reducer';
+import { NotesDataType, ResponseType as NotesType } from '../reducer/notes.reducer';
 import { ResponseType as BooksType } from '../reducer/books.reducer';
 import { ResponseType as JobsType } from '../reducer/jobs.reducer';
 import { ResponseType as FilesType } from '../reducer/files.reducer';
@@ -61,6 +61,11 @@ class ContentService {
                 limit
             }
         });
+        return response.data;
+    }
+
+    static async getDetailNotes(id: string): Promise<BaseResponse<NotesDataType>> {
+        const response = await axios.get(API.NOTES + `/${id}`, {});
         return response.data;
     }
 

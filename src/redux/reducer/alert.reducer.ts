@@ -27,7 +27,6 @@ const initialState: InitialStateType = {
 
 export const getAlerts = createAsyncThunk<BaseResponse<AlertType[]>, void, { state: RootState }>("alert/getAlerts", async () => {
     const data = await ContentService.getAlerts();
-    await delay(2000);
     if (data.status !== "success") throw new Error(data.message ?? "Something went wrong");
     return data;
 })

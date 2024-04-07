@@ -1,11 +1,11 @@
-const Chip = ({ title, onRemove }: { title: string, onRemove: () => void }) => {
+const Chip = ({ title, onRemove }: { title: string, onRemove?: () => void }) => {
 	return (
 		<span
 			id="badge-dismiss-default"
 			className="inline-flex items-center px-2 py-1 me-2 mb-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300"
 		>
 			{title}
-			<button
+			{onRemove && <button
 				type="button"
 				className="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
 				data-dismiss-target="#badge-dismiss-default"
@@ -28,7 +28,7 @@ const Chip = ({ title, onRemove }: { title: string, onRemove: () => void }) => {
 					/>
 				</svg>
 				<span className="sr-only">Remove badge</span>
-			</button>
+			</button>}
 		</span>
 	);
 };

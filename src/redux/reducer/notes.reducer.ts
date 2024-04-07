@@ -1,19 +1,22 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
 import ContentService, { BaseResponse, FAVORITEENUM } from "../service/content.service"
+import { UserType } from "./auth.reducer"
 
 export type NotesDataType = {
     _id: string,
-    userId: string,
+    userId: string | UserType,
     title: string,
     about: string,
     semester: string,
     subject: string,
     unit: string,
     chapter: string,
+    topic: string,
     mediaLink: string,
     imageLink: string,
     isFavorited: boolean,
+    tags: string[],
 }
 type InitialStateType = {
     loading: boolean,

@@ -15,6 +15,7 @@ import UploadPage from './pages/upload/UploadPage';
 import FavoritePage from './pages/favorite/FavoritePage';
 import { AlertsUploadPage } from './pages/admin/add_alert/AddAlertPage';
 import Notifications from './pages/notifications/Notifications';
+import NotesDetailPage from './pages/notes/NotesDetailPage';
 
 function Router() {
 	// todo temp setting user to work without auth
@@ -130,6 +131,10 @@ function Router() {
 				{
 					path: '/notes',
 					element: <NotesPage />
+				},
+				{
+					path: '/notes/:id',
+					element: <NotesDetailPage />
 				},
 				{
 					path: '/books',
