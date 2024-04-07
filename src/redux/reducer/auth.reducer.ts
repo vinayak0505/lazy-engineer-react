@@ -3,6 +3,7 @@ import AuthService from "../service/auth.service";
 import { RootState } from "../../store";
 
 export type UserType = {
+    _id: string;
     fullName: string;
     email: string;
     designation: string | undefined;

@@ -16,6 +16,7 @@ import FavoritePage from './pages/favorite/FavoritePage';
 import { AlertsUploadPage } from './pages/admin/add_alert/AddAlertPage';
 import Notifications from './pages/notifications/Notifications';
 import NotesDetailPage from './pages/notes/NotesDetailPage';
+import ViewOnlyProfilePage from './pages/profile/ViewOnlyProfilePage';
 
 function Router() {
 	// todo temp setting user to work without auth
@@ -93,6 +94,14 @@ function Router() {
 					element: (
 						<Protected>
 							<ProfilePage />
+						</Protected>
+					)
+				},
+				{
+					path: '/profile/:id',
+					element: (
+						<Protected>
+							<ViewOnlyProfilePage />
 						</Protected>
 					)
 				},

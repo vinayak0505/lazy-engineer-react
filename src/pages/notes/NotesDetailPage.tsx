@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { NotesDataType } from '../../redux/reducer/notes.reducer';
 import ContentService, { FAVORITEENUM } from '../../redux/service/content.service';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import Chip from '../../components/chips/Chip';
 import { UserType } from '../../redux/reducer/auth.reducer';
 import FavoriteRounded from '@mui/icons-material/FavoriteRounded';
 import FavoriteBorderRounded from '@mui/icons-material/FavoriteBorderRounded';
 import DownloadRounded from '@mui/icons-material/DownloadRounded';
+import { useAppDispatch } from '../../store';
+import { helperAction } from '../../redux/reducer/helper.reducer';
 
 const NotesDetailPage = () => {
 	const id = useParams().id;
+	const dispatch = useAppDispatch();
 
 	const [loading, setLoading] = useState(true);
 	const [data, setData] = useState<NotesDataType | null>(null);
@@ -17,9 +20,14 @@ const NotesDetailPage = () => {
 	useEffect(() => {
 		(async () => {
 			if (id == undefined) return;
-			const res = await ContentService.getDetailNotes(id);
+			try {
+				const res = await ContentService.getDetailNotes(id);
+				if (res.status != 'success') throw new Error(res.message ?? 'Something went wrong');
+				setData(res.data);
+			} catch (error: any) {
+				dispatch(helperAction.customToast(error?.message ?? 'Something went wrong'));
+			}
 			setLoading(false);
-			setData(res.data);
 		})();
 	}, []);
 
@@ -41,7 +49,9 @@ const NotesDetailPage = () => {
 				/>
 				<div>
 					<h2 className="mb-2 text-3xl font-bold text-white">{data?.title}</h2>
-					<Separator title="Uploaded By" value={(data?.userId as UserType)?.fullName} />
+					<NavLink to={`/profile/${(data?.userId as UserType)?._id}`}>
+						<Separator title="Uploaded By" value={(data?.userId as UserType)?.fullName} />
+					</NavLink>
 					<Separator title="Unit" value={data?.unit} />
 					<Separator title="Semester" value={data?.semester} />
 					<Separator title="Subject" value={data?.subject} />

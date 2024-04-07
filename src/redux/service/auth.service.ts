@@ -1,6 +1,7 @@
 import axios from 'axios';
 import API from '../constants/api';
 import { UserType } from '../reducer/auth.reducer';
+import { BaseResponse } from './content.service';
 
 class AuthService {
     static async loginUser(email: string, password: string) {
@@ -16,7 +17,7 @@ class AuthService {
             formData.append("image", image);
             if (arg) {
                 for (const [key, value] of Object.entries(arg)) {
-                    if(value) formData.append(key, value?.toString());
+                    if (value) formData.append(key, value?.toString());
                 }
             }
 
@@ -52,6 +53,11 @@ class AuthService {
         const response = await axios.post(API.VERIFY_TOKEN, null, {
             headers: { token }
         });
+        return response.data;
+    }
+
+    static async getProfile(id: string): Promise<BaseResponse<UserType>> {
+        const response = await axios.get(API.PROFILE + `/${id}`);
         return response.data;
     }
 }

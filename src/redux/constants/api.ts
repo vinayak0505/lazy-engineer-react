@@ -4,6 +4,7 @@ const API = {
     SIGNOUT: process.env.REACT_APP_BASE_URL + '/auth/signOut',
     VERIFY_TOKEN: process.env.REACT_APP_BASE_URL + '/auth/verifyToken',
     UPDATE_USER: process.env.REACT_APP_BASE_URL + '/auth/updateUser',
+    PROFILE: process.env.REACT_APP_BASE_URL + '/auth/profile',
     NOTES: process.env.REACT_APP_BASE_URL + '/note',
     PRACTICLEFILE: process.env.REACT_APP_BASE_URL + '/practicle_file',
     JOBS: process.env.REACT_APP_BASE_URL + '/jobs',
