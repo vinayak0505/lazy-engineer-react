@@ -1,10 +1,11 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
 import ContentService, { BaseResponse, FAVORITEENUM } from "../service/content.service"
+import { UserType } from "./auth.reducer"
 
 export type PapersDataType = {
     _id: string
-    userId: string
+    userId: string | UserType
     title: string
     about: string
     semester: string

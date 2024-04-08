@@ -25,7 +25,7 @@ const BooksPage = () => {
 						id={item._id}
 						title={item.title}
 						body={item.about}
-						link={item.mediaLink}
+						link={item._id}
 						image={item.imageLink}
 						maxWidth={'sm'}
 						maxTitleLines={2}

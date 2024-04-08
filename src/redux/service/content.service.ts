@@ -1,10 +1,10 @@
 import axios from 'axios';
 import API from '../constants/api';
 import { NotesDataType, ResponseType as NotesType } from '../reducer/notes.reducer';
-import { ResponseType as BooksType } from '../reducer/books.reducer';
-import { ResponseType as JobsType } from '../reducer/jobs.reducer';
-import { ResponseType as FilesType } from '../reducer/files.reducer';
-import { ResponseType as PapersType } from '../reducer/papers.reducer';
+import { BookDataType, ResponseType as BooksType } from '../reducer/books.reducer';
+import { JobDataType, ResponseType as JobsType } from '../reducer/jobs.reducer';
+import { FileDataType, ResponseType as FilesType } from '../reducer/files.reducer';
+import { PapersDataType, ResponseType as PapersType } from '../reducer/papers.reducer';
 import { FavoriteDataType } from '../reducer/favorite.reducer';
 import { AlertType } from '../reducer/alert.reducer';
 
@@ -24,6 +24,12 @@ class ContentService {
         });
         return response.data;
     }
+
+    static async getDetailPaper(id: string): Promise<BaseResponse<PapersDataType>> {
+        const response = await axios.get(API.QUESTIONPAPER + `/${id}`, {});
+        return response.data;
+    }
+
     static async getJobs(skip: number, limit: number): Promise<BaseResponse<JobsType>> {
         const response = await axios.get(API.JOBS, {
             params: {
@@ -31,6 +37,11 @@ class ContentService {
                 limit
             }
         });
+        return response.data;
+    }
+
+    static async getDetailJob(id: string): Promise<BaseResponse<JobDataType>> {
+        const response = await axios.get(API.JOBS + `/${id}`);
         return response.data;
     }
 
@@ -44,6 +55,11 @@ class ContentService {
         return response.data;
     }
 
+    static async getDetailBook(id: string): Promise<BaseResponse<BookDataType>> {
+        const response = await axios.get(API.BOOKS + `/${id}`, {});
+        return response.data;
+    }
+
     static async getFiles(skip: number, limit: number): Promise<BaseResponse<FilesType>> {
         const response = await axios.get(API.PRACTICLEFILE, {
             params: {
@@ -51,6 +67,11 @@ class ContentService {
                 limit
             }
         });
+        return response.data;
+    }
+
+    static async getDetailPracticalFile(id: string): Promise<BaseResponse<FileDataType>> {
+        const response = await axios.get(API.PRACTICLEFILE + `/${id}`, {});
         return response.data;
     }
 
@@ -115,7 +136,7 @@ class ContentService {
     }
 
     static async setFavorite(id: string, update: boolean, type: FAVORITEENUM): Promise<BaseResponse<string>> {
-        const response = await axios.post(API.FAVOURITE, {id, update, type}, {});
+        const response = await axios.post(API.FAVOURITE, { id, update, type }, {});
         return response.data;
     }
 

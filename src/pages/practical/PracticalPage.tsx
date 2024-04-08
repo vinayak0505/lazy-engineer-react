@@ -24,7 +24,7 @@ const PracticalPage = () => {
 					<HorizontalCard
 						id={item._id}
 						title={item.title}
-						link={item.mediaLink}
+						link={item._id}
 						image={item.imageLink}
 						maxWidth={'sm'}
 						maxTitleLines={2}

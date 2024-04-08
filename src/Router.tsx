@@ -17,6 +17,10 @@ import { AlertsUploadPage } from './pages/admin/add_alert/AddAlertPage';
 import Notifications from './pages/notifications/Notifications';
 import NotesDetailPage from './pages/notes/NotesDetailPage';
 import ViewOnlyProfilePage from './pages/profile/ViewOnlyProfilePage';
+import PaperDetailPage from './pages/paper/PaperDetailsPage';
+import BookDetailPage from './pages/books/BookDetailsPage';
+import PracticlDetailsPage from './pages/practical/PracticalDetailsPage';
+import JobDetailPage from './pages/jobs/JobsDetailPage';
 
 function Router() {
 	// todo temp setting user to work without auth
@@ -138,6 +142,10 @@ function Router() {
 					element: <PaperPage />
 				},
 				{
+					path: '/paper/:id',
+					element: <PaperDetailPage />
+				},
+				{
 					path: '/notes',
 					element: <NotesPage />
 				},
@@ -150,13 +158,25 @@ function Router() {
 					element: <BooksPage />
 				},
 				{
+					path: '/books/:id',
+					element: <BookDetailPage />
+				},
+				{
 					path: '/practical',
 					element: <PracticalPage />
 				},
 				{
+					path: '/practical/:id',
+					element: <PracticlDetailsPage />
+				},
+				{
 					path: '/jobs',
 					element: <JobsPage />
-				}
+				},
+				{
+					path: '/jobs/:id',
+					element: <JobDetailPage />
+				},
 			]
 		}
 	]);

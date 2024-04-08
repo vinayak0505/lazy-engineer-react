@@ -1,10 +1,11 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "../../store"
 import ContentService, { BaseResponse, FAVORITEENUM } from "../service/content.service"
+import { UserType } from "./auth.reducer"
 
 export type JobDataType = {
     _id: string
-    userId: string
+    userId: string | UserType
     title: string
     profile: string
     company: string
@@ -14,9 +15,10 @@ export type JobDataType = {
     experienceLevel: string
     datePosted: string
     skillsNeeded: string[]
-    expectedSalary: number
+    expectedSalary: string
     mediaLink: string
     imageLink: string
+    applyLink: string
     isFavorited?: boolean
 }
 type InitialStateType = {
