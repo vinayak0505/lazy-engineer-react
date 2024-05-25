@@ -3,6 +3,7 @@
 	--secondary-color: #004b70;
 	--primary-text-color: #ffffff;
 	--secondary-text-color: #868686;
+	background-color: #0e131f;
 }
 * {
 	padding: 0;
@@ -39,6 +40,7 @@ a {
 	&:hover {
 		color: var(--primary-color);
 	}
+
 	&.active {
 		color: var(--primary-color);
 	}
@@ -58,5 +60,24 @@ a {
 
 
 .-z-10 {
-    z-index: -10;
+	z-index: -10;
+}
+
+.loading {
+	shape-rendering: auto;
+	display: block;
+	background: transparent;
+	margin: auto;
+	height: 100vh;
+	animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+	0%{
+		transform: rotate(0deg);
+	}
+
+	100%{
+		transform: rotate(360deg);
+	}
 }
