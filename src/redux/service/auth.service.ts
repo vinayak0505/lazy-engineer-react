@@ -33,11 +33,11 @@ class AuthService {
         }
     }
 
-    static async signUpUser(email: string, password: string, name: string) {
+    static async signUpUser(email: string, password: string, fullName: string) {
         const response = await axios.post(API.SIGNUP, {
             email,
             password,
-            name
+            fullName
         });
         return response.data;
     }
