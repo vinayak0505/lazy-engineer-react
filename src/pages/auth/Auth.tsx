@@ -126,11 +126,3 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 };
 
 export default Auth;
-
-// return (
-// 	<>
-// 		<div> auth</div>
-// 		{showLogin ? <Login /> : <SignUp />}
-// 		<button onClick={() => setShowLogin(!showLogin)}> {showLogin ? 'Register' : 'Login'}</button>
-// 	</>
-// );
