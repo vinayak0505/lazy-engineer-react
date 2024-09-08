@@ -13,15 +13,15 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 		<div className={Styles.main}>
 			<aside
 				id="separator-sidebar"
-				className="fixed left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+				className="fixed left-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
 				aria-label="Sidebar"
 			>
-				<div className="h-full px-3 py-4 overflow-y-auto">
-					{user && location.pathname !='/profile' && (
-						<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-4">
+				<div className="h-full overflow-y-auto px-3 py-4">
+					{user && location.pathname != '/profile' && (
+						<div className="mb-4 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
 							<div className="flex flex-col items-center pb-6 pt-6">
 								<img
-									className="w-24 h-24 mb-3 rounded-full shadow-lg"
+									className="mb-3 h-24 w-24 rounded-full shadow-lg"
 									src={user?.imageLink ?? './images/user.jpeg'}
 									alt={user?.fullName}
 								/>
@@ -35,11 +35,11 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 						</div>
 					)}
 
-					<ul className="space-y-2 font-medium bg-gray-50 dark:bg-gray-800 rounded-lg  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
+					<ul className="space-y-2 rounded-lg border border-gray-200 bg-gray-50 p-4 font-medium shadow dark:border-gray-700 dark:bg-gray-800">
 						<li>
 							<NavLink
 								to="/notes"
-								className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+								className="group flex items-center rounded-lg p-2 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 							>
 								<Notes />
 								<span className="ms-3">Notes</span>
@@ -48,7 +48,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 						<li>
 							<NavLink
 								to="/paper"
-								className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+								className="group flex items-center rounded-lg p-2 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 							>
 								<Paper />
 								<span className="ms-3">Question Papers</span>
@@ -57,7 +57,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 						<li>
 							<NavLink
 								to="/practical"
-								className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+								className="group flex items-center rounded-lg p-2 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 							>
 								<Practical />
 								<span className="ms-3">Practical File</span>
@@ -66,7 +66,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 						<li>
 							<NavLink
 								to="/books"
-								className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+								className="group flex items-center rounded-lg p-2 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 							>
 								<Books />
 								<span className="ms-3">Books</span>
@@ -75,7 +75,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 						<li>
 							<NavLink
 								to="/jobs"
-								className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
+								className="group flex items-center rounded-lg p-2 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
 							>
 								<Jobs />
 								<span className="ms-3">Jobs</span>
@@ -86,11 +86,11 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 			</aside>
 			<aside
 				id="separator-sidebar-right"
-				className="fixed right-0  w-64 h-screen transition-transform translate-x-full lg:-translate-x-0"
+				className="fixed right-0 h-screen w-64 translate-x-full transition-transform lg:-translate-x-0"
 				aria-label="Sidebar"
 			>
-				<div className="h-full px-3 py-4 overflow-y-auto">
-					<div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+				<div className="h-full overflow-y-auto px-3 py-4">
+					<div className="w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
 						<div className="flex flex-col items-center pb-6 pt-6">
 							{/* to do add advertisement */}
 							advertisement
@@ -99,7 +99,7 @@ const SideBar = ({ user, children }: { user: UserType; children: JSX.Element | u
 				</div>
 			</aside>
 			<div className="p-4 sm:ml-64 lg:mr-64">
-				<div className="p-4 pb-0 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
+				<div className="rounded-lg border-2 border-dashed border-gray-200 p-4 pb-0 dark:border-gray-700">
 					{children}
 				</div>
 			</div>

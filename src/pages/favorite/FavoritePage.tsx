@@ -33,7 +33,7 @@ const FavouritePage = () => {
 
 const FavouritePageComponent = ({
 	title,
-	data
+	data,
 }: {
 	title: string;
 	data:
@@ -47,8 +47,8 @@ const FavouritePageComponent = ({
 	if (data == null || data?.length === 0) return <></>;
 	return (
 		<>
-			<div className="text-2xl mb-4 text-white">{title}</div>
-			<div className="flex flex-row gap-4 overflow-x-auto mb-4">
+			<div className="mb-4 text-2xl text-white">{title}</div>
+			<div className="mb-4 flex flex-row gap-4 overflow-x-auto">
 				{data?.map((item, index) => (
 					<HorizontalCard
 						key={index}
@@ -72,7 +72,7 @@ const FavouritePageComponent = ({
 
 // Helper function to check if the item is of type NotesDataType
 const isJobsData = (
-	item: PapersDataType | NotesDataType | BookDataType | FileDataType | JobDataType
+	item: PapersDataType | NotesDataType | BookDataType | FileDataType | JobDataType,
 ): item is JobDataType => {
 	return (item as JobDataType).profile !== undefined;
 };

@@ -5,18 +5,17 @@ import { getJobs, jobsSelector, setJobFav } from '../../redux/reducer/jobs.reduc
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../store';
 const JobsPage = () => {
-
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getJobs({refresh: true}));
-	},[])
+		dispatch(getJobs({ refresh: true }));
+	}, []);
 
 	const JobsData = useSelector(jobsSelector).data;
 
 	const onFavoriteClick = (id: string, checked: boolean) => {
 		dispatch(setJobFav({ id, isFavorited: checked }));
-	}
+	};
 
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
@@ -38,7 +37,7 @@ const JobsPage = () => {
 							items={[
 								'Company : ' + item.company,
 								'Location : ' + item.location,
-								'College : ' + item.jobType
+								'College : ' + item.jobType,
 							]}
 						/>
 					</HorizontalCard>
@@ -52,9 +51,7 @@ const JobsBody = ({ items }: { items: string[] }) => {
 	return (
 		<>
 			{items.map((item, key) => (
-				<p  key={key}>
-					{item}
-				</p>
+				<p key={key}>{item}</p>
 			))}
 		</>
 	);

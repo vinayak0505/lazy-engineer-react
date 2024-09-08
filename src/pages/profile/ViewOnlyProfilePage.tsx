@@ -30,7 +30,7 @@ const ViewOnlyProfilePage = () => {
 	if (user == null) return <>Loading...</>;
 
 	return (
-		<div className={Styles.container + ' bg-gray-800 mb-4'}>
+		<div className={Styles.container + ' mb-4 bg-gray-800'}>
 			<img
 				src={user?.imageLink ?? './images/user.jpeg'}
 				alt="Profile Picture"

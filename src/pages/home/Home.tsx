@@ -10,28 +10,28 @@ const data = [
 		body: 'Get all latest jobs post here',
 		link: '/jobs',
 		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0ZWE-Ya5wIZxIJcfbB0_2TsqnnKGGwlrVcPnw1xkcbw&s',
-		button: 'View Jobs'
+		button: 'View Jobs',
 	},
 	{
 		title: 'Books',
 		body: 'Download books for free',
 		link: '/books',
 		image: './images/bookImage.png',
-		button: 'View Books'
+		button: 'View Books',
 	},
 	{
 		title: 'Notes',
 		body: 'You can find handwritten notes from all students',
 		link: '/notes',
 		image: './images/notesImage.png',
-		button: 'View Notes'
+		button: 'View Notes',
 	},
 	{
 		title: 'Question Paper',
 		body: 'Previous years Question paper from different universities',
 		link: '/paper',
 		image: 'https://cdn-icons-png.flaticon.com/512/4542/4542505.png',
-		button: 'View Paper'
+		button: 'View Paper',
 	},
 
 	{
@@ -39,8 +39,8 @@ const data = [
 		body: 'See other students practical file',
 		link: '/practical',
 		image: 'https://static.vecteezy.com/system/resources/previews/017/337/613/non_2x/quality-folder-icon-flat-document-file-vector.jpg',
-		button: 'View Practical'
-	}
+		button: 'View Practical',
+	},
 ];
 
 const Home = () => {
@@ -49,7 +49,13 @@ const Home = () => {
 		<>
 			<Carousel
 				visible={(Alerts?.length ?? 0) > 0}
-				images={Alerts?.map((item) => ({ src: item.imageLink, link: item.link, alt: item.heading })) ?? []}
+				images={
+					Alerts?.map((item) => ({
+						src: item.imageLink,
+						link: item.link,
+						alt: item.heading,
+					})) ?? []
+				}
 			/>
 			<ResponsiveGrid maxChildrenWidth={220}>
 				{data.map((item, index) => (

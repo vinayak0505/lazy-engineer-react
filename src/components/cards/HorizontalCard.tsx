@@ -15,7 +15,7 @@ const HorizontalCard = ({
 	children,
 	favorite,
 	onFavoriteClick,
-	style
+	style,
 }: {
 	id?: string;
 	title: string;
@@ -40,7 +40,7 @@ const HorizontalCard = ({
 						e.preventDefault();
 						id && onFavoriteClick?.(id, false);
 					}}
-					className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+					className="absolute right-2 top-2 text-red-500 hover:text-red-700"
 				/>
 			)}
 			{favorite === false && (
@@ -49,23 +49,23 @@ const HorizontalCard = ({
 						e.preventDefault();
 						id && onFavoriteClick?.(id, true);
 					}}
-					className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+					className="absolute right-2 top-2 text-red-500 hover:text-red-700"
 				/>
 			)}
 			<NavLink
 				to={link}
-				className={`flex flex-row items-center bg-white border border-gray-200 rounded-lg shadow max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 max-w-${maxWidth}`}
+				className={`flex max-w-xl flex-row items-center rounded-lg border border-gray-200 bg-white shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 max-w-${maxWidth}`}
 			>
 				{image && (
 					<div className="relative">
 						<img
 							src={image}
 							alt={title}
-							className="object-cover h-56 min-w-32 rounded-s-lg"
+							className="h-56 min-w-32 rounded-s-lg object-cover"
 						/>
 						{imageText && (
 							<div className="absolute bottom-0 right-0">
-								<span className="bg-blue-100 text-blue-800 text-xs font-medium m-0.5 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+								<span className="m-0.5 rounded bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
 									{imageText}
 								</span>
 							</div>

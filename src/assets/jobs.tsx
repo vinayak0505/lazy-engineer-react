@@ -1,7 +1,7 @@
 const Jobs = () => {
 	return (
 		<svg
-			className="flex-shrink-0 w-5 h-5 fill-gray-500 transition duration-75 dark:fill-gray-400 group-hover:fill-gray-900 dark:group-hover:fill-white"
+			className="h-5 w-5 flex-shrink-0 fill-gray-500 transition duration-75 group-hover:fill-gray-900 dark:fill-gray-400 dark:group-hover:fill-white"
 			version="1.1"
 			id="Capa_1"
 			xmlns="http://www.w3.org/2000/svg"

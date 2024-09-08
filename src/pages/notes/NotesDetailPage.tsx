@@ -41,9 +41,9 @@ const NotesDetailPage = () => {
 	if (loading) return <>Loading</>;
 	return (
 		<div className="text-white">
-			<div className="flex flex-wrap flex-col-reverse sm:flex-nowrap sm:flex-row mb-4 sm:mb-0">
+			<div className="mb-4 flex flex-col-reverse flex-wrap sm:mb-0 sm:flex-row sm:flex-nowrap">
 				<img
-					className="sm:w-1/3 w-40 mr-4 object-contain h-min rounded border"
+					className="mr-4 h-min w-40 rounded border object-contain sm:w-1/3"
 					src={data?.imageLink}
 					alt=""
 				/>
@@ -58,9 +58,7 @@ const NotesDetailPage = () => {
 					<Separator title="Chapter" value={data?.chapter} />
 					<Separator className="mb-4" title="Topic" value={data?.topic} />
 					<div className="mb-4">
-						{data?.tags?.map((tag, index) => (
-							<Chip key={index} title={tag} />
-						))}
+						{data?.tags?.map((tag, index) => <Chip key={index} title={tag} />)}
 					</div>
 					{(data?.isFavorited === true || data?.isFavorited === false) && (
 						<button
@@ -69,12 +67,12 @@ const NotesDetailPage = () => {
 								e.preventDefault();
 								onFavoriteClick();
 							}}
-							className="mb-4 inline-flex items-center text-gray-900  bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+							className="mb-2 mb-4 me-2 inline-flex items-center rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
 						>
 							{data.isFavorited ? (
 								<>
 									Remove From Favourite
-									<FavoriteRounded className="ml-2  text-red-500" />
+									<FavoriteRounded className="ml-2 text-red-500" />
 								</>
 							) : (
 								<>
@@ -87,7 +85,7 @@ const NotesDetailPage = () => {
 					<a href={data?.mediaLink}>
 						<button
 							type="button"
-							className="inline-flex items-center  text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+							className="mb-2 me-2 inline-flex items-center rounded-full bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 						>
 							Download
 							<DownloadRounded className="ml-2" />
@@ -97,7 +95,7 @@ const NotesDetailPage = () => {
 			</div>
 
 			<p className="text-xl font-bold text-white underline">About </p>
-			<p className="text-grey-100 text-xl mb-4">{data?.about}</p>
+			<p className="text-grey-100 mb-4 text-xl">{data?.about}</p>
 		</div>
 	);
 };
@@ -105,7 +103,7 @@ const NotesDetailPage = () => {
 const Separator = ({
 	title,
 	value,
-	className
+	className,
 }: {
 	title: string;
 	value?: string;

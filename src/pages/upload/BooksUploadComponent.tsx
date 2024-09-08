@@ -30,12 +30,12 @@ export const BooksUploadComponent = () => {
 	const [loading, setLoading] = useState(false);
 
 	const updateBooks = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
 	) => {
 		const { name, value } = event.target;
 		setBooks({
 			...Books,
-			[name]: value
+			[name]: value,
 		});
 	};
 
@@ -61,19 +61,19 @@ export const BooksUploadComponent = () => {
 	};
 
 	return (
-		<form className="max-w-sm mx-auto mb-4" onSubmit={handleSubmit}>
+		<form className="mx-auto mb-4 max-w-sm" onSubmit={handleSubmit}>
 			<div>
 				<label
 					htmlFor="file"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Upload File
 				</label>
 				<UploadUI setFile={setFile} required name="file" id="file">
 					<span
 						className={
-							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 ' +
-							(file ? 'dark:text-white dark' : 'dark:text-gray-400')
+							'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ' +
+							(file ? 'dark dark:text-white' : 'dark:text-gray-400')
 						}
 					>
 						{file?.name ?? 'document.pdf'}
@@ -83,15 +83,15 @@ export const BooksUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="image"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Upload Image
 				</label>
 				<UploadUI setFile={setImage} name="image" id="image">
 					<span
 						className={
-							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500  ' +
-							(image ? 'dark:text-white dark' : 'dark:text-gray-400')
+							'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ' +
+							(image ? 'dark dark:text-white' : 'dark:text-gray-400')
 						}
 					>
 						{image?.name ?? 'image.jpg'}
@@ -101,7 +101,7 @@ export const BooksUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="title"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Title
 				</label>
@@ -111,7 +111,7 @@ export const BooksUploadComponent = () => {
 					name="title"
 					value={Books?.title}
 					onChange={updateBooks}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="File Title"
 					required
 				/>
@@ -119,7 +119,7 @@ export const BooksUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="title"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Writers
 				</label>
@@ -129,7 +129,7 @@ export const BooksUploadComponent = () => {
 					name="writer"
 					value={Books?.writer}
 					onChange={updateBooks}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="All Writers Name"
 					required
 				/>
@@ -137,7 +137,7 @@ export const BooksUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="about"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					About
 				</label>
@@ -147,14 +147,14 @@ export const BooksUploadComponent = () => {
 					onChange={updateBooks}
 					id="about"
 					rows={4}
-					className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Leave a comment..."
 				></textarea>
 			</div>
 			<div className="mt-4">
 				<label
 					htmlFor="subject"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Subject
 				</label>
@@ -164,7 +164,7 @@ export const BooksUploadComponent = () => {
 					onChange={updateBooks}
 					type="text"
 					id="subject"
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="File Subject"
 					required
 				/>
@@ -173,7 +173,7 @@ export const BooksUploadComponent = () => {
 				<span>
 					<label
 						htmlFor="semester"
-						className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 					>
 						Semester
 					</label>
@@ -184,13 +184,13 @@ export const BooksUploadComponent = () => {
 						title="Select Semester"
 						options={semesters}
 						required
-						className="w-44 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+						className="dark:shadow-sm-light block w-44 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					/>
 				</span>
 				<span>
 					<label
 						htmlFor="unit"
-						className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 					>
 						Pages
 					</label>
@@ -202,14 +202,14 @@ export const BooksUploadComponent = () => {
 						onChange={updateBooks}
 						title="Total Number of pages"
 						required
-						className="w-44 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+						className="dark:shadow-sm-light block w-44 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					/>
 				</span>
 			</div>
 			<div className="mt-4">
 				<label
 					htmlFor="college"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Books Edition
 				</label>
@@ -219,21 +219,21 @@ export const BooksUploadComponent = () => {
 					name="bookEdition"
 					value={Books?.bookEdition}
 					onChange={updateBooks}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Edition of book(leave black if none)"
 				/>
 			</div>
 			<div className="mt-4">
 				<label
 					htmlFor="chapter"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Price
 				</label>
 				<input
 					type="number"
 					id="price"
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Price in rs"
 					name="price"
 					value={Books?.price}
@@ -244,7 +244,7 @@ export const BooksUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="tags"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Tags
 				</label>

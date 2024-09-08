@@ -5,7 +5,7 @@ import Chip from './Chip';
 const InputChip = ({
 	options,
 	selected,
-	setSelected
+	setSelected,
 }: {
 	options: string[];
 	selected: string[];
@@ -24,7 +24,7 @@ const InputChip = ({
 		return available.map((option: string) => {
 			return {
 				name: option,
-				onSelected: () => addItem(option)
+				onSelected: () => addItem(option),
 			};
 		});
 	}, [selected, options]);

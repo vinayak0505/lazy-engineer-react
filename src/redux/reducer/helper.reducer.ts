@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../store";
+import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../store';
 
 const helperSlice = createSlice({
-    name: "helper",
-    initialState: {},
-    reducers: {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        customToast: (state, action) => state,
-    },
+	name: 'helper',
+	initialState: {},
+	reducers: {
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+		customToast: (state, action) => state,
+	},
 });
 
 export const helperReducer = helperSlice.reducer;

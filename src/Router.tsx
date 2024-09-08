@@ -31,7 +31,7 @@ function Router() {
 	// protected to prevent route that should not be acceble without logout
 	const Protected = ({
 		adminOnly = false,
-		children
+		children,
 	}: {
 		adminOnly?: boolean;
 		children: JSX.Element | null;
@@ -64,7 +64,7 @@ function Router() {
 				<LoggedIn>
 					<Auth showLogin={true} />
 				</LoggedIn>
-			)
+			),
 		},
 		{
 			path: '/register',
@@ -72,11 +72,11 @@ function Router() {
 				<LoggedIn>
 					<Auth showLogin={false} />
 				</LoggedIn>
-			)
+			),
 		},
 		{
 			path: '*',
-			element: <Navigate to="/" replace />
+			element: <Navigate to="/" replace />,
 		},
 		{
 			path: '/',
@@ -91,7 +91,7 @@ function Router() {
 			children: [
 				{
 					index: true,
-					element: <Home />
+					element: <Home />,
 				},
 				{
 					path: '/profile',
@@ -99,7 +99,7 @@ function Router() {
 						<Protected>
 							<ProfilePage />
 						</Protected>
-					)
+					),
 				},
 				{
 					path: '/profile/:id',
@@ -107,7 +107,7 @@ function Router() {
 						<Protected>
 							<ViewOnlyProfilePage />
 						</Protected>
-					)
+					),
 				},
 				{
 					path: 'favorite',
@@ -115,7 +115,7 @@ function Router() {
 						<Protected>
 							<FavoritePage />
 						</Protected>
-					)
+					),
 				},
 				{
 					path: '/upload/:uploadType',
@@ -123,7 +123,7 @@ function Router() {
 						<Protected>
 							<UploadPage />
 						</Protected>
-					)
+					),
 				},
 				{
 					path: '/add_alert',
@@ -131,61 +131,76 @@ function Router() {
 						<Protected adminOnly>
 							<AlertsUploadPage />
 						</Protected>
-					)
+					),
 				},
 				{
 					path: '/notifications',
-					element: <Notifications />
+					element: <Notifications />,
 				},
 				{
 					path: '/paper',
-					element: <PaperPage />
+					element: <PaperPage />,
 				},
 				{
 					path: '/paper/:id',
-					element: <PaperDetailPage />
+					element: <PaperDetailPage />,
 				},
 				{
 					path: '/notes',
-					element: <NotesPage />
+					element: <NotesPage />,
 				},
 				{
 					path: '/notes/:id',
-					element: <NotesDetailPage />
+					element: <NotesDetailPage />,
 				},
 				{
 					path: '/books',
-					element: <BooksPage />
+					element: <BooksPage />,
 				},
 				{
 					path: '/books/:id',
-					element: <BookDetailPage />
+					element: <BookDetailPage />,
 				},
 				{
 					path: '/practical',
-					element: <PracticalPage />
+					element: <PracticalPage />,
 				},
 				{
 					path: '/practical/:id',
-					element: <PracticlDetailsPage />
+					element: <PracticlDetailsPage />,
 				},
 				{
 					path: '/jobs',
-					element: <JobsPage />
+					element: <JobsPage />,
 				},
 				{
 					path: '/jobs/:id',
-					element: <JobDetailPage />
+					element: <JobDetailPage />,
 				},
-			]
-		}
+			],
+		},
 	]);
 
-	if (loading) return (
-		<svg className='loading' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" width="200" height="200" xmlnsXlink="http://www.w3.org/1999/xlink">
-			<path strokeWidth="12" stroke="#2563EB" fill="none" d="M50 15A35 35 0 1 0 74.74873734152916 25.251262658470843"></path>
-			<path fill="#2563EB" d="M49 3L49 27L61 15L49 3"></path>
-		</svg>);
+	if (loading)
+		return (
+			<svg
+				className="loading"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 100 100"
+				preserveAspectRatio="xMidYMid"
+				width="200"
+				height="200"
+				xmlnsXlink="http://www.w3.org/1999/xlink"
+			>
+				<path
+					strokeWidth="12"
+					stroke="#2563EB"
+					fill="none"
+					d="M50 15A35 35 0 1 0 74.74873734152916 25.251262658470843"
+				></path>
+				<path fill="#2563EB" d="M49 3L49 27L61 15L49 3"></path>
+			</svg>
+		);
 
 	return (
 		<>

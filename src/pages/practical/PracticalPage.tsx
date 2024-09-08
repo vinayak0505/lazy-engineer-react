@@ -8,14 +8,14 @@ const PracticalPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getFiles({refresh: true}));
+		dispatch(getFiles({ refresh: true }));
 	}, []);
 
 	const PracticalData = useSelector(filesSelector).data;
 
 	const onFavoriteClick = (id: string, checked: boolean) => {
 		dispatch(setFileFav({ id, isFavorited: checked }));
-	}
+	};
 
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
@@ -36,7 +36,7 @@ const PracticalPage = () => {
 								'Semester : ' + item.semester,
 								'Subject : ' + item.subject,
 								'College : ' + item.college,
-								'About : ' + item.about
+								'About : ' + item.about,
 							]}
 						/>
 					</HorizontalCard>

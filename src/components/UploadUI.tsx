@@ -17,7 +17,7 @@ const UploadUI = ({
 }) => (
 	<div className="relative">
 		<input
-			className={className + ' absolute z-10 opacity-0 cursor-pointer w-full h-full'}
+			className={className + ' absolute z-10 h-full w-full cursor-pointer opacity-0'}
 			type="file"
 			id={id}
 			name={name}

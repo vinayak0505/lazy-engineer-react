@@ -14,7 +14,7 @@ const DefaultAlertValue = {
 	message: '',
 	link: '',
 	startDate: inputDateFormat(new Date()),
-	endDate: inputDateFormat(dateAddDays(new Date(), 1))
+	endDate: inputDateFormat(dateAddDays(new Date(), 1)),
 };
 
 export const AlertsUploadPage = () => {
@@ -27,12 +27,12 @@ export const AlertsUploadPage = () => {
 	const [loading, setLoading] = useState(false);
 
 	const updateAlerts = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
 	) => {
 		const { name, value } = event.target;
 		setAlerts({
 			...alerts,
-			[name]: value
+			[name]: value,
 		});
 	};
 
@@ -41,18 +41,18 @@ export const AlertsUploadPage = () => {
 		setLoading(true);
 		try {
 			const formData = new FormData(e.currentTarget as HTMLFormElement);
-            formData.delete('startDate');
-            formData.delete('endDate');
-            formData.append('startDate',Date.parse(alerts.startDate).toString());
-            formData.append('endDate',Date.parse(alerts.endDate).toString());
+			formData.delete('startDate');
+			formData.delete('endDate');
+			formData.append('startDate', Date.parse(alerts.startDate).toString());
+			formData.append('endDate', Date.parse(alerts.endDate).toString());
 			tags.forEach((tag) => formData.append('tags[]', tag));
 			const data = await ContentService.addAlerts(formData);
 			if (data.status != 'success') throw new Error(data.message ?? 'Something went wrong');
 			setImage(null);
 			setTags([]);
 			setAlerts(DefaultAlertValue);
-            console.log(DefaultAlertValue);
-            
+			console.log(DefaultAlertValue);
+
 			dispatch(helperAction.customToast('Alerts uploaded successfully'));
 		} catch (error: any) {
 			dispatch(helperAction.customToast(error?.message ?? 'Something went wrong'));
@@ -63,19 +63,19 @@ export const AlertsUploadPage = () => {
 	};
 
 	return (
-		<form className="max-w-sm mx-auto" onSubmit={handleSubmit}>
+		<form className="mx-auto max-w-sm" onSubmit={handleSubmit}>
 			<div className="mt-4">
 				<label
 					htmlFor="image"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Upload Image
 				</label>
 				<UploadUI setFile={setImage} name="image" id="image">
 					<span
 						className={
-							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500  ' +
-							(image ? 'dark:text-white dark' : 'dark:text-gray-400')
+							'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ' +
+							(image ? 'dark dark:text-white' : 'dark:text-gray-400')
 						}
 					>
 						{image?.name ?? 'image.jpg'}
@@ -85,7 +85,7 @@ export const AlertsUploadPage = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="heading"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Heading
 				</label>
@@ -95,7 +95,7 @@ export const AlertsUploadPage = () => {
 					name="heading"
 					value={alerts?.heading}
 					onChange={updateAlerts}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="File Heading"
 					required
 				/>
@@ -103,7 +103,7 @@ export const AlertsUploadPage = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="message"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Message
 				</label>
@@ -113,14 +113,14 @@ export const AlertsUploadPage = () => {
 					onChange={updateAlerts}
 					id="message"
 					rows={4}
-					className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Leave a comment..."
 				></textarea>
 			</div>
 			<div className="mt-4">
 				<label
 					htmlFor="link"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Link
 				</label>
@@ -130,7 +130,7 @@ export const AlertsUploadPage = () => {
 					onChange={updateAlerts}
 					type="text"
 					id="link"
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="File Link"
 					required
 				/>
@@ -156,7 +156,7 @@ export const AlertsUploadPage = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="tags"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Tags
 				</label>

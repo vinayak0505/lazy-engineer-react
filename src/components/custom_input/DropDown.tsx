@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const DropDown = ({
 	title,
 	dropDownOption,
-	className
+	className,
 }: {
 	title: string;
 	dropDownOption: { name: string; onSelected: () => void }[];
@@ -24,7 +24,7 @@ export const DropDown = ({
 				data-dropdown-toggle="dropdown"
 				className={
 					className ??
-					'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+					'inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
 				}
 				type="button"
 				// ref={catMenu}
@@ -32,7 +32,7 @@ export const DropDown = ({
 			>
 				{title + ' '}
 				<svg
-					className="w-2.5 h-2.5 ms-3"
+					className="ms-3 h-2.5 w-2.5"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -51,7 +51,7 @@ export const DropDown = ({
 			<div
 				id="dropdown"
 				className={
-					'z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700' +
+					'absolute z-10 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700' +
 					(open ? ' block' : ' hidden')
 				}
 			>
@@ -82,7 +82,7 @@ export const InputDropDown = ({
 	value,
 	onChange,
 	name,
-	setValue
+	setValue,
 }: {
 	title: string;
 	options: string[];
@@ -105,7 +105,7 @@ export const InputDropDown = ({
 			onChange={onChange}
 			className={
 				className ??
-				'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+				'dark:shadow-sm-light block inline-flex w-full items-center rounded-lg border border-gray-300 bg-blue-700 bg-gray-50 p-2.5 px-5 py-2.5 text-center text-sm font-medium text-gray-900 text-white shadow-sm hover:bg-blue-800 focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-blue-500 dark:border-gray-600 dark:bg-blue-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:hover:bg-blue-700 dark:focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:ring-blue-800'
 			}
 		>
 			<option value="" disabled>

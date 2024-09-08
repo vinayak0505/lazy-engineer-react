@@ -8,15 +8,15 @@ const BooksPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getBooks({refresh: true}));
-	},[])
+		dispatch(getBooks({ refresh: true }));
+	}, []);
 
 	const BooksData = useSelector(booksSelector).data;
 
 	const onFavoriteClick = (id: string, checked: boolean) => {
 		dispatch(setBookFav({ id, isFavorited: checked }));
-	}
-	
+	};
+
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>
 			{BooksData.map((item, index) => (

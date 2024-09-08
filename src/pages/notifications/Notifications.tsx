@@ -15,9 +15,7 @@ const Notifications = () => {
 	return (
 		<>
 			<ol className="relative border-s border-gray-200 dark:border-gray-700">
-				{AlertsData?.map((item, index) => (
-					<Alert key={index} item={item} />
-				))}
+				{AlertsData?.map((item, index) => <Alert key={index} item={item} />)}
 			</ol>
 		</>
 	);
@@ -34,7 +32,7 @@ const Alert = ({ item }: { item: AlertType }) => {
 	return (
 		<li className="mb-8 ms-4">
 			<div
-				className={'absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 border ' + isActive()}
+				className={'absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border ' + isActive()}
 			></div>
 			<time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
 				{`From: ${inputDateFormat(item.startDate)}  To: ${inputDateFormat(item.endDate)}`}
@@ -45,11 +43,11 @@ const Alert = ({ item }: { item: AlertType }) => {
 				href={item.link}
 				target="_blank"
 				rel="noreferrer"
-				className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+				className="inline-flex items-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:text-blue-700 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
 			>
 				Learn more{' '}
 				<svg
-					className="w-3 h-3 ms-2 rtl:rotate-180"
+					className="ms-2 h-3 w-3 rtl:rotate-180"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"

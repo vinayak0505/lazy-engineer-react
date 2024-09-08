@@ -3,7 +3,7 @@ import { createRef, useEffect, useState } from 'react';
 
 const ResponsiveGrid = ({
 	children,
-	maxChildrenWidth = 200
+	maxChildrenWidth = 200,
 }: {
 	children: JSX.Element[];
 	maxChildrenWidth?: number;

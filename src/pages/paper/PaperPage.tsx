@@ -8,14 +8,14 @@ const PaperPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getPaper({refresh: true}));
+		dispatch(getPaper({ refresh: true }));
 	}, []);
 
 	const PaperData = useSelector(papersSelector).data;
 
 	const onFavoriteClick = (id: string, checked: boolean) => {
 		dispatch(setPaperFav({ id, isFavorited: checked }));
-	}
+	};
 
 	return (
 		<ResponsiveGrid maxChildrenWidth={340}>

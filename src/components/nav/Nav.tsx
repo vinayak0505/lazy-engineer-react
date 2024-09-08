@@ -13,29 +13,29 @@ const Nav = ({ user }: { user: UserType }) => {
 	const alertCount = useSelector(alertSelector).data?.length ?? 0;
 
 	return (
-		<nav className="bg-white fixed dark:bg-gray-900 w-full z-40 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-			<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+		<nav className="fixed start-0 top-0 z-40 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
+			<div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
 				<NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
 					<img src="./images/logo.png" alt="logo" className={styles.logo} />
 				</NavLink>
-				<div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+				<div className="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
 					<button
 						onClick={() => (user ? dispatch(logoutUser()) : navigate('/login'))}
 						type="button"
-						className="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+						className="inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300"
 					>
 						{user ? 'Logout' : 'Login'}
 					</button>
 				</div>
 				<div
-					className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+					className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
 					id="navbar-sticky"
 				>
-					<ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+					<ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
 						<li>
 							<NavLink
 								to="/"
-								className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+								className="block rounded bg-blue-700 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-blue-700 md:dark:text-blue-500"
 								aria-current="page"
 							>
 								Home
@@ -44,7 +44,7 @@ const Nav = ({ user }: { user: UserType }) => {
 						<li>
 							<NavLink
 								to="/favorite"
-								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+								className="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
 							>
 								Favorite
 							</NavLink>
@@ -57,40 +57,40 @@ const Nav = ({ user }: { user: UserType }) => {
 										name: 'Notes',
 										onSelected: () => {
 											navigate('/upload/notes');
-										}
+										},
 									},
 									{
 										name: 'Question Papers',
 										onSelected: () => {
 											navigate('/upload/papers');
-										}
+										},
 									},
 									{
 										name: 'Practicle Files',
 										onSelected: () => {
 											navigate('/upload/practicle');
-										}
+										},
 									},
 									{
 										name: 'Books',
 										onSelected: () => {
 											navigate('/upload/books');
-										}
+										},
 									},
 									{
 										name: 'Jobs',
 										onSelected: () => {
 											navigate('/upload/jobs');
-										}
-									}
+										},
+									},
 								]}
-								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 inline-flex items-center"
+								className="block inline-flex items-center rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
 							/>
 						</li>
 						<li>
 							<NavLink
 								to="/profile"
-								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+								className="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
 							>
 								Profile
 							</NavLink>
@@ -98,11 +98,13 @@ const Nav = ({ user }: { user: UserType }) => {
 						<li>
 							<NavLink
 								to="/notifications"
-								className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 relative"
+								className="relative block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
 							>
 								Notifications
 								{alertCount > 0 && (
-									<div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-4 dark:border-gray-900">{alertCount}</div>
+									<div className="absolute -end-4 -top-2 inline-flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-red-500 text-xs font-bold text-white dark:border-gray-900">
+										{alertCount}
+									</div>
 								)}
 							</NavLink>
 						</li>

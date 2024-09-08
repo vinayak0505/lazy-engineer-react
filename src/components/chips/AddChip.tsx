@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const AddChip = ({
 	title,
 	dropDownOption,
-	className
+	className,
 }: {
 	title: string;
 	dropDownOption: { name: string; onSelected: () => void }[];
@@ -24,14 +24,14 @@ export const AddChip = ({
 				data-dropdown-toggle="dropdown"
 				className={
 					className ??
-					'text-white inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300'
+					'me-2 inline-flex items-center rounded bg-blue-100 px-2 py-1 text-sm font-medium text-blue-800 text-white dark:bg-blue-900 dark:text-blue-300'
 				}
 				type="button"
 				onClick={() => setOpen(!open)}
 			>
 				{title + ' '}
 				<svg
-					className="w-2.5 h-2.5 ms-3"
+					className="ms-3 h-2.5 w-2.5"
 					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
@@ -50,7 +50,7 @@ export const AddChip = ({
 			<div
 				id="dropdown"
 				className={
-					'z-10 absolute bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700' +
+					'absolute z-10 w-44 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700' +
 					(open ? ' block' : ' hidden')
 				}
 			>

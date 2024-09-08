@@ -31,16 +31,16 @@ const ProfilePage = () => {
 	const changeValue = (key: string, value: string) => {
 		setEditUser({
 			...editUser,
-			[key]: value
+			[key]: value,
 		});
 	};
 
 	return (
-		<div className={Styles.container + ' bg-gray-800 mb-4'}>
+		<div className={Styles.container + ' mb-4 bg-gray-800'}>
 			{isEdit ? (
-				<div className="h-fit w-fit relative">
+				<div className="relative h-fit w-fit">
 					<input
-						className={Styles.profile_picture + ' absolute z-10 opacity-0 cursor-pointer'}
+						className={Styles.profile_picture + ' absolute z-10 cursor-pointer opacity-0'}
 						type="file"
 						id="avatar"
 						name="avatar"
@@ -52,13 +52,21 @@ const ProfilePage = () => {
 						}}
 					/>
 					<img
-						src={file ? URL.createObjectURL(file) : ((editUser as UserType)?.imageLink ?? './images/user.jpeg')}
+						src={
+							file
+								? URL.createObjectURL(file)
+								: ((editUser as UserType)?.imageLink ?? './images/user.jpeg')
+						}
 						alt="Profile Picture"
 						className={Styles.profile_picture}
 					></img>
 				</div>
 			) : (
-				<img src={user?.imageLink ?? './images/user.jpeg'} alt="Profile Picture" className={Styles.profile_picture} />
+				<img
+					src={user?.imageLink ?? './images/user.jpeg'}
+					alt="Profile Picture"
+					className={Styles.profile_picture}
+				/>
 			)}
 			{isEdit ? (
 				<EditProfile
@@ -133,7 +141,7 @@ const ProfilePage = () => {
 const EditProfile = ({
 	editUser,
 	changeValue,
-	handleSubmit
+	handleSubmit,
 }: {
 	editUser: UserType;
 	changeValue: (key: string, value: string) => void;
@@ -143,102 +151,102 @@ const EditProfile = ({
 
 	return (
 		<div className={Styles.info + ' text-white'}>
-			<form className={'space-y-4 md:space-y-6 '} onSubmit={handleSubmit}>
+			<form className={'space-y-4 md:space-y-6'} onSubmit={handleSubmit}>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Your FullName
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						required={true}
 						value={editUser?.fullName}
 						onChange={(e) => changeValue('fullName', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Your Designation
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.designation}
 						onChange={(e) => changeValue('designation', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Your Company
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.company}
 						onChange={(e) => changeValue('company', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Your University
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.university}
 						onChange={(e) => changeValue('university', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Linkedin handle
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.linkedin}
 						onChange={(e) => changeValue('linkedin', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Github handle
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.github}
 						onChange={(e) => changeValue('github', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Twitter handle
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.twitter}
 						onChange={(e) => changeValue('twitter', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Instagram handle
 					</label>
 					<input
 						type="text"
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.instagram}
 						onChange={(e) => changeValue('instagram', e.target.value)}
 					/>
 				</div>
 				<div>
-					<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+					<label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
 						Your Bio
 					</label>
 					<textarea
-						className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-blue-600 focus:ring-blue-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 						value={editUser?.bio}
 						onChange={(e) => changeValue('bio', e.target.value)}
 					/>
@@ -246,7 +254,7 @@ const EditProfile = ({
 				<input
 					type="submit"
 					className={Styles.edit_button + ' bg-blue-700'}
-					value={loading ? 'Loading...' : "Save Profile"}
+					value={loading ? 'Loading...' : 'Save Profile'}
 				/>
 			</form>
 		</div>

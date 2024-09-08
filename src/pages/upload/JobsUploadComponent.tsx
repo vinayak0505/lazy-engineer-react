@@ -18,7 +18,7 @@ const DefaultNoteValue = {
 	experienceLevel: '',
 	jobType: '',
 	location: '',
-	applyLink: ''
+	applyLink: '',
 };
 
 export const JobsUploadComponent = () => {
@@ -32,12 +32,12 @@ export const JobsUploadComponent = () => {
 	const [loading, setLoading] = useState(false);
 
 	const updateJobs = (
-		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
 	) => {
 		const { name, value } = event.target;
 		setJobs({
 			...jobs,
-			[name]: value
+			[name]: value,
 		});
 	};
 
@@ -63,19 +63,19 @@ export const JobsUploadComponent = () => {
 		}
 	};
 	return (
-		<form className="max-w-sm mx-auto mb-4" onSubmit={handleSubmit}>
+		<form className="mx-auto mb-4 max-w-sm" onSubmit={handleSubmit}>
 			<div>
 				<label
 					htmlFor="file"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Upload Logo
 				</label>
 				<UploadUI setFile={setFile} required name="file" id="file">
 					<span
 						className={
-							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 ' +
-							(file ? 'dark:text-white dark' : 'dark:text-gray-400')
+							'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ' +
+							(file ? 'dark dark:text-white' : 'dark:text-gray-400')
 						}
 					>
 						{file?.name ?? 'profile.png'}
@@ -85,15 +85,15 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="image"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Upload Company Image
 				</label>
 				<UploadUI setFile={setImage} name="image" id="image">
 					<span
 						className={
-							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500  ' +
-							(image ? 'dark:text-white dark' : 'dark:text-gray-400')
+							'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ' +
+							(image ? 'dark dark:text-white' : 'dark:text-gray-400')
 						}
 					>
 						{image?.name ?? 'image.jpg'}
@@ -103,7 +103,7 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="title"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Title
 				</label>
@@ -113,7 +113,7 @@ export const JobsUploadComponent = () => {
 					name="title"
 					value={jobs?.title}
 					onChange={updateJobs}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="File Title"
 					required
 				/>
@@ -121,7 +121,7 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="profile"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Jobs Profile
 				</label>
@@ -131,7 +131,7 @@ export const JobsUploadComponent = () => {
 					onChange={updateJobs}
 					id="profile"
 					rows={4}
-					className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Explain what type of work that needs to be done"
 					required
 				></textarea>
@@ -139,7 +139,7 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="expectedSalary"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Salary Range
 				</label>
@@ -149,7 +149,7 @@ export const JobsUploadComponent = () => {
 					name="expectedSalary"
 					value={jobs?.expectedSalary}
 					onChange={updateJobs}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Salary Range"
 					required
 				/>
@@ -157,7 +157,7 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="company"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Company Name
 				</label>
@@ -167,7 +167,7 @@ export const JobsUploadComponent = () => {
 					name="company"
 					value={jobs?.company}
 					onChange={updateJobs}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Company Name"
 					required
 				/>
@@ -175,7 +175,7 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="aboutCompany"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					About Company
 				</label>
@@ -185,7 +185,7 @@ export const JobsUploadComponent = () => {
 					onChange={updateJobs}
 					id="aboutCompany"
 					rows={4}
-					className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Something about your company. For example: The company's mission, vision, and values. Write a comment..."
 				></textarea>
 			</div>
@@ -193,7 +193,7 @@ export const JobsUploadComponent = () => {
 				<span>
 					<label
 						htmlFor="experienceLevel"
-						className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 					>
 						Experience Level
 					</label>
@@ -204,13 +204,13 @@ export const JobsUploadComponent = () => {
 						title="Select Experience Level"
 						options={ExperienceLevels}
 						required
-						className="w-44 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+						className="dark:shadow-sm-light block w-44 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					/>
 				</span>
 				<span>
 					<label
 						htmlFor="jobType"
-						className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 					>
 						Job Type
 					</label>
@@ -221,14 +221,14 @@ export const JobsUploadComponent = () => {
 						title="Select Job Type"
 						options={JobTypes}
 						required
-						className="w-44 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+						className="dark:shadow-sm-light block w-44 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					/>
 				</span>
 			</div>
 			<div className="mt-4">
 				<label
 					htmlFor="college"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Location Type
 				</label>
@@ -238,7 +238,7 @@ export const JobsUploadComponent = () => {
 					name="location"
 					value={jobs?.location}
 					onChange={updateJobs}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Location type (and place if from office)"
 					required
 				/>
@@ -246,7 +246,7 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="applyLink"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Apply Link
 				</label>
@@ -256,7 +256,7 @@ export const JobsUploadComponent = () => {
 					name="applyLink"
 					value={jobs?.applyLink}
 					onChange={updateJobs}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Link to apply"
 					required
 				/>
@@ -264,7 +264,7 @@ export const JobsUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="tags"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Skills Needed
 				</label>

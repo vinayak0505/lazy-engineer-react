@@ -16,7 +16,7 @@ const DefaultNoteValue = {
 	unit: '',
 	college: '',
 	chapter: '',
-	topic: ''
+	topic: '',
 };
 
 export const NotesUploadComponent = () => {
@@ -29,11 +29,13 @@ export const NotesUploadComponent = () => {
 	const [notes, setNotes] = useState(DefaultNoteValue);
 	const [loading, setLoading] = useState(false);
 
-	const updateNotes = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+	const updateNotes = (
+		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+	) => {
 		const { name, value } = event.target;
 		setNotes({
 			...notes,
-			[name]: value
+			[name]: value,
 		});
 	};
 
@@ -42,9 +44,9 @@ export const NotesUploadComponent = () => {
 		setLoading(true);
 		try {
 			const formData = new FormData(e.currentTarget as HTMLFormElement);
-            tags.forEach((tag) => formData.append('tags[]', tag));
+			tags.forEach((tag) => formData.append('tags[]', tag));
 			const data = await ContentService.addNotes(formData);
-			if(data.status != "success") throw new Error(data.message ?? "Something went wrong");
+			if (data.status != 'success') throw new Error(data.message ?? 'Something went wrong');
 			setFile(null);
 			setImage(null);
 			setTags([]);
@@ -53,25 +55,25 @@ export const NotesUploadComponent = () => {
 		} catch (error: any) {
 			dispatch(helperAction.customToast(error?.message ?? 'Something went wrong'));
 			console.log(error);
-		} finally{
+		} finally {
 			setLoading(false);
 		}
 	};
 
 	return (
-		<form className="max-w-sm mx-auto mb-4" onSubmit={handleSubmit}>
+		<form className="mx-auto mb-4 max-w-sm" onSubmit={handleSubmit}>
 			<div>
 				<label
 					htmlFor="file"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Upload File
 				</label>
-				<UploadUI setFile={setFile} required name='file' id="file">
+				<UploadUI setFile={setFile} required name="file" id="file">
 					<span
 						className={
-							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 ' +
-							(file ? 'dark:text-white dark' : 'dark:text-gray-400')
+							'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ' +
+							(file ? 'dark dark:text-white' : 'dark:text-gray-400')
 						}
 					>
 						{file?.name ?? 'document.pdf'}
@@ -81,15 +83,15 @@ export const NotesUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="image"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Upload Image
 				</label>
-				<UploadUI setFile={setImage} name='image' id='image'>
+				<UploadUI setFile={setImage} name="image" id="image">
 					<span
 						className={
-							'bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500  ' +
-							(image ? 'dark:text-white dark' : 'dark:text-gray-400')
+							'block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 ' +
+							(image ? 'dark dark:text-white' : 'dark:text-gray-400')
 						}
 					>
 						{image?.name ?? 'image.jpg'}
@@ -99,7 +101,7 @@ export const NotesUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="title"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Title
 				</label>
@@ -109,7 +111,7 @@ export const NotesUploadComponent = () => {
 					name="title"
 					value={notes?.title}
 					onChange={updateNotes}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="File Title"
 					required
 				/>
@@ -117,7 +119,7 @@ export const NotesUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="about"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					About
 				</label>
@@ -127,14 +129,14 @@ export const NotesUploadComponent = () => {
 					onChange={updateNotes}
 					id="about"
 					rows={4}
-					className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+					className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Leave a comment..."
 				></textarea>
 			</div>
 			<div className="mt-4">
 				<label
 					htmlFor="subject"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Subject
 				</label>
@@ -144,7 +146,7 @@ export const NotesUploadComponent = () => {
 					onChange={updateNotes}
 					type="text"
 					id="subject"
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="File Subject"
 					required
 				/>
@@ -153,7 +155,7 @@ export const NotesUploadComponent = () => {
 				<span>
 					<label
 						htmlFor="semester"
-						className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 					>
 						Semester
 					</label>
@@ -164,13 +166,13 @@ export const NotesUploadComponent = () => {
 						title="Select Semester"
 						options={semesters}
 						required
-						className="w-44 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+						className="dark:shadow-sm-light block w-44 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					/>
 				</span>
 				<span>
 					<label
 						htmlFor="unit"
-						className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+						className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 					>
 						Unit
 					</label>
@@ -181,14 +183,14 @@ export const NotesUploadComponent = () => {
 						title="Select Unit"
 						options={units}
 						required
-						className="w-44 shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+						className="dark:shadow-sm-light block w-44 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					/>
 				</span>
 			</div>
 			<div className="mt-4">
 				<label
 					htmlFor="college"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					College
 				</label>
@@ -198,7 +200,7 @@ export const NotesUploadComponent = () => {
 					name="college"
 					value={notes?.college}
 					onChange={updateNotes}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="College"
 					required
 				/>
@@ -206,14 +208,14 @@ export const NotesUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="chapter"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Chapter
 				</label>
 				<input
 					type="text"
 					id="chapter"
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Chapter"
 					name="chapter"
 					value={notes?.chapter}
@@ -224,7 +226,7 @@ export const NotesUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="topic"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Topic
 				</label>
@@ -234,7 +236,7 @@ export const NotesUploadComponent = () => {
 					name="topic"
 					value={notes?.topic}
 					onChange={updateNotes}
-					className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+					className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
 					placeholder="Topic"
 					required
 				/>
@@ -242,7 +244,7 @@ export const NotesUploadComponent = () => {
 			<div className="mt-4">
 				<label
 					htmlFor="tags"
-					className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+					className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
 				>
 					Tags
 				</label>

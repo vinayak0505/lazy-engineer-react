@@ -41,16 +41,16 @@ const JobDetailPage = () => {
 	if (loading) return <>Loading</>;
 	return (
 		<div className="text-white">
-			<div className="flex  mb-4 sm:mb-0">
+			<div className="mb-4 flex sm:mb-0">
 				<img
-					className=" w-10 mr-4 object-contain h-min rounded border"
+					className="mr-4 h-min w-10 rounded border object-contain"
 					src={data?.mediaLink}
 					alt=""
 				/>
 				<h2 className="mb-2 text-3xl font-bold text-white">{data?.title}</h2>
 			</div>
 
-			<div className="flex flex-wrap mt-4 flex-col-reverse sm:flex-nowrap sm:flex-row mb-4 sm:mb-0">
+			<div className="mb-4 mt-4 flex flex-col-reverse flex-wrap sm:mb-0 sm:flex-row sm:flex-nowrap">
 				<div>
 					<NavLink to={`/profile/${(data?.userId as UserType)?._id}`}>
 						<Separator title="Uploaded By" value={(data?.userId as UserType)?.fullName} />
@@ -68,12 +68,12 @@ const JobDetailPage = () => {
 								e.preventDefault();
 								onFavoriteClick();
 							}}
-							className="mb-4 inline-flex items-center text-gray-900  bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+							className="mb-2 mb-4 me-2 inline-flex items-center rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
 						>
 							{data.isFavorited ? (
 								<>
 									Remove From Favourite
-									<FavoriteRounded className="ml-2  text-red-500" />
+									<FavoriteRounded className="ml-2 text-red-500" />
 								</>
 							) : (
 								<>
@@ -86,7 +86,7 @@ const JobDetailPage = () => {
 					<a href={data?.applyLink} target="_blank" rel="noreferrer">
 						<button
 							type="button"
-							className="inline-flex items-center  text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+							className="mb-2 me-2 inline-flex items-center rounded-full bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 						>
 							Apply
 							<NavigateNextRoundedIcon className="ml-2" />
@@ -94,22 +94,20 @@ const JobDetailPage = () => {
 					</a>
 				</div>
 				<img
-					className=" w-80 mb-4 object-contain h-min rounded border"
+					className="mb-4 h-min w-80 rounded border object-contain"
 					src={data?.imageLink}
 					alt=""
 				/>
 			</div>
 
 			<p className="text-xl font-bold text-white underline">Description </p>
-			<p className="text-grey-100 text-xl mb-4">{data?.profile}</p>
+			<p className="text-grey-100 mb-4 text-xl">{data?.profile}</p>
 			<p className="text-xl font-bold text-white underline">Skills Needed </p>
 			<div className="mb-4 mt-4">
-				{data?.skillsNeeded?.map((skill, index) => (
-					<Chip key={index} title={skill} />
-				))}
+				{data?.skillsNeeded?.map((skill, index) => <Chip key={index} title={skill} />)}
 			</div>
 			<p className="text-xl font-bold text-white underline">About Company </p>
-			<p className="text-grey-100 text-xl mb-4">{data?.aboutCompany}</p>
+			<p className="text-grey-100 mb-4 text-xl">{data?.aboutCompany}</p>
 		</div>
 	);
 };
@@ -117,7 +115,7 @@ const JobDetailPage = () => {
 const Separator = ({
 	title,
 	value,
-	className
+	className,
 }: {
 	title: string;
 	value?: string;

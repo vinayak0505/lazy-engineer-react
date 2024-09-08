@@ -9,7 +9,7 @@ const NotesPage = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(getNotes({refresh: true}));
+		dispatch(getNotes({ refresh: true }));
 	}, []);
 
 	const onFavoriteClick = (id: string, checked: boolean) => {
@@ -17,7 +17,7 @@ const NotesPage = () => {
 	};
 
 	const NotesData = useSelector(notesSelector).data;
-	
+
 	return (
 		<ResponsiveGrid>
 			{NotesData.map((item, index) => (

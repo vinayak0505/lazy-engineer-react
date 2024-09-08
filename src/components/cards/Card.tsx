@@ -13,7 +13,7 @@ const Card = ({
 	maxTitleLines,
 	maxWidth,
 	favorite,
-	onFavoriteClick
+	onFavoriteClick,
 }: {
 	id?: string;
 	title: string;
@@ -29,7 +29,7 @@ const Card = ({
 }) => (
 	<NavLink to={link}>
 		<div
-			className={`bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${
+			className={`rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800 ${
 				maxWidth ? `max-w-${maxWidth}` : ''
 			}`}
 		>
@@ -40,7 +40,7 @@ const Card = ({
 							e.preventDefault();
 							id && onFavoriteClick?.(id, false);
 						}}
-						className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+						className="absolute right-2 top-2 text-red-500 hover:text-red-700"
 					/>
 				)}
 				{favorite === false && (
@@ -49,11 +49,11 @@ const Card = ({
 							e.preventDefault();
 							id && onFavoriteClick?.(id, true);
 						}}
-						className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+						className="absolute right-2 top-2 text-red-500 hover:text-red-700"
 					/>
 				)}
 
-				{image && <img className="rounded-t-lg w-full" src={image} alt={title} />}
+				{image && <img className="w-full rounded-t-lg" src={image} alt={title} />}
 				<div className="p-5">
 					{title && (
 						<h5
@@ -76,11 +76,11 @@ const Card = ({
 					{button && (
 						<NavLink
 							to={link}
-							className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+							className="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 						>
 							{button}
 							<svg
-								className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+								className="ms-2 h-3.5 w-3.5 rtl:rotate-180"
 								aria-hidden="true"
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"

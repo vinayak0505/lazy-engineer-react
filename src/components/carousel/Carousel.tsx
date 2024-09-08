@@ -3,9 +3,9 @@ import Styles from './Carousel.module.scss';
 
 const Carousel = ({
 	images,
-	visible = true
+	visible = true,
 }: {
-	images: { src: string; link: string, alt: string }[];
+	images: { src: string; link: string; alt: string }[];
 	visible?: boolean;
 }) => {
 	const [slider, setSlider] = useState(0);
@@ -47,11 +47,11 @@ const Carousel = ({
 		<>
 			<div
 				id="default-carousel"
-				className={'relative w-full mb-4 ' + Styles.ele}
+				className={'relative mb-4 w-full ' + Styles.ele}
 				data-carousel="slide"
 			>
 				{/* <!-- Carousel wrapper --> */}
-				<div className="relative h-40 md:h-56 overflow-hidden rounded-lg xl:h-96">
+				<div className="relative h-40 overflow-hidden rounded-lg md:h-56 xl:h-96">
 					{/* <!-- Item 1 --> */}
 					{images.map((image, index) => (
 						<div
@@ -62,7 +62,7 @@ const Carousel = ({
 							<a href={image.link} target="_blank" rel="noreferrer">
 								<img
 									src={image.src}
-									className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+									className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 									alt={image.alt}
 								/>
 							</a>
@@ -70,13 +70,13 @@ const Carousel = ({
 					))}
 				</div>
 				{/* <!-- Slider indicators --> */}
-				<div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+				<div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3 rtl:space-x-reverse">
 					{images.map((image, index) => (
 						<button
 							key={index}
 							type="button"
 							id={`data-carousel-home-button-${index}`}
-							className="w-4 h-4 rounded-full dark:bg-gray-500 border-2 border-white-500"
+							className="border-white-500 h-4 w-4 rounded-full border-2 dark:bg-gray-500"
 							onClick={() => setSliderNumber(index)}
 						></button>
 					))}
@@ -84,12 +84,12 @@ const Carousel = ({
 				{/* <!-- Slider controls --> */}
 				<button
 					type="button"
-					className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+					className="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
 					onClick={prevSlider}
 				>
-					<span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+					<span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
 						<svg
-							className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+							className="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800"
 							aria-hidden="true"
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -108,12 +108,12 @@ const Carousel = ({
 				</button>
 				<button
 					type="button"
-					className="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+					className="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
 					onClick={nextSlider}
 				>
-					<span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+					<span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
 						<svg
-							className="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+							className="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800"
 							aria-hidden="true"
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
