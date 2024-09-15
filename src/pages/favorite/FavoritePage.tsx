@@ -18,8 +18,6 @@ const FavouritePage = () => {
 	useEffect(() => {
 		dispatch(getFavorite());
 	}, []);
-	console.log(favData);
-
 	return (
 		<>
 			<FavouritePageComponent title="Notes" data={favData?.note} />

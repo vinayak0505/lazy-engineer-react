@@ -57,7 +57,7 @@ export const logoutUser = createAsyncThunk('auth/logoutUser', async (_, thunkApi
 	const token = localStorage.getItem('token');
 	if (token) {
 		thunkApi.dispatch(authAction.loading());
-		return await AuthService.logoutUser(token);
+		return await AuthService.logoutUser();
 	} else {
 		throw new Error('Token not found in cookie');
 	}

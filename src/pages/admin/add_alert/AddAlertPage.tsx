@@ -51,8 +51,6 @@ export const AlertsUploadPage = () => {
 			setImage(null);
 			setTags([]);
 			setAlerts(DefaultAlertValue);
-			console.log(DefaultAlertValue);
-
 			dispatch(helperAction.customToast('Alerts uploaded successfully'));
 		} catch (error: any) {
 			dispatch(helperAction.customToast(error?.message ?? 'Something went wrong'));

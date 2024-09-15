@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser, signUpUser } from '../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../store';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+
 const Auth = ({ showLogin }: { showLogin: boolean }) => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
@@ -21,7 +25,7 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 	const nav = useNavigate();
 
 	return (
-		<section className="bg-gray-50 dark:bg-gray-900">
+		<section className="bg-gray-50 dark:bg-gray-900 p-5">
 			<div className="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
 				<NavLink
 					to="/"
@@ -118,6 +122,45 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 								</p>
 							)}
 						</form>
+						<div className="mt-6">
+							<div className="relative">
+								<div className="absolute inset-0 flex items-center">
+									<div className="w-full border-t border-gray-300"></div>
+								</div>
+								<div className="relative flex justify-center text-sm">
+									<span className="bg-white px-2 text-white dark:bg-gray-800">
+										Or continue with
+									</span>
+								</div>
+							</div>
+
+							<div className="mt-6 grid grid-cols-3 gap-3">
+								<div>
+									<a
+										href="#"
+										className="flex w-full items-center justify-center rounded-md  px-8 py-3 text-sm font-medium text-gray-700 shadow-sm  bg-blue-600 hover:bg-blue-700"
+									>
+										<FacebookIcon/>
+									</a>
+								</div>
+								<div>
+									<a
+										href="#"
+										className="flex w-full items-center justify-center rounded-md px-8 py-3 text-sm font-medium text-gray-700 shadow-sm  bg-blue-600 hover:bg-blue-700"
+									>
+										<TwitterIcon/>
+									</a>
+								</div>
+								<div>
+									<a
+										href="#"
+										className="flex w-full items-center justify-center rounded-md px-8 py-3 text-sm font-medium text-gray-700 shadow-sm  bg-blue-600 hover:bg-blue-700"
+									>
+										<GoogleIcon/>
+									</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
