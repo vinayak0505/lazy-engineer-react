@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { loginUser, signUpUser } from '../../redux/reducer/auth.reducer';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { loginUser, signUpUser, verifyToken } from '../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../store';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -12,6 +12,7 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 	const [password, setPassword] = useState('');
 
 	const dispatch = useAppDispatch();
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -22,10 +23,19 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 		}
 	};
 
+	useEffect(() => {
+		const token = searchParams.get('token');
+
+		if (token) {
+			setSearchParams({ token: '' });
+			dispatch(verifyToken({ token }));
+		}
+	}, []);
+
 	const nav = useNavigate();
 
 	return (
-		<section className="bg-gray-50 dark:bg-gray-900 p-5">
+		<section className="bg-gray-50 p-5 dark:bg-gray-900">
 			<div className="mx-auto flex flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
 				<NavLink
 					to="/"
@@ -138,25 +148,25 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 								<div>
 									<a
 										href="#"
-										className="flex w-full items-center justify-center rounded-md  px-8 py-3 text-sm font-medium text-gray-700 shadow-sm  bg-blue-600 hover:bg-blue-700"
+										className="flex w-full items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium shadow-sm hover:bg-blue-700 hover:text-white"
 									>
-										<FacebookIcon/>
+										<FacebookIcon />
 									</a>
 								</div>
 								<div>
 									<a
 										href="#"
-										className="flex w-full items-center justify-center rounded-md px-8 py-3 text-sm font-medium text-gray-700 shadow-sm  bg-blue-600 hover:bg-blue-700"
+										className="flex w-full items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium shadow-sm hover:bg-blue-700 hover:text-white"
 									>
-										<TwitterIcon/>
+										<TwitterIcon />
 									</a>
 								</div>
 								<div>
 									<a
-										href="#"
-										className="flex w-full items-center justify-center rounded-md px-8 py-3 text-sm font-medium text-gray-700 shadow-sm  bg-blue-600 hover:bg-blue-700"
+										href="http://localhost:9008/auth/google"
+										className="hover:bg-blue-70 flex w-full items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium shadow-sm hover:bg-blue-700 hover:text-white"
 									>
-										<GoogleIcon/>
+										<GoogleIcon />
 									</a>
 								</div>
 							</div>

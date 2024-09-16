@@ -73,9 +73,12 @@ export const signUpUser = createAsyncThunk(
 	},
 );
 
-export const verifyToken = createAsyncThunk('auth/verifyToken', async (_, thunkApi) => {
+export const verifyToken = createAsyncThunk('auth/verifyToken', async (arg: {token?: string} | undefined, thunkApi) => {
 	thunkApi.dispatch(authAction.loading());
-	const token = localStorage.getItem('token');
+	if(arg?.token){
+		localStorage.setItem('token', arg?.token);
+	}
+	const token = arg?.token ?? localStorage.getItem('token');
 	if (token === undefined || token === null) throw new Error();
 	const data = await AuthService.verifyToken(token);
 	if (data.status !== 'success') throw new Error(data.message);
