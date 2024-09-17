@@ -21,6 +21,8 @@ import PaperDetailPage from './pages/paper/PaperDetailsPage';
 import BookDetailPage from './pages/books/BookDetailsPage';
 import PracticlDetailsPage from './pages/practical/PracticalDetailsPage';
 import JobDetailPage from './pages/jobs/JobsDetailPage';
+import PrivacyPolicy from './pages/privacy_policy/PrivacyPolicy';
+import TermsAndConditions from './pages/terms_and_condition/TermsAndConditions';
 
 function Router() {
 	// todo temp setting user to work without auth
@@ -58,6 +60,14 @@ function Router() {
 
 	// routes
 	const browserRouter = createBrowserRouter([
+		{
+			path: '/privacy_policy',
+			element: <PrivacyPolicy />,
+		},
+		{
+			path: '/terms_and_conditions',
+			element: <TermsAndConditions />,
+		},
 		{
 			path: '/login',
 			element: (
