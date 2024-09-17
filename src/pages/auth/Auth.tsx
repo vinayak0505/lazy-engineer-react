@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { NavLink, useNavigate, useSearchParams } from 'react-router-dom';
 import { loginUser, signUpUser, verifyToken } from '../../redux/reducer/auth.reducer';
 import { useAppDispatch } from '../../store';
 import GoogleIcon from '@mui/icons-material/Google';
@@ -147,7 +147,7 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 							<div className="mt-6 grid grid-cols-3 gap-3">
 								<div>
 									<a
-										href="#"
+										href={`${process.env.REACT_APP_BASE_URL}/auth/facebook`}
 										className="flex w-full items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium shadow-sm hover:bg-blue-700 hover:text-white"
 									>
 										<FacebookIcon />
@@ -155,7 +155,7 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 								</div>
 								<div>
 									<a
-										href="#"
+										href={`${process.env.REACT_APP_BASE_URL}/auth/twitter`}
 										className="flex w-full items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium shadow-sm hover:bg-blue-700 hover:text-white"
 									>
 										<TwitterIcon />
@@ -163,7 +163,7 @@ const Auth = ({ showLogin }: { showLogin: boolean }) => {
 								</div>
 								<div>
 									<a
-										href="http://localhost:9008/auth/google"
+										href={`${process.env.REACT_APP_BASE_URL}/auth/google`}
 										className="hover:bg-blue-70 flex w-full items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium shadow-sm hover:bg-blue-700 hover:text-white"
 									>
 										<GoogleIcon />
